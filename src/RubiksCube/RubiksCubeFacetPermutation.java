@@ -68,14 +68,12 @@ public class RubiksCubeFacetPermutation extends RubiksCube {
 		throw new IllegalArgumentException();
 	}
 	
-	/**
-	 * Permet d'obtenir la couleur d'une facette
-	 * @param face Face sur laquelle est la facette
-	 * @param x Entier dans [0,2] (de la gauche vers la droite sur rubiks.png)
-	 * @param y Entier dans [0,2] (du bas vers le haut sur rubiks.png)
-	 * @return Couleur de la facettes
-	 */
-	public Color getFacetColor( RubiksFace face, int x, int y) {
+	@Override
+	public Color getFacetColor( RubiksFace face, int x, int y)  throws IllegalArgumentException {
+		
+		if( x < 0 || x > 2 || y < 0 || y > 2)
+			throw new IllegalArgumentException();
+		
 		return _getColor(rubiksPermutations[face.ordinal() * 8 + posToID[x][y]]);
 	}
 	
@@ -100,11 +98,7 @@ public class RubiksCubeFacetPermutation extends RubiksCube {
 		}
 	}
 
-	/**
-	 * Permet d'effectuer un mouvement sur le cube
-	 * @param r Le mouvement de type RubiksRotation
-	 * @throws IllegalArgumentException
-	 */
+	@Override
 	public void rotate( RubiksRotation r )  throws IllegalArgumentException {
 		switch( r ) {
 		
