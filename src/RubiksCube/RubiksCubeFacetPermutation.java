@@ -98,6 +98,21 @@ public class RubiksCubeFacetPermutation extends RubiksCube {
 		}
 	}
 
+	/**
+	 * Retourne les couleurs de la face en partant de en haut à droite, c'est à dire l'ordre utilisé pour le display
+	 * @param face
+	 * @return
+	 */
+	public Color[] getColorFace(RubiksFace face){
+		Color[] toReturn=new Color[9];
+	for( int x=0; x<3; x++) {
+		for( int y=0; y<3; y++) {
+			int w=x + y*3;
+			toReturn[w]=getFacetColor(face,x,y);
+		}
+	}
+	return  toReturn;
+	}
 	@Override
 	public void rotate( RubiksRotation r )  throws IllegalArgumentException {
 		switch( r ) {
@@ -168,7 +183,7 @@ public class RubiksCubeFacetPermutation extends RubiksCube {
 	/**
 	 * Constructeur
 	 */
-	RubiksCubeFacetPermutation() {
+	public RubiksCubeFacetPermutation() {
 		
 		// Initialise la liste qui sera permutée
 		rubiksPermutations = new int[6*9];

@@ -1,12 +1,10 @@
-// Etape 1 :
+package RubiksCube;// Etape 1 :
 // Importation des packages Java 2
 import java.applet.Applet;
 import javax.vecmath.*;
 import java.awt.*;
 //import java.awt.Color;
 
-import RubiksCube.*;
-import RubiksCube.Color;
 import com.sun.j3d.utils.behaviors.vp.*;
 
 // Etape 2 :
@@ -16,9 +14,9 @@ import com.sun.j3d.utils.geometry.ColorCube;
 import com.sun.j3d.utils.universe.*;
 import javax.media.j3d.*;
 
-public class ColorCube3D extends Applet {
+public class Displayer3D extends Applet {
 
-  public ColorCube3D() {
+  public Displayer3D(Color[][] colorToGive) {
     this.setLayout(new BorderLayout());
 
     // Etape 3 :
@@ -42,7 +40,7 @@ public class ColorCube3D extends Applet {
 
     // Etape 6 :
     // Creation de la scene 3D qui contient tous les objets 3D que l'on veut visualiser
-    BranchGroup scene = createSceneGraph();
+    BranchGroup scene = createSceneGraph( colorToGive);
 
     // Etape 7 :
     // Compilation de la scene 3D
@@ -57,7 +55,7 @@ public class ColorCube3D extends Applet {
    * Creation de la scene 3D qui contient tous les objets 3D
    * @return scene 3D
    */
-  public BranchGroup createSceneGraph() {
+  public BranchGroup createSceneGraph(Color[][] colorToGive) {
     // Creation de l'objet parent qui contiendra tous les autres objets 3D
     BranchGroup parent = new BranchGroup();
 
@@ -90,23 +88,26 @@ public class ColorCube3D extends Applet {
     		}
     	}
     }
-   Color[] orange={Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE};
-   Color[] red={Color.RED,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED};
-   Color[] white={Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE};
-   Color[] green={Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN};
-   Color[] blue={Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE};
-   Color[] yellow={Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW};
+	/*  Color[] orange={Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE};
+	  Color[] red={Color.RED,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED};
+	  Color[] white={Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE};
+	  Color[] green={Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN};
+	  Color[] blue={Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE};
+	  Color[] yellow={Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW};
+*/
+	  this.face(parent, new Vector3d(0,0,0.6), new Vector3d(1,0,0), new Vector3d(0,1,0),colorToGive[RubiksFace.F.getValue()]);
+	  this.face(parent, new Vector3d(0,0.6,0), new Vector3d(-1,0,0), new Vector3d(0,0,1),colorToGive[RubiksFace.U.getValue()]);
 
-    face(parent, new Vector3d(0,0,0.6), new Vector3d(1,0,0), new Vector3d(0,1,0),yellow);
-    face(parent, new Vector3d(0,-0.6,0), new Vector3d(1,0,0), new Vector3d(0,0,1),blue);
-    face(parent, new Vector3d(0,0,-0.6), new Vector3d(-1,0,0), new Vector3d(0,1,0),white);
-    face(parent, new Vector3d(0,0.6,0), new Vector3d(-1,0,0), new Vector3d(0,0,1),green);
+	  this.face(parent, new Vector3d(-0.6,0,0), new Vector3d(0,-1,0), new Vector3d(0,0,1),colorToGive[RubiksFace.L.getValue()]);
+	  this.face(parent, new Vector3d(0,-0.6,0), new Vector3d(1,0,0), new Vector3d(0,0,1),colorToGive[RubiksFace.D.getValue()]);
+	  this.face(parent, new Vector3d(0,0,-0.6), new Vector3d(-1,0,0), new Vector3d(0,1,0),colorToGive[RubiksFace.B.getValue()]);
+
+
+
+	  this.face(parent, new Vector3d(0.6,0,0), new Vector3d(0,1,0), new Vector3d(0,0,1),colorToGive[RubiksFace.R.getValue()]);
+
     
-    face(parent, new Vector3d(0.6,0,0), new Vector3d(0,1,0), new Vector3d(0,0,1),red);
-    face(parent, new Vector3d(-0.6,0,0), new Vector3d(0,-1,0), new Vector3d(0,0,1),orange);
-    
-    
-    
+
 
     return parent;
   }
@@ -180,7 +181,8 @@ public class ColorCube3D extends Applet {
    * ou une application.
    * @param args
    */
-  public static void main(String[] args) {
-    Frame frame = new MainFrame(new ColorCube3D(), 256, 256);
+ /* public static void main(String[] args) {
+    Frame frame = new MainFrame(new Displayer3D(), 256, 256);
   }
+  */
 }

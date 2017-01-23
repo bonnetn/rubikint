@@ -16,5 +16,5 @@ abstract public class RubiksCube {
 	 * @return Couleur de la facettes
 	 */
 	abstract public Color getFacetColor( RubiksFace face, int x, int y) throws IllegalArgumentException;
-	
+	abstract public Color[] getColorFace(RubiksFace face);
 }
