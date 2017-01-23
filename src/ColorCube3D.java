@@ -3,6 +3,10 @@
 import java.applet.Applet;
 import javax.vecmath.*;
 import java.awt.*;
+//import java.awt.Color;
+
+import RubiksCube.*;
+import RubiksCube.Color;
 import com.sun.j3d.utils.behaviors.vp.*;
 
 // Etape 2 :
@@ -86,15 +90,20 @@ public class ColorCube3D extends Applet {
     		}
     	}
     }
-   
+   Color[] orange={Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE,Color.ORANGE};
+   Color[] red={Color.RED,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED,Color.RED};
+   Color[] white={Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE};
+   Color[] green={Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN,Color.GREEN};
+   Color[] blue={Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE,Color.BLUE};
+   Color[] yellow={Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW,Color.YELLOW};
+
+    face(parent, new Vector3d(0,0,0.6), new Vector3d(1,0,0), new Vector3d(0,1,0),yellow);
+    face(parent, new Vector3d(0,-0.6,0), new Vector3d(1,0,0), new Vector3d(0,0,1),blue);
+    face(parent, new Vector3d(0,0,-0.6), new Vector3d(-1,0,0), new Vector3d(0,1,0),white);
+    face(parent, new Vector3d(0,0.6,0), new Vector3d(-1,0,0), new Vector3d(0,0,1),green);
     
-    face(parent, new Vector3d(0,0,0.6), new Vector3d(1,0,0), new Vector3d(0,1,0));
-    face(parent, new Vector3d(0,-0.6,0), new Vector3d(1,0,0), new Vector3d(0,0,1));
-    face(parent, new Vector3d(0,0,-0.6), new Vector3d(-1,0,0), new Vector3d(0,1,0));
-    face(parent, new Vector3d(0,0.6,0), new Vector3d(-1,0,0), new Vector3d(0,0,1));
-    
-    face(parent, new Vector3d(0.6,0,0), new Vector3d(0,1,0), new Vector3d(0,0,1));
-    face(parent, new Vector3d(-0.6,0,0), new Vector3d(0,-1,0), new Vector3d(0,0,1));
+    face(parent, new Vector3d(0.6,0,0), new Vector3d(0,1,0), new Vector3d(0,0,1),red);
+    face(parent, new Vector3d(-0.6,0,0), new Vector3d(0,-1,0), new Vector3d(0,0,1),orange);
     
     
     
@@ -102,7 +111,7 @@ public class ColorCube3D extends Applet {
     return parent;
   }
   
-  void face( Group parent, Vector3d posV, Vector3d xdir, Vector3d ydir ) {
+  void face( Group parent, Vector3d posV, Vector3d xdir, Vector3d ydir,Color[] color ) {
 	  Transform3D origin = new Transform3D();
 	  origin.setTranslation( posV );
 	  
@@ -114,14 +123,14 @@ public class ColorCube3D extends Applet {
 	    	  pos.setTranslation( new Vector3d(0.4*(x*xdir.x+y*ydir.x),0.4*(x*xdir.y+y*ydir.y),0.4*(x*xdir.z+y*ydir.z)) );
 	    	  TransformGroup posG = new TransformGroup(pos);
 	    	    
-	    	  facet(posG,0.19f, xdir, ydir);
+	    	  facet(posG,0.19f, xdir, ydir,Color.givecolor(color[x+1+(y+1)*3]));
 	    	  originG.addChild(posG);
 		  }
 	  }
 	  parent.addChild(originG);
   }
   
-  void facet( Group parent, float size, Vector3d xdir, Vector3d ydir) {
+  void facet( Group parent, float size, Vector3d xdir, Vector3d ydir,Color3b color) {
 	  
 	    QuadArray lsa = new QuadArray(4*2,QuadArray.COORDINATES | QuadArray.COLOR_3 );
 		  
@@ -156,10 +165,10 @@ public class ColorCube3D extends Applet {
 	    
 	    //lsa.setNormals(0, normals);
 	    lsa.setCoordinates(0, pts);
-	    lsa.setColor(0, new Color3b((byte) 255,(byte) 0,(byte) 0));
-	    lsa.setColor(1, new Color3b((byte) 255,(byte) 0,(byte) 0));
-	    lsa.setColor(2, new Color3b((byte) 255,(byte) 0,(byte) 0));
-	    lsa.setColor(3, new Color3b((byte) 255,(byte) 0,(byte) 0));
+	    lsa.setColor(0, color);
+	    lsa.setColor(1, color);
+	    lsa.setColor(2, color);
+	    lsa.setColor(3, color);
 	    
 	    
 	    parent.addChild(new Shape3D(lsa));
