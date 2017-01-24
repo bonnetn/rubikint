@@ -74,6 +74,9 @@ public class RubiksCubeFacetPermutation extends RubiksCube {
 		if( x < 0 || x > 2 || y < 0 || y > 2)
 			throw new IllegalArgumentException();
 		
+		if( x==1 && y==1)
+			return _getColor(face.ordinal()*8);
+		
 		return _getColor(rubiksPermutations[face.ordinal() * 8 + posToID[x][y]]);
 	}
 	
