@@ -59,19 +59,6 @@ public class Displayer3D extends Applet {
     // Creation de l'objet parent qui contiendra tous les autres objets 3D
     BranchGroup parent = new BranchGroup();
 
-    /************ Partie de code concernant l'animation du cube *************/
-    /* Elle sera expliquee en details dans les chapitres relatifs aux
-     transformations geometriques et aux animations */
-    TransformGroup objSpin = new TransformGroup();
-    objSpin.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
-    Alpha rotationAlpha = new Alpha(-1, 4000);
-    RotationInterpolator rotator =
-        new RotationInterpolator(rotationAlpha, objSpin);
-    BoundingSphere bounds = new BoundingSphere();
-    rotator.setSchedulingBounds(bounds);
-    objSpin.addChild(rotator);
-    /*************** Fin de la partie relative a l'animation ***************/
-
     // Construction du cube couleur
     
     for(int x=-1; x<=1; x++) {
