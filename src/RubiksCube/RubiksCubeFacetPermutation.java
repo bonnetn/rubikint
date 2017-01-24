@@ -16,7 +16,8 @@ public class RubiksCubeFacetPermutation extends RubiksCube {
 	private int rubiksPermutations[];
 	
 	/**
-	 * Les permutations sous formes canoniques pour chacun des mouvements
+	 * Les permutations sous formes canoniques pour chacun des mouvements 
+	 * (notation Singmaster)
 	 */
 	private static final int permF[][] = {{0, 2, 7, 5}, {1, 4, 6, 3}, {13, 32, 26, 23}, {14, 35, 25, 20}, {15, 37, 24, 18}};
 	private static final int permB[][] = {{40, 42, 47, 45}, {41, 44, 46, 43}, {8, 21, 31, 34}, {9, 19, 30, 36}, {10, 16, 29, 39}};

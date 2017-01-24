@@ -1,7 +1,9 @@
 package RubiksCube;
 
 /*
- * Definit les mouvements possibles sur le rubiks
+ * 
+ * Definit les mouvements possibles sur le rubiks selon la notation
+ * de Singmaster.
  * U <=> Up
  * D <=> Down
  * L <=> Left
