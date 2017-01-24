@@ -103,16 +103,18 @@ public class RubiksCubeFacetPermutation extends RubiksCube {
 	 * @param face
 	 * @return
 	 */
+	/*
 	public Color[] getColorFace(RubiksFace face){
 		Color[] toReturn=new Color[9];
-	for( int x=0; x<3; x++) {
-		for( int y=0; y<3; y++) {
-			int w=x + y*3;
-			toReturn[w]=getFacetColor(face,x,y);
+		for( int x=0; x<3; x++) {
+			for( int y=0; y<3; y++) {
+				int w=x + y*3;
+				toReturn[w]=getFacetColor(face,x,y);
+			}
 		}
+		return  toReturn;
 	}
-	return  toReturn;
-	}
+	*/
 	@Override
 	public void rotate( RubiksRotation r )  throws IllegalArgumentException {
 		switch( r ) {
