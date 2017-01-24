@@ -1,4 +1,4 @@
-package RubiksCube;
+package RubiksCube.enums;
 
 /*
  * 
@@ -15,7 +15,7 @@ package RubiksCube;
  * etc.
  */
 
-public enum RubiksRotation {
+public enum Rotation {
 	U, Ui,
 	D, Di,
 	R, Ri,

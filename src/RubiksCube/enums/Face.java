@@ -1,16 +1,16 @@
-package RubiksCube;
+package RubiksCube.enums;
 
 /*
  * Définit les faces du rubiks
  * Front, Up, Left, Down, Right, Back
  */
 
-public enum RubiksFace {
+public enum Face {
 	F(0),U(1),R(2),D(3),L(4),B(5);
 
 	private final int value;
 
-	private RubiksFace(int value) {
+	private Face(int value) {
 		this.value = value;
 	}
 
