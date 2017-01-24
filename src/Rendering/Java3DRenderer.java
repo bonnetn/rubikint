@@ -112,13 +112,13 @@ public class Java3DRenderer extends AbstractRenderer {
 	
 	private static void drawCube( Group parent, Renderable cube ) {
 		 drawFace(parent, new Vector3d(0,0,0.6), new Vector3d(1,0,0), new Vector3d(0,1,0), cube, Face.F);
-		 drawFace(parent, new Vector3d(0,0.6,0), new Vector3d(-1,0,0), new Vector3d(0,0,1), cube, Face.U);
+		 drawFace(parent, new Vector3d(0,0.6,0), new Vector3d(1,0,0), new Vector3d(0,0,-1), cube, Face.U);
 	
-		 drawFace(parent, new Vector3d(-0.6,0,0), new Vector3d(0,-1,0), new Vector3d(0,0,1), cube, Face.L );
+		 drawFace(parent, new Vector3d(-0.6,0,0), new Vector3d(0,0,1), new Vector3d(0,1,0), cube, Face.L );
 		 drawFace(parent, new Vector3d(0,-0.6,0), new Vector3d(1,0,0), new Vector3d(0,0,1), cube, Face.D );
 		 drawFace(parent, new Vector3d(0,0,-0.6), new Vector3d(-1,0,0), new Vector3d(0,1,0), cube, Face.B );
-	
-		 drawFace(parent, new Vector3d(0.6,0,0), new Vector3d(0,1,0), new Vector3d(0,0,1), cube, Face.R);
+
+		 drawFace(parent, new Vector3d(0.6,0,0), new Vector3d(0,0,-1), new Vector3d(0,1,0), cube, Face.R);
 
 	}
 	

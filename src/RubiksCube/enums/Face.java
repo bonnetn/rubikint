@@ -6,7 +6,7 @@ package RubiksCube.enums;
  */
 
 public enum Face {
-	F(0),U(1),R(2),D(3),L(4),B(5);
+	F(0),U(1),L(2),D(3),R(2),B(5);
 
 	private final int value;
 

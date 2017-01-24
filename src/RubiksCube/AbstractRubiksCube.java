@@ -27,14 +27,14 @@ abstract public class AbstractRubiksCube {
 	 * @param face
 	 * @return
 	 */
-	public Color[] getColorFace(Face face) {
+	/*public Color[] getColorFace(Face face) {
 		Color faceColors[] = new Color[9];
-		
+
 		for(int j=0; j<3; j++) 
-			for(int i=0; i<3; i++) 
-				faceColors[j*3+j] = getFacetColor(face, i, j);
+			for(int i=0; i<3; i++)
+				faceColors[j*3+i] = getFacetColor(face, i, j);
 				
 		return faceColors;
 		
-	}
+	}*/
 }
