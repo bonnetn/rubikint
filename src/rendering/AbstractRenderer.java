@@ -1,4 +1,4 @@
-package Rendering;
+package rendering;
 
 abstract public class AbstractRenderer {
 	

@@ -1,9 +1,9 @@
 
-import Rendering.Java3DRenderer;
-import RubiksCube.RubiksCube;
-import RubiksCube.enums.Color;
-import RubiksCube.enums.Face;
-import RubiksCube.enums.Rotation;
+import rendering.Java3DRenderer;
+import rubikscube.RubiksCube;
+import rubikscube.enums.Color;
+import rubikscube.enums.Face;
+import rubikscube.enums.Rotation;
 
 public class Test {
 

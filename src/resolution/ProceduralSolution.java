@@ -1,8 +1,7 @@
 package resolution;
 
-import RubiksCube.RubiksCube;
-import RubiksCube.enums.Rotation;
-
+import rubikscube.RubiksCube;
+import rubikscube.enums.Rotation;
 
 import java.security.PrivateKey;
 import java.util.ArrayList;

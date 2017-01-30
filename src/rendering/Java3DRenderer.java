@@ -1,9 +1,9 @@
-package Rendering;
+package rendering;
 
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
-import RubiksCube.enums.Color;
-import RubiksCube.enums.Face;
+import rubikscube.enums.Color;
+import rubikscube.enums.Face;
 
 import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 

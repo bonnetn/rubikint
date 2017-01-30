@@ -1,7 +1,7 @@
 package resolution;
 
-import RubiksCube.enums.Color;
-import RubiksCube.enums.Face;
+import rubikscube.enums.Color;
+import rubikscube.enums.Face;
 
 /**
  * Created by shininisan on 26/01/17.

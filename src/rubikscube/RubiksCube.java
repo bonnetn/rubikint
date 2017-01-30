@@ -1,10 +1,9 @@
-package RubiksCube;
+package rubikscube;
 
-import Rendering.Renderable;
-
-import RubiksCube.enums.Color;
-import RubiksCube.enums.Face;
-import RubiksCube.enums.Rotation;
+import rendering.Renderable;
+import rubikscube.enums.Color;
+import rubikscube.enums.Face;
+import rubikscube.enums.Rotation;
 
 /**
  * Fonction représentant le RubiksCube

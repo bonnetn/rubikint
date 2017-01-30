@@ -1,8 +1,8 @@
 package resolution;
 
-import RubiksCube.RubiksCube;
-
 import java.util.ArrayList;
+
+import rubikscube.RubiksCube;
 
 /**
  * Created by shininisan on 26/01/17.

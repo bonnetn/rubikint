@@ -1,7 +1,7 @@
-package Rendering;
+package rendering;
 
-import RubiksCube.enums.Color;
-import RubiksCube.enums.Face;
+import rubikscube.enums.Color;
+import rubikscube.enums.Face;
 
 public interface Renderable {
 

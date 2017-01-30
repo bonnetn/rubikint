@@ -1,8 +1,8 @@
-package RubiksCube;
+package rubikscube;
 
-import RubiksCube.enums.Color;
-import RubiksCube.enums.Face;
-import RubiksCube.enums.Rotation;
+import rubikscube.enums.Color;
+import rubikscube.enums.Face;
+import rubikscube.enums.Rotation;
 
 abstract public class AbstractRubiksCube {
 	/**

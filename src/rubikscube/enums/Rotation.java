@@ -1,4 +1,4 @@
-package RubiksCube.enums;
+package rubikscube.enums;
 
 /*
  * 

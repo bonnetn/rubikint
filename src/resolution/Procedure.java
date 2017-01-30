@@ -1,9 +1,9 @@
 package resolution;
 
-import RubiksCube.enums.Rotation;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+import rubikscube.enums.Rotation;
 
 /**
  * Created by shininisan on 26/01/17.
