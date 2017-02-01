@@ -1,4 +1,6 @@
 package rubikscube;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 import rendering.Renderable;
 import rubikscube.enums.Color;
@@ -171,6 +173,14 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 			throw new IllegalArgumentException();
 		}
 		
+	}
+	public void randomMelange()
+	{
+		for(int i=0;i<60;i++)
+		{
+			int rot=ThreadLocalRandom.current().nextInt(0, 11 + 1);
+			this.rotate(Rotation.values()[rot]);
+		}
 	}
 	
 	/**

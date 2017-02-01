@@ -20,7 +20,8 @@ public class Test {
 		 m=rc.getFacetColor(Face.R,2,0);
 		 m=rc.getFacetColor(Face.R,2,1);
 		 m=rc.getFacetColor(Face.R,2,2);
-		r.drawItem(rc);
+		rc.randomMelange();
+		 r.drawItem(rc);
 		
 	}
 	

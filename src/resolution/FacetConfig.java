@@ -17,7 +17,6 @@ public class FacetConfig {
         this.y=y;
         this.face=face;
         this.couleur=couleur;
-
     }
 
     public Color getCouleur() {
