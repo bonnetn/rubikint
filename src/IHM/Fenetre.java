@@ -6,11 +6,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Rendering.Java3DRenderer;
-import RubiksCube.RubiksCube;
-import RubiksCube.enums.Color;
-import RubiksCube.enums.Face;
-import RubiksCube.enums.Rotation;
+import rendering.Java3DRenderer;
+import rubikscube.RubiksCube;
+import rubikscube.enums.Color;
+import rubikscube.enums.Face;
+import rubikscube.enums.Rotation;
 
 /**
  * Created by florian on 29/01/17.

@@ -1,5 +1,6 @@
 package resolution;
 
+import rubikscube.RubiksCube;
 import rubikscube.enums.Color;
 import rubikscube.enums.Face;
 
@@ -18,10 +19,15 @@ public class FacetConfig {
         this.face=face;
         this.couleur=couleur;
     }
-    public void changeFace(Face nouvelleFace)
+    public void changeFace( RubiksCube cube,Face nouvelleFace)
     {
-        this.face=nouvelleFace;
-        this.couleur=nouvelleFace.couleur
+        if(this.face==Face.F)
+        {
+            this.face=nouvelleFace;
+            this.couleur=cube.getFacetColor(nouvelleFace,1,1);
+        }
+
+
     }
 
     public Color getCouleur() {

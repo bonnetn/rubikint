@@ -3,6 +3,7 @@ package resolution;
 import java.util.ArrayList;
 
 import rubikscube.RubiksCube;
+import rubikscube.enums.Face;
 
 /**
  * Created by shininisan on 26/01/17.
@@ -35,8 +36,16 @@ public class RubiksConfiguration {
         }
     return true;
     }
-    public RubiksConfiguration copyAndChangeFace()
+    
+    public void symetrizeFaceCote(RubiksCube cube,Face face)
     {
+
+        for (FacetConfig x:facetConfig)
+        {
+            int numFace=x.getFace().getValue()-face.getValue()+Face.F.getValue(); //décalage lié a l'enum
+            x.changeFace(cube,Face.values()[numFace]);
+        }
+
 
     }
 }
