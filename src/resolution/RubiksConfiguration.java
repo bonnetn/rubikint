@@ -22,6 +22,7 @@ public class RubiksConfiguration {
     public void setFacetConfig(ArrayList<FacetConfig> facetConfig) {
         this.facetConfig = facetConfig;
     }
+
     public boolean match(RubiksCube cube)
     {
         for (FacetConfig facette:this.facetConfig)
@@ -33,5 +34,9 @@ public class RubiksConfiguration {
 
         }
     return true;
+    }
+    public RubiksConfiguration copyAndChangeFace()
+    {
+
     }
 }

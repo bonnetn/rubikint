@@ -18,6 +18,11 @@ public class FacetConfig {
         this.face=face;
         this.couleur=couleur;
     }
+    public void changeFace(Face nouvelleFace)
+    {
+        this.face=nouvelleFace;
+        this.couleur=nouvelleFace.couleur
+    }
 
     public Color getCouleur() {
         return couleur;

@@ -3,6 +3,7 @@ package resolution;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import rubikscube.enums.Face;
 import rubikscube.enums.Rotation;
 
 /**
@@ -17,6 +18,15 @@ public class Procedure {
         this.proc=rot;
         this.priority=priority;
         this.configs=configs;
+    }
+
+    /**
+     *
+     * @param FaceEnFace
+     */
+    public void symetry(Face FaceEnFace)
+    {
+
     }
 
     public ArrayList<RubiksConfiguration> getConfigs() {

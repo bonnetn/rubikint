@@ -1,9 +1,12 @@
 
 import rendering.Java3DRenderer;
+import resolution.Procedure;
 import rubikscube.RubiksCube;
 import rubikscube.enums.Color;
 import rubikscube.enums.Face;
 import rubikscube.enums.Rotation;
+
+import java.util.ArrayList;
 
 public class Test {
 
@@ -22,6 +25,8 @@ public class Test {
 		 m=rc.getFacetColor(Face.R,2,2);
 		rc.randomMelange();
 		 r.drawItem(rc);
+Procedure secondeCouronne=new Procedure(new ArrayList<Rotation>(),4, );
+
 		
 	}
 	
