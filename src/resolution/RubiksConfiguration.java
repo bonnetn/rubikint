@@ -38,13 +38,13 @@ public class RubiksConfiguration {
     return true;
     }
     
-    public void symetrizeFaceCote(RubiksCube cube,Face face)
+    public void symetrizeFaceCote(Face face)
     {
 
         for (FacetConfig x:facetConfig)
         {
             int numFace=(x.getFace().getValue()-face.getValue())%4+Face.F.getValue(); //décalage lié a l'enum
-            x.changeFace(cube,Face.values()[numFace]);
+            x.changeFace(Face.values()[numFace]);
         }
 
 

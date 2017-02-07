@@ -19,7 +19,7 @@ public class FacetConfig {
         this.face=face;
         this.couleurFaceCorrespondante=couleurFaceCorrespondante;
     }
-    public void changeFace( RubiksCube cube,Face nouvelleFace)
+    public void changeFace( Face nouvelleFace)
     {
         if(this.face==Face.F)
         {

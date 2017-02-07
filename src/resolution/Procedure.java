@@ -26,9 +26,9 @@ public class Procedure {
      *Permet une symétrie par rapport à un de 4 coté (ni le dessus ni le dessous)
      * @param faceNouvelle
      */
-    public void symetry(Face faceNouvelle, RubiksCube cube)
+    public void symetry(Face faceNouvelle)
     {
-        config.symetrizeFaceCote(cube,faceNouvelle);
+        config.symetrizeFaceCote(faceNouvelle);
 
 
         for(int i=0;i<proc.size();i++)
