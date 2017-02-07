@@ -8,14 +8,7 @@ import rubikscube.enums.Face;
 
 import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 
-import javax.media.j3d.BoundingSphere;
-import javax.media.j3d.BranchGroup;
-import javax.media.j3d.Canvas3D;
-import javax.media.j3d.Group;
-import javax.media.j3d.QuadArray;
-import javax.media.j3d.Shape3D;
-import javax.media.j3d.Transform3D;
-import javax.media.j3d.TransformGroup;
+import javax.media.j3d.*;
 
 import javax.vecmath.Vector3d;
 import javax.vecmath.Color3b;
@@ -130,15 +123,11 @@ public class Java3DRenderer extends AbstractRenderer {
 	
 	@Override
 	public void drawItem(Renderable item) {
-		
-		   
+
 		   BranchGroup group = new BranchGroup();
-		   
-		   
+
 		   //group.addChild(new ColorCube(0.3));
 		   drawCube( group, item );
-		  
-		   
 		   universe.getViewingPlatform().setNominalViewingTransform();
 		   OrbitBehavior orbit = new OrbitBehavior(canvas3D, OrbitBehavior.REVERSE_ROTATE);
 		   orbit.setSchedulingBounds(new BoundingSphere());
@@ -147,8 +136,15 @@ public class Java3DRenderer extends AbstractRenderer {
 	}
 
 	public Java3DRenderer() {
-		universe = new SimpleUniverse();
+
 		canvas3D = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
+
+		SimpleUniverse simpleUniverse = new SimpleUniverse(canvas3D);
+		canvas3D.getView().setFieldOfView(0.30);
+		canvas3D.getView().setWindowEyepointPolicy(View.RELATIVE_TO_WINDOW);
+		simpleUniverse.getViewingPlatform().setNominalViewingTransform();
+
+		universe = simpleUniverse;
 
 	}
 

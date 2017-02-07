@@ -1,16 +1,11 @@
 package IHM;
 
-import java.awt.BorderLayout;
-import java.awt.Menu;
-import java.awt.MenuBar;
-import java.awt.MenuItem;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import rendering.Java3DRenderer;
 import rubikscube.RubiksCube;
-import rubikscube.enums.Color;
-import rubikscube.enums.Face;
 import rubikscube.enums.Rotation;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,24 +14,28 @@ import javax.swing.JPanel;
 /**
  * Created by florian on 29/01/17.
  */
-public class Fenetre extends JFrame {
+
+
+public class Fenetre{
 
 
 
     public Fenetre() { // constructeur pour etablir les settings de la fenetre
+        JFrame frame = new JFrame();
 
-        this.setTitle("Rubik'INT");
-        this.setSize(800, 800);
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-        this.setLayout(new BorderLayout());
+        frame.setTitle("Rubik'INT");
+        frame.setSize(800, 800);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLayout(new BorderLayout());
 
-        // ajouter canvas3D du cube.
+
+        frame.add("Center",cube());
 
         //this.setMenuBar(createMenuBar());
-        this.add("South", bouton());
-        this.setVisible(true);
+        frame.add("South", bouton());
+        frame.setVisible(true);
     }
 
     private JPanel bouton() {
@@ -85,5 +84,15 @@ public class Fenetre extends JFrame {
         return panel;
     }
 
+    private JPanel cube(){
+        JPanel panel = new JPanel(new GridLayout());
+        //panel.setLayout(new BorderLayout());
+        Java3DRenderer r = new Java3DRenderer();
+        RubiksCube cube = new RubiksCube();
+        //cube.rotate(Rotation.R);
+        r.drawItem(cube);
+        panel.add(r.getCanvas3D());
 
+        return panel;
+    }
 }
