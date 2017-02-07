@@ -23,6 +23,10 @@ import javax.vecmath.Point3f;
 
 public class Java3DRenderer extends AbstractRenderer {
 	
+
+   private SimpleUniverse universe;
+   private Canvas3D canvas3D;
+	
 	private static Color3b convertRubiksColorToJava3DColor( Color c ) {
 		 
 	     Color3b result = null;
@@ -126,10 +130,9 @@ public class Java3DRenderer extends AbstractRenderer {
 	@Override
 	public void drawItem(Renderable item) {
 		
-		   SimpleUniverse universe = new SimpleUniverse();
+		   
 		   BranchGroup group = new BranchGroup();
-		   Canvas3D canvas3D = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
-
+		   
 		   
 		   //group.addChild(new ColorCube(0.3));
 		   drawCube( group, item );
@@ -142,4 +145,13 @@ public class Java3DRenderer extends AbstractRenderer {
 		   universe.addBranchGraph(group);
 	}
 
+	public Java3DRenderer() {
+		universe = new SimpleUniverse();
+		canvas3D = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
+
+	}
+
+	public Canvas3D getCanvas3D() {
+		return canvas3D;
+	}
 }
