@@ -54,13 +54,12 @@ public class ProceduralSolution {
         {
             if(procedure.getPriority()>=this.priority)
             {
-                for (RubiksConfiguration rubconf:procedure.getConfigs() )
-                {
-                    if(rubconf.match(cube))
+
+                    if(procedure.getConfig().match(cube))
                     {
                         return procedure;
                     }
-                }
+
             }
         }
         return null;

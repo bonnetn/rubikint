@@ -16,10 +16,23 @@ package rubikscube.enums;
  */
 
 public enum Rotation {
-	U, Ui,
-	D, Di,
-	R, Ri,
-	L, Li,
-	F, Fi, 
-	B, Bi;
+	L(0), Li(1),
+	B(2), Bi(3),
+	R(4), Ri(5),
+	F(6), Fi(7),
+	U(8), Ui(9),
+	D(10), Di(11);
+
+	private  int value;
+	private Rotation(int value) {
+		this.value = value;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
 }

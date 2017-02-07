@@ -3,6 +3,7 @@ package resolution;
 import java.util.ArrayList;
 
 import rubikscube.RubiksCube;
+import rubikscube.enums.Color;
 import rubikscube.enums.Face;
 
 /**
@@ -28,7 +29,7 @@ public class RubiksConfiguration {
     {
         for (FacetConfig facette:this.facetConfig)
         {
-            if(cube.getFacetColor(facette.getFace(),facette.getX(),facette.getY())!=facette.getCouleur())
+            if(cube.getFacetColor(facette.getFace(),facette.getX(),facette.getY())!= Color.values()[facette.getCouleurFaceCorrespondante().getValue()])
             {
                 return false;
             }
@@ -42,7 +43,7 @@ public class RubiksConfiguration {
 
         for (FacetConfig x:facetConfig)
         {
-            int numFace=x.getFace().getValue()-face.getValue()+Face.F.getValue(); //décalage lié a l'enum
+            int numFace=(x.getFace().getValue()-face.getValue())%4+Face.F.getValue(); //décalage lié a l'enum
             x.changeFace(cube,Face.values()[numFace]);
         }
 

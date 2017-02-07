@@ -3,6 +3,7 @@ package resolution;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import rubikscube.RubiksCube;
 import rubikscube.enums.Face;
 import rubikscube.enums.Rotation;
 
@@ -12,25 +13,35 @@ import rubikscube.enums.Rotation;
 public class Procedure {
     private ArrayList<Rotation> proc;
     private int priority; // On utilisera les procédures de plus haute priorité en premier
-    private ArrayList <RubiksConfiguration> configs;
-    public Procedure(ArrayList<Rotation> rot,int priority,ArrayList <RubiksConfiguration> configs)
+    private RubiksConfiguration config;
+    public Procedure(ArrayList<Rotation> rot,int priority,RubiksConfiguration config)
     {
         this.proc=rot;
         this.priority=priority;
-        this.configs=configs;
+        this.config=config;
+
     }
 
     /**
-     *
-     * @param FaceEnFace
+     *Permet une symétrie par rapport à un de 4 coté (ni le dessus ni le dessous)
+     * @param faceNouvelle
      */
-    public void symetry(Face FaceEnFace)
+    public void symetry(Face faceNouvelle, RubiksCube cube)
     {
+        config.symetrizeFaceCote(cube,faceNouvelle);
+
+
+        for(int i=0;i<proc.size();i++)
+        {
+            this.proc.get(i).setValue(proc.get(i).getValue()+(faceNouvelle.getValue()-Face.F.getValue())*2);
+        }
+
+
 
     }
 
-    public ArrayList<RubiksConfiguration> getConfigs() {
-        return configs;
+    public RubiksConfiguration getConfig() {
+        return config;
     }
 
     public ArrayList<Rotation> getProc() {

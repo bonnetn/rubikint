@@ -11,28 +11,25 @@ public class FacetConfig {
     private int x; //décalage par rapport à une face
     private int y;
     private Face face;
-    private Color couleur;
-    public FacetConfig(int x, int y, Face face, Color couleur)
+    private Face couleurFaceCorrespondante;
+    public FacetConfig(int x, int y, Face face, Face couleurFaceCorrespondante)
     {
         this.x=x;
         this.y=y;
         this.face=face;
-        this.couleur=couleur;
+        this.couleurFaceCorrespondante=couleurFaceCorrespondante;
     }
     public void changeFace( RubiksCube cube,Face nouvelleFace)
     {
         if(this.face==Face.F)
         {
             this.face=nouvelleFace;
-            this.couleur=cube.getFacetColor(nouvelleFace,1,1);
+            this.couleurFaceCorrespondante=nouvelleFace;
         }
 
 
     }
 
-    public Color getCouleur() {
-        return couleur;
-    }
 
     public Face getFace() {
         return face;
@@ -46,8 +43,12 @@ public class FacetConfig {
         return y;
     }
 
-    public void setCouleur(Color couleur) {
-        this.couleur = couleur;
+    public Face getCouleurFaceCorrespondante() {
+        return couleurFaceCorrespondante;
+    }
+
+    public void setCouleurFaceCorrespondante(Face couleurFaceCorrespondante) {
+        this.couleurFaceCorrespondante = couleurFaceCorrespondante;
     }
 
     public void setFace(Face face) {
