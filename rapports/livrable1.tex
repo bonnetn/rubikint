@@ -17,6 +17,7 @@
 
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
+
 Le projet de développement informatique nous a offert l'opportunité de créer le programme que nous voulions.
 Divers sujets se présentaient à nous. Nous étions déterminés à trouver un projet nous permettant de mettre en oeuvre plusieurs domaines de l'informatique. 
 Nous avons choisi le Rubik's Cube, un casse-tête fascinant, un cube constitué de 3x3x3 sous-cubes colorés pouvant tourner selon trois axes. 
@@ -34,7 +35,14 @@ Ainsi ce projet regroupe les thématiques du traîtement d'image, de l'algorithm
 
 
 \chapter{Cahier des charges}
-Cdcf
+\section{Premier prototype}
+Il s'agit premièrement d'implémenter la fonction basique de notre programme: la résolution du cube. Nous allons donc lui fournir en entrée un fichier contenant les couleurs de toutes les facettes du cube. Le programme cherchera à le résoudre et renverra les mouvements nécessaires à sa résolution. Par exemple en utilisant la notation de Singmaster\footnote{Plus d'information sur cette notation: https://ruwix.com/the-rubiks-cube/notation/}.
+
+\section{L'affichage en 3D}
+La prochaine étape du développement consiste à faire une interface homme machine. Il faut que l'utilisateur puisse visualiser les étapes successives de résolution du Rubik's Cube. Pour cela nous comptons afficher une fenêtre avec un bouton pour aller à l'étape suivante et une image en 3D de la configuration du cube que l'utilisateur devrait avoir dans les mains.
+
+\section{\textit{Computer vision}}
+Une fois que l'affichage a été réalisé, il faut pouvoir permettre de rentrer la configuration du cube au départ. Pour cela nous présenterons les différentes faces du cube à la caméra et un algorithme de traîtement d'image sera capable de reconstituer le cube virtuellement.
 
 \chapter{Interface}
 Interface
