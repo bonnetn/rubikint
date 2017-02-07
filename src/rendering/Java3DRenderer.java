@@ -22,6 +22,7 @@ import javax.vecmath.Color3b;
 import javax.vecmath.Point3f;
 
 public class Java3DRenderer extends AbstractRenderer {
+
 	
 
    private SimpleUniverse universe;
@@ -154,4 +155,5 @@ public class Java3DRenderer extends AbstractRenderer {
 	public Canvas3D getCanvas3D() {
 		return canvas3D;
 	}
+
 }
