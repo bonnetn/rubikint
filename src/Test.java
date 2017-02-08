@@ -35,7 +35,7 @@ public class Test {
 		confl.add(new FacetConfig(1,0,Face.F,Face.R));
 		RubiksConfiguration conf=new RubiksConfiguration(confl);
 		Procedure p=new Procedure(rotater,0,conf);
-		p.symetry();
+	p.symetry(Face.R);
 
 
 	}

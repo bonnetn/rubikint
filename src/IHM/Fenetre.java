@@ -24,7 +24,7 @@ public class Fenetre{
         JFrame frame = new JFrame();
 
         frame.setTitle("Rubik'INT");
-        frame.setSize(800, 800);
+        frame.setSize(800, 700);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
