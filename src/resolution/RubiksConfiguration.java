@@ -38,7 +38,7 @@ public class RubiksConfiguration {
     return true;
     }
     
-    public void symetrizeFaceCote(Face face)
+    public void translation(Face face)
     {
 
         for (FacetConfig x:facetConfig)
@@ -48,5 +48,19 @@ public class RubiksConfiguration {
         }
 
 
+    }
+    public void symetry()
+    {
+        for (int i=0;i<facetConfig.size();i++)
+        {
+            facetConfig.get(i).setX(2-facetConfig.get(i).getX()); // On inverse les x
+           if( facetConfig.get(i).getCouleurFaceCorrespondante()==Face.R) {
+               facetConfig.get(i).setCouleurFaceCorrespondante(Face.L);
+           }
+           else if( facetConfig.get(i).getCouleurFaceCorrespondante()==Face.L) {
+               facetConfig.get(i).setCouleurFaceCorrespondante(Face.R);
+           }
+        }
+        
     }
 }

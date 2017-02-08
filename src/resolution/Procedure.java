@@ -26,18 +26,56 @@ public class Procedure {
      *Permet une symétrie par rapport à un de 4 coté (ni le dessus ni le dessous)
      * @param faceNouvelle
      */
-    public void symetry(Face faceNouvelle)
+    public void translation(Face faceNouvelle)
     {
-        config.symetrizeFaceCote(faceNouvelle);
+        config.translation(faceNouvelle);
 
 
         for(int i=0;i<proc.size();i++)
         {
-            this.proc.get(i).setValue(proc.get(i).getValue()+(faceNouvelle.getValue()-Face.F.getValue())*2);
+            this.proc.set(i,Rotation.values()[(proc.get(i).getValue()+(faceNouvelle.getValue()-Face.F.getValue())*2)%8]);
         }
 
 
 
+    }
+    public void symetry()
+    {
+        //On symétrise les rotations: L <=> R et pour le reste A<=>Ai
+        for(int i=0;i<proc.size();i++)
+        {
+            config.symetry();
+
+            if(this.proc.get(i)==Rotation.R)
+            {
+
+                this.proc.set(i,Rotation.L);
+
+            }
+            else if(this.proc.get(i)==Rotation.Ri)
+            {
+
+                this.proc.set(i,Rotation.Li);
+
+            }
+            else if(this.proc.get(i)==Rotation.L)
+            {
+
+                this.proc.set(i,Rotation.R);
+
+            }
+            else if(this.proc.get(i)==Rotation.Li)
+            {
+
+                this.proc.set(i,Rotation.Ri);
+
+            }
+            else
+            {
+                this.proc.set(i,Rotation.values()[(proc.get(i).getValue()%2)*2-1+proc.get(i).getValue()]); // on ajoute 1 au pairs, on soustrait 1 aux impairs
+            }
+
+        }
     }
 
     public RubiksConfiguration getConfig() {
