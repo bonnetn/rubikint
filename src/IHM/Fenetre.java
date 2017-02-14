@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 
 import rubikscube.RubiksCube;
 import rubikscube.enums.Rotation;
+import sun.plugin.extension.JavaExtensionInstaller;
+
+import javax.media.j3d.Canvas3D;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +20,9 @@ import javax.swing.JPanel;
 
 /*
 public class Fenetre{
+
+    Java3DRenderer r = new Java3DRenderer();
+    RubiksCube cube = new RubiksCube();
 
 
 
@@ -52,8 +58,10 @@ public class Fenetre{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == white)
-                    ;//tourne la face blanche
+                if (e.getSource() == white){
+                    cube.rotate(Rotation.U);
+
+                }
                 if (e.getSource() == yellow)
                     ;//tourne la face jaune
                 if (e.getSource() == red)
@@ -87,9 +95,10 @@ public class Fenetre{
     private JPanel cube(){
         JPanel panel = new JPanel(new GridLayout());
         //panel.setLayout(new BorderLayout());
-        Java3DRenderer r = new Java3DRenderer();
-        RubiksCube cube = new RubiksCube();
-        //cube.rotate(Rotation.R);
+        //Java3DRenderer r = new Java3DRenderer();
+        //RubiksCube cube = new RubiksCube();
+        cube.rotate(Rotation.Ui);
+        cube.rotate(Rotation.Ui);
         r.drawItem(cube);
         panel.add(r.getCanvas3D());
 

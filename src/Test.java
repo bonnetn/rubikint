@@ -40,6 +40,10 @@ public class Test {
 
 	}
 	
+<<<<<<< HEAD
 }
 
 */
+=======
+}
+>>>>>>> ajout du chapitre 2 interface au livrable 1

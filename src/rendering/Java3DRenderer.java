@@ -2,6 +2,7 @@ package rendering;
 
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
+import rubikscube.RubiksCube;
 import rubikscube.enums.Color;
 import rubikscube.enums.Face;
 
@@ -16,11 +17,11 @@ import javax.vecmath.Point3f;
 
 public class Java3DRenderer extends AbstractRenderer {
 
-	
-
    private SimpleUniverse universe;
    private Canvas3D canvas3D;
-	
+   BranchGroup group;
+
+
 	private static Color3b convertRubiksColorToJava3DColor( Color c ) {
 		 
 	     Color3b result = null;
@@ -151,5 +152,4 @@ public class Java3DRenderer extends AbstractRenderer {
 	public Canvas3D getCanvas3D() {
 		return canvas3D;
 	}
-
 }
