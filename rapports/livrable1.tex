@@ -51,7 +51,22 @@ La prochaine étape du développement consiste à faire une interface homme mach
 Une fois que l'affichage a été réalisé, il faut pouvoir permettre de rentrer la configuration du cube au départ. Pour cela nous présenterons les différentes faces du cube à la caméra et un algorithme de traitement d'image sera capable de reconstituer le cube virtuellement.
 
 \chapter{Interface}
-Interface
+Nos recherches sur la façon de réaliser un rendu 3D en java nous à amener sur une librairie : \textit{Java3D} . Même si le rendu à un instant t est satisfaisant (voir image ci-dessous), il ne nous permet pas, du moins de façon optimisé, de réaliser des animations comme la rotation du cube car le rendu est figé une fois affiché.
+\begin{center}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/rendu3D.png}}
+\end{center}
+Cet essaie nous à permis de mieux cerner notre besoin, c'est à dire un rendu 3D où l'objet affiché reste modifiable, ici notre cube, et donc de pouvoir réaliser les animation de rotation de ce dernier. C'est pourquoi nous avons finalement décider de réaliser tout cela à l'aide d'une librairie bien connue : \textit{OpenGL}
+
+Maintenant que notre besoin technique vis à vis de l'affichage 3D est définie, il devra être intégré dans une interface, ie accompagné de boutons pour rendre notre programme de résolution autonome et facile d'utilisation. Nous pouvons voir une ébauche d'utilisation de la librairie \textit{Swing} sur la photo ci-dessus. L'objectif de cette première fenêtre est de faire tourner la face du cube de la couleur associé au bouton lorsque l'utilisateur clique dessus.
+
+A terme, l'interface sera scindé en trois parties selon la logique suivante :
+
+	-Un accueil pour que l'utilisateur puisse choisir la façon dont il veut résoudre son Rubik's cube (Avec ou sans prise de photo d'un vrai cube)
+	-Une interface permettant la prise de photo du cube et donc de récupérer sa configuration pour qu'il puisse ensuite passer à sa résolution
+	-Une interface pour la résolution du cube.
+
+De cette façon notre programme est clairement défini ce qui le rend plus "user friendly".
+
 
 \chapter{Structure du code}
 
