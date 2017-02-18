@@ -4,10 +4,16 @@ package rendering;
  * Created by florian on 17/02/17.
  */
 
+<<<<<<< HEAD
 import com.jogamp.newt.event.KeyListener;
 import com.jogamp.newt.event.MouseListener;
 import rubikscube.RubiksCube;
 import rubikscube.enums.Color;
+=======
+import jogamp.opengl.egl.EGL;
+
+import static jogamp.opengl.egl.EGL.EGL_TEXTURE_FORMAT;
+>>>>>>> OpenGLRenderer test affichage 1 cube
 
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
@@ -15,6 +21,7 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
 
 
+<<<<<<< HEAD
 public class OpenGLRenderer2 implements GLEventListener, KeyListener, MouseListener{
 
     private GLU glu;
@@ -38,6 +45,15 @@ public class OpenGLRenderer2 implements GLEventListener, KeyListener, MouseListe
         this.ligneAnglesY = new float[3];
         this.profondeurAnglesZ = new float[3];
     }
+=======
+public class OpenGLRenderer2 implements GLEventListener{
+
+    private GLU glu;
+    // angle gerant la rotation suivant les differents angles
+    public float alphaX = 0f;
+    public float alphaY = 0f;
+    public float alphaZ = 0f;
+>>>>>>> OpenGLRenderer test affichage 1 cube
 
     @Override
     public void init(GLAutoDrawable drawable){
@@ -56,13 +72,22 @@ public class OpenGLRenderer2 implements GLEventListener, KeyListener, MouseListe
         GL2 gl = drawable.getGL().getGL2();
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
+<<<<<<< HEAD
         //glu.gluLookAt(4f, 5f, 12f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
 
         gl.glTranslatef(0f,0f,-18f);
+=======
+        glu.gluLookAt(4f, 0f, 4f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
+
+>>>>>>> OpenGLRenderer test affichage 1 cube
         gl.glRotatef(alphaX, 1f, 0f, 0f); // rotation matrice courante d'angle alphaX autour de axe X
         gl.glRotatef(alphaY, 0f, 1f, 0f);
         gl.glRotatef(alphaZ, 0f, 0f, 1f);
 
+<<<<<<< HEAD
+=======
+        new Cube(2.0f, 0, 0, 0).draw(gl);
+>>>>>>> OpenGLRenderer test affichage 1 cube
     }
     @Override
     public void dispose (GLAutoDrawable arg0) {
@@ -81,6 +106,7 @@ public class OpenGLRenderer2 implements GLEventListener, KeyListener, MouseListe
         glu.gluPerspective(45.0, (float)width/height, 0.1, 100.0);
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
+<<<<<<< HEAD
 
     }
 
@@ -173,4 +199,10 @@ public class OpenGLRenderer2 implements GLEventListener, KeyListener, MouseListe
 
         }
     }
+=======
+    }
+
+
+
+>>>>>>> OpenGLRenderer test affichage 1 cube
 }
