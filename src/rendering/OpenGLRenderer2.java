@@ -4,10 +4,6 @@ package rendering;
  * Created by florian on 17/02/17.
  */
 
-import jogamp.opengl.egl.EGL;
-
-import static jogamp.opengl.egl.EGL.EGL_TEXTURE_FORMAT;
-
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
