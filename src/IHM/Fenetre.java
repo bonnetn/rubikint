@@ -7,9 +7,7 @@ import java.awt.event.ActionListener;
 
 import rubikscube.RubiksCube;
 import rubikscube.enums.Rotation;
-import sun.plugin.extension.JavaExtensionInstaller;
 
-import javax.media.j3d.Canvas3D;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
