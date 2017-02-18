@@ -1,10 +1,10 @@
+/*
 package IHM;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import rendering.Java3DRenderer;
 import rubikscube.RubiksCube;
 import rubikscube.enums.Rotation;
 import javax.swing.JButton;
@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  * Created by florian on 29/01/17.
  */
 
-
+/*
 public class Fenetre{
 
 
@@ -96,3 +96,5 @@ public class Fenetre{
         return panel;
     }
 }
+
+*/

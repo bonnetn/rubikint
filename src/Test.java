@@ -1,4 +1,4 @@
-
+/*
 import rendering.Java3DRenderer;
 import resolution.FacetConfig;
 import resolution.Procedure;
@@ -41,3 +41,5 @@ public class Test {
 	}
 	
 }
+
+*/

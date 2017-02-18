@@ -35,4 +35,9 @@ public enum Rotation {
 	public void setValue(int value) {
 		this.value = value;
 	}
+
+	//axes pour la rotation dans le rendu 3D
+	public enum Axis {X,Y,Z;}
+	Axis axis;
+	public Axis getAxis(){return axis;}
 }
