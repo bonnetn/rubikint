@@ -193,6 +193,9 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 		for( int i=0; i<6*9; i++) 
 			rubiksPermutations[i] = i;
 	}
+
+
+
 	
 	
 }
