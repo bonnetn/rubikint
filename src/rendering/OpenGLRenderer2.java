@@ -4,7 +4,6 @@ package rendering;
  * Created by florian on 17/02/17.
  */
 
-
 import com.jogamp.newt.event.KeyListener;
 import com.jogamp.newt.event.MouseListener;
 import rubikscube.RubiksCube;
@@ -13,7 +12,6 @@ import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
-
 
 
 public class OpenGLRenderer2 implements GLEventListener, KeyListener, MouseListener{
@@ -60,6 +58,9 @@ public class OpenGLRenderer2 implements GLEventListener, KeyListener, MouseListe
         //glu.gluLookAt(4f, 5f, 12f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
 
         gl.glTranslatef(0f,0f,-18f);
+        gl.glRotatef(alphaX, 1f, 0f, 0f); // rotation matrice courante d'angle alphaX autour de axe X
+        gl.glRotatef(alphaY, 0f, 1f, 0f);
+	gl.glRotatef(alphaZ, 0f, 0f, 1f);
 
     }
     @Override
@@ -79,8 +80,8 @@ public class OpenGLRenderer2 implements GLEventListener, KeyListener, MouseListe
         glu.gluPerspective(45.0, (float)width/height, 0.1, 100.0);
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
-    }
 
+    }
 
     private void setGlColor(GL2 gl, Color color) {
         switch (color) {
