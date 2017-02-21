@@ -2,6 +2,7 @@ package rubikscube;
 import java.util.concurrent.ThreadLocalRandom;
 
 
+import rendering.Cube;
 import rendering.Renderable;
 import rubikscube.enums.Color;
 import rubikscube.enums.Face;
@@ -194,8 +195,4 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 			rubiksPermutations[i] = i;
 	}
 
-
-
-	
-	
 }

@@ -8,73 +8,74 @@ package rendering;
 
 
 
+import rubikscube.RubiksCube;
 import rubikscube.enums.Color;
 import rubikscube.enums.Face;
 
 import javax.media.opengl.GL2;
 import java.awt.*;
 
-public class Cube {
+public class Cube{
 
-    public int x,y;
-    public Face face;
-
+    public int x,y,z;
     public int x3d,y3d,z3d;
 
     //bit pour definir les faces visibles.
     public int frontFace = (1 << 0);
-    public int rearFace = (1 << 1);
+    public int backFace = (1 << 1);
     public int leftFace = (1 << 2);
     public int rightFace = (1 << 3);
-    public int topFace = (1 << 4);
+    public int upFace = (1 << 4);
     public int downFace = (1 << 5);
 
     public Color frontColor;
-    public Color rearColor;
+    public Color backColor;
     public Color leftColor;
     public Color rightColor;
-    public Color topColor;
+    public Color upColor;
     public Color downColor;
 
+    public final Cube[] listeCube = new Cube[27];
+
+
+
     //constructeur pour les couleurs
-    public Cube(Color front, Color rear, Color left, Color right, Color top, Color down, Face face, int x, int y){
+    public Cube(Color front, Color back, Color left, Color right, Color up, Color down, int z, int x, int y){
         this.frontColor = front;
-        this.rearColor = rear;
+        this.backColor = back;
         this.leftColor = left;
         this.rightColor = right;
-        this.topColor = top;
+        this.upColor = up;
         this.downColor = down;
         this.x = x;
         this.y = y;
-        this.face = face;
+        this.z = z;
 
     }
 
     //constructeur pour la position
-    public Cube(int x, int y, Face face){
+    public Cube(int x, int y, int z){
         this.x = x;
         this.y = y;
-        this.face = face;
+        this.z = z;
     }
 
     public int[] getPosition(){
         int[] position = new int[3];
-        position[0] = this.face.getValue();
+        position[0] = this.z;
         position[1] = this.x;
         position[2] = this.y;
         return position;
     }
 
-    // besoin de definir le cube dans un repère 3D (x,y,z)e [0,2]³ et non pas Face puis (x,y) e [0,2]²
-    public void setXYZ(Face face, int x, int y){
-        // doit, a partir de face, x et y definir x3d, y3d, z3d
-    }
 
     // methode pour definir les facettes coloré de notre petit cube
     public int getColoredFaces(){
-        int x = this.x3d;
-        int y = this.y3d;
-        int z = this.z3d;
+        int[] position = this.getPosition();
+
+        int x = position[0];
+        int y = position[1];
+        int z = position[2];
         int coloredFaces;
 
         /* operation sur les bit, par exemple ici si le coin haut droit devant (blanc rouge et bleue) donc position (2,0,2) coloredFaces = 0101001b */
@@ -89,7 +90,7 @@ public class Cube {
         if (y==0 /* si devant */){
             coloredFaces |= this.frontFace;
         }else if (y==2 /*si a l arriere*/){
-            coloredFaces |= this.rearFace;
+            coloredFaces |= this.backFace;
         }else{
             coloredFaces |= 0;
         }
@@ -97,7 +98,7 @@ public class Cube {
         if (z==0 /* si en bas */){
             coloredFaces |= this.downFace;
         }else if (z==2 /* si en haut */){
-            coloredFaces |= this.topFace;
+            coloredFaces |= this.upFace;
         }else {
             coloredFaces |= 0;
         }
