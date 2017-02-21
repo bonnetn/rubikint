@@ -14,7 +14,7 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
 
 
-public class OpenGLRenderer2 implements GLEventListener, KeyListener, MouseListener{
+public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseListener */ {
 
     private GLU glu;
 
@@ -60,7 +60,8 @@ public class OpenGLRenderer2 implements GLEventListener, KeyListener, MouseListe
         gl.glTranslatef(0f,0f,-18f);
         gl.glRotatef(alphaX, 1f, 0f, 0f); // rotation matrice courante d'angle alphaX autour de axe X
         gl.glRotatef(alphaY, 0f, 1f, 0f);
-	gl.glRotatef(alphaZ, 0f, 0f, 1f);
+	    gl.glRotatef(alphaZ, 0f, 0f, 1f);
+	    drawRubiksCube(gl);
 
     }
     @Override
@@ -100,69 +101,69 @@ public class OpenGLRenderer2 implements GLEventListener, KeyListener, MouseListe
         }
     }
 
-    private void drawCube( GL2 gl, Cube cube, int coloredFaces){
+    private void drawCube( GL2 gl /* Cube cube, int coloredFaces */){
         gl.glBegin(GL2.GL_QUADS);
 
         //face du haut
-        gl.glColor3f(0f,0f,0f); //noire par defaut
-        if ((coloredFaces & cube.topFace) == cube.topFace) { setGlColor(gl, cube.topColor);}
+        gl.glColor3f(1f,1f,1f); //noire par defaut
+       // if ((coloredFaces & cube.topFace) == cube.topFace) { setGlColor(gl, cube.topColor);}
         gl.glVertex3f(0f,0f,1f);
         gl.glVertex3f(0f,1f,1f);
-        gl.glVertex3f(1f,0f,1f);
         gl.glVertex3f(1f,1f,1f);
+        gl.glVertex3f(1f,0f,1f);
 
         // face du bas
-        gl.glColor3f(0f,0f,0f);
-        if ((coloredFaces & cube.downFace) == cube.downFace) { setGlColor(gl,cube.downColor);}
+        gl.glColor3f(1f,1f,0f);
+        //if ((coloredFaces & cube.downFace) == cube.downFace) { setGlColor(gl,cube.downColor);}
         gl.glVertex3f(0f,0f,0f);
         gl.glVertex3f(0f,1f,0f);
-        gl.glVertex3f(1f,0f,0f);
         gl.glVertex3f(1f,1f,0f);
+        gl.glVertex3f(1f,0f,0f);
 
         // face devant
-        gl.glColor3f(0f,0f,0f);
-        if ((coloredFaces & cube.frontFace) == cube.frontFace) { setGlColor(gl,cube.frontColor);}
+        gl.glColor3f(1f,0f,0f);
+        //if ((coloredFaces & cube.frontFace) == cube.frontFace) { setGlColor(gl,cube.frontColor);}
         gl.glVertex3f(0f,0f,0f);
         gl.glVertex3f(1f,0f,0f);
-        gl.glVertex3f(0f,0f,1f);
         gl.glVertex3f(1f,0f,1f);
+        gl.glVertex3f(0f,0f,1f);
 
         // face arriere
-        gl.glColor3f(0f,0f,0f);
-        if ((coloredFaces & cube.rearFace) == cube.rearFace) { setGlColor(gl,cube.rearColor);}
+        gl.glColor3f(1f,0.5f,0f);
+        //if ((coloredFaces & cube.rearFace) == cube.rearFace) { setGlColor(gl,cube.rearColor);}
         gl.glVertex3f(0f,1f,0f);
         gl.glVertex3f(1f,1f,0f);
-        gl.glVertex3f(0f,1f,1f);
         gl.glVertex3f(1f,1f,1f);
+        gl.glVertex3f(0f,1f,1f);
 
         //face de gauche
-        gl.glColor3f(0f,0f,0f);
-        if ((coloredFaces & cube.leftFace) == cube.leftFace) { setGlColor(gl,cube.leftColor);}
+        gl.glColor3f(0f,1f,0f);
+        //if ((coloredFaces & cube.leftFace) == cube.leftFace) { setGlColor(gl,cube.leftColor);}
         gl.glVertex3f(0f,0f,0f);
         gl.glVertex3f(0f,1f,0f);
-        gl.glVertex3f(0f,0f,1f);
         gl.glVertex3f(0f,1f,1f);
+        gl.glVertex3f(0f,0f,1f);
 
         //face de droite
-        gl.glColor3f(0f,0f,0f);
-        if ((coloredFaces & cube.rightFace) == cube.rightFace) { setGlColor(gl,cube.rightColor);}
+        gl.glColor3f(0f,0f,1f);
+        //if ((coloredFaces & cube.rightFace) == cube.rightFace) { setGlColor(gl,cube.rightColor);}
         gl.glVertex3f(1f,0f,0f);
         gl.glVertex3f(1f,1f,0f);
-        gl.glVertex3f(1f,0f,1f);
         gl.glVertex3f(1f,1f,1f);
+        gl.glVertex3f(1f,0f,1f);
 
         gl.glEnd();
     }
 
-    private drawRubiksCube(GL2 gl){
-        for (int x=0 ;x<3 ;x++ ) {
-            for(int y=0;y<3;y++){
-                for(int z=0;z<3;z++){
+    private void drawRubiksCube(GL2 gl){
+        for (float x = 0 ; x < 3 ; x++ ) {
+            for(float y = 0 ; y < 3 ; y++){
+                for(float z = 0 ; z < 3 ; z++){
                     gl.glPushMatrix();
 
-                    gl.glTranslatef(x-0.5f,y-0.5f,z-0.5f);
-
-
+                    gl.glTranslatef(x,y,z);
+                    drawCube(gl);
+                    gl.glPopMatrix();
 
 
 
