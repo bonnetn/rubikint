@@ -10,11 +10,79 @@ import java.awt.event.WindowEvent;
 import javax.media.opengl.awt.GLCanvas;
 import com.jogamp.opengl.util.FPSAnimator;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 public class Main extends Frame{
 
     private GLCanvas canvas; //Canvas pour le JPanel
 
     private final FPSAnimator animator;
+
+    private static final class MyKeyListener extends KeyAdapter {
+
+        private final Main $this;
+        private final OpenGLRenderer2 renderer;
+        private boolean isUpPressed;
+        private boolean isDownPressed;
+        private boolean isLeftPressed;
+        private boolean isrightPressed;
+
+        private MyKeyListener(Main m, OpenGLRenderer2 r) {
+            $this = m;
+            renderer = r;
+        }
+
+        private void doThat(){
+            if(isDownPressed)
+                renderer.alphaX += 2;
+            if(isUpPressed)
+                renderer.alphaX -= 2;
+            if(isLeftPressed)
+                renderer.alphaY -= 2;
+            if(isrightPressed)
+                renderer.alphaY += 2;
+        }
+
+        public void keyPressed(KeyEvent e) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_ESCAPE:
+                    $this.animator.stop();
+                    System.exit(0);
+                    break;
+                case KeyEvent.VK_UP:
+                    isUpPressed = true;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    isDownPressed = true;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    isrightPressed = true;
+                    break;
+                case KeyEvent.VK_LEFT:
+                    isLeftPressed = true;
+                    break;
+            }
+            doThat();
+        }
+
+        public void keyReleased(KeyEvent e) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_UP:
+                    isUpPressed = false;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    isDownPressed = false;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    isrightPressed = false;
+                    break;
+                case KeyEvent.VK_LEFT:
+                    isLeftPressed = false;
+                    break;
+            }
+        }
+    }
 
     public Main(){
         super();
@@ -38,6 +106,9 @@ public class Main extends Frame{
                 System.exit(0);
             }
         });
+
+        addKeyListener(new MyKeyListener(this, renderer));
+        canvas.addKeyListener(new MyKeyListener(this, renderer));
 
         animator.start();
         setVisible(true);

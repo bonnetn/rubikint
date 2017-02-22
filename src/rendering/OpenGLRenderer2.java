@@ -4,11 +4,10 @@ package rendering;
  * Created by florian on 17/02/17.
  */
 
-import com.jogamp.newt.event.KeyListener;
-import com.jogamp.newt.event.MouseListener;
 import rubikscube.RubiksCube;
 import rubikscube.enums.Color;
 import rubikscube.enums.Face;
+import rubikscube.enums.Rotation;
 
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
@@ -21,13 +20,13 @@ import javax.media.opengl.glu.GLU;
 public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseListener */ {
 
     private GLU glu;
-    public final Cube[] listeCube = new Cube[27];
+    public Cube[] listeCube = new Cube[27];
 
 
     // angle gerant la rotation suivant les differents angles
-    public float alphaX = 45f;
-    public float alphaY = 45f;
-    public float alphaZ = 0f;
+    public float alphaX = 0f;
+    public float alphaY = 0f;
+    public float alphaZ = 90f;
     public final float distanceEntreCube = 0.2f;
 
     private float[] coloneAnglesX;
@@ -53,6 +52,7 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         gl.glDepthFunc(GL2.GL_LEQUAL);
         gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST);
         gl.glShadeModel(GL2.GL_SMOOTH);
+        rubiksCube.rotate(Rotation.R);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         gl.glLoadIdentity();
         //glu.gluLookAt(4f, 5f, 12f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
 
-        gl.glTranslatef(0f,0f,-18f);
+        gl.glTranslatef(0f,0f,-10f);
         gl.glRotatef(alphaX, 1f, 0f, 0f); // rotation matrice courante d'angle alphaX autour de axe X
         gl.glRotatef(alphaY, 0f, 1f, 0f);
 	    gl.glRotatef(alphaZ, 0f, 0f, 1f);
@@ -112,48 +112,54 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         gl.glBegin(GL2.GL_QUADS);
 
         //face du haut
-        setGlColor(gl, Color.RED); //noire par defaut
-        if ((coloredFaces & cube.upFace) == cube.upFace) { setGlColor(gl, cube.upColor);}
+        //gl.glColor3f(1f,0f,0.5f); //noire par defaut
+        //if ((coloredFaces & cube.upFace) == cube.upFace) { setGlColor(gl, cube.upColor);}
+        setGlColor(gl,cube.upColor);
         gl.glVertex3f(0f,0f,1f);
         gl.glVertex3f(0f,1f,1f);
         gl.glVertex3f(1f,1f,1f);
         gl.glVertex3f(1f,0f,1f);
 
         // face du bas
-        setGlColor(gl, Color.BLACK);
-        if ((coloredFaces & cube.downFace) == cube.downFace) { setGlColor(gl,cube.downColor);}
+        //gl.glColor3f(1f,0f,0.5f);
+        //if ((coloredFaces & cube.downFace) == cube.downFace) { setGlColor(gl,cube.downColor);}
+        setGlColor(gl,cube.downColor);
         gl.glVertex3f(0f,0f,0f);
         gl.glVertex3f(0f,1f,0f);
         gl.glVertex3f(1f,1f,0f);
         gl.glVertex3f(1f,0f,0f);
 
         // face devant
-        setGlColor(gl, Color.BLACK);
-        if ((coloredFaces & cube.frontFace) == cube.frontFace) { setGlColor(gl,cube.frontColor);}
+        //gl.glColor3f(1f,0f,0.5f);
+        //if ((coloredFaces & cube.frontFace) == cube.frontFace) { setGlColor(gl,cube.frontColor);}
+        setGlColor(gl,cube.frontColor);
         gl.glVertex3f(0f,0f,0f);
         gl.glVertex3f(1f,0f,0f);
         gl.glVertex3f(1f,0f,1f);
         gl.glVertex3f(0f,0f,1f);
 
         // face arriere
-        setGlColor(gl, Color.BLACK);
-        if ((coloredFaces & cube.backFace) == cube.backFace) { setGlColor(gl,cube.backColor);}
+        //gl.glColor3f(1f,0f,0.5f);
+        //if ((coloredFaces & cube.backFace) == cube.backFace) { setGlColor(gl,cube.backColor);}
+        setGlColor(gl,cube.backColor);
         gl.glVertex3f(0f,1f,0f);
         gl.glVertex3f(1f,1f,0f);
         gl.glVertex3f(1f,1f,1f);
         gl.glVertex3f(0f,1f,1f);
 
         //face de gauche
-        setGlColor(gl, Color.BLACK);
-        if ((coloredFaces & cube.leftFace) == cube.leftFace) { setGlColor(gl,cube.leftColor);}
+        //gl.glColor3f(1f,0f,0.5f);
+        //if ((coloredFaces & cube.leftFace) == cube.leftFace) { setGlColor(gl,cube.leftColor);}
+        setGlColor(gl,cube.leftColor);
         gl.glVertex3f(0f,0f,0f);
         gl.glVertex3f(0f,1f,0f);
         gl.glVertex3f(0f,1f,1f);
         gl.glVertex3f(0f,0f,1f);
 
         //face de droite
-        setGlColor(gl, Color.BLACK);
-        if ((coloredFaces & cube.rightFace) == cube.rightFace) { setGlColor(gl,cube.rightColor);}
+        //gl.glColor3f(1f,0f,0.5f);
+        //if ((coloredFaces & cube.rightFace) == cube.rightFace) { setGlColor(gl,cube.rightColor);}
+        setGlColor(gl,cube.rightColor);
         gl.glVertex3f(1f,0f,0f);
         gl.glVertex3f(1f,1f,0f);
         gl.glVertex3f(1f,1f,1f);
@@ -217,7 +223,7 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         //[0,0,1]
         listeCube[16] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.U,1,1),Color.BLACK,0,0,1);
         //[1,0,1]
-        listeCube[17] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,1,2),Color.BLACK,rCube.getFacetColor(Face.U,2,1),1,0,1);
+        listeCube[17] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,1,2),rCube.getFacetColor(Face.U,2,1),Color.BLACK,1,0,1);
 
 
         //TROISIEME COURONNE ARRIERE
@@ -228,7 +234,7 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         //[1,1,-1]
         listeCube[20] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,0,0),Color.BLACK,rCube.getFacetColor(Face.R,2,0),Color.BLACK,rCube.getFacetColor(Face.D,2,0),1,1,-1);
         //[-1,1,0]
-        listeCube[21] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,2,1),rCube.getFacetColor(Face.L,0,1),Color.BLACK,Color.BLACK,Color.BLACK,-1,-1,0);
+        listeCube[21] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,2,1),rCube.getFacetColor(Face.L,0,1),Color.BLACK,Color.BLACK,Color.BLACK,-1,1,0);
         //[0,1,0] centre back
         listeCube[22] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,1,1),Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,0,1,0);
         //[1,1,0]
