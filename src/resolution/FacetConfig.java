@@ -19,17 +19,6 @@ public class FacetConfig {
         this.face=face;
         this.couleurFaceCorrespondante=couleurFaceCorrespondante;
     }
-    public void changeFace( Face nouvelleFace)
-    {
-        if(this.face==Face.F)
-        {
-            this.face=nouvelleFace;
-            this.couleurFaceCorrespondante=nouvelleFace;
-        }
-
-
-    }
-
 
     public Face getFace() {
         return face;

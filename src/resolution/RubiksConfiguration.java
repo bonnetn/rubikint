@@ -43,8 +43,9 @@ public class RubiksConfiguration {
 
         for (FacetConfig x:facetConfig)
         {
-            int numFace=(face.getValue()-x.getFace().getValue())%4+Face.F.getValue(); //décalage lié a l'enum
-            x.changeFace(Face.values()[numFace]);
+            int numFace=(x.getCouleurFaceCorrespondante().getValue()+face.getValue()-Face.F.getValue())%4;
+            x.setCouleurFaceCorrespondante(Face.values()[numFace]);
+            x.setFace(face);
         }
 
 

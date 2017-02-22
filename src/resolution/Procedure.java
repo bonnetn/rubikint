@@ -23,7 +23,8 @@ public class Procedure {
     }
 
     /**
-     *Permet une symétrie par rapport à un de 4 coté (ni le dessus ni le dessous)
+     *Permet une translation par rapport à un de 4 coté (ni le dessus ni le dessous)
+     * Une translation DOIT etre effectuee APRES une symetry.
      * @param faceNouvelle
      */
     public void translation(Face faceNouvelle)
@@ -39,6 +40,11 @@ public class Procedure {
 
 
     }
+
+    /**
+     * Permet de symetriser par rapport a un axe vertical.
+     * DOIT etre utilisé AVANT toute translation
+     */
     public void symetry()
     {
         //On symétrise les rotations: L <=> R et pour le reste A<=>Ai
@@ -72,7 +78,8 @@ public class Procedure {
             }
             else
             {
-                this.proc.set(i,Rotation.values()[(proc.get(i).getValue()%2)*2-1+proc.get(i).getValue()]); // on ajoute 1 au pairs, on soustrait 1 aux impairs
+                int dif=(proc.get(i).getValue()%2)*2-1;
+                this.proc.set(i,Rotation.values()[proc.get(i).getValue()-dif]); // on ajoute 1 au pairs, on soustrait 1 aux impairs
             }
 
         }
