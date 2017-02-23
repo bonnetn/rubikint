@@ -12,11 +12,19 @@ import java.util.ArrayList;
  */
 public class ProceduralSolution {
     private RubiksCube cube;
-    private int priority; //désigne l'étape à laquelle on est: On ne regardera pas les procédures de priorité plus faible
+    private int priority;//désigne l'étape à laquelle on est: On ne regardera pas les procédures de priorité plus faible
+    private ArrayList<Rotation> historique;
     public ProceduralSolution(RubiksCube cube,int priority)
     {
         this.cube=cube;
         this.priority = priority;
+        this.historique= new ArrayList<Rotation>();
+    }
+    public ProceduralSolution(RubiksCube cube)
+    {
+        this.cube=cube;
+        this.priority = 0;
+        this.historique= new ArrayList<Rotation>();
     }
 
     public int getPriority() {
@@ -46,20 +54,40 @@ public class ProceduralSolution {
         {
             cube.rotate(x);
         }
+        historique.addAll(proc.getProc());
     }
     //On retourne la priorité la plus faible, supérieure à la priorité actuelle, dont une procédure peut être utilisée
     public Procedure selectProcedure(ArrayList <Procedure> procs)
     {
         for(Procedure procedure:procs)
         {
-            if(procedure.getPriority()>=this.priority)
+            if(procedure.getPriority()>=this.priority) //On cherche a match la prio. On utilise la fallback option si on ne trouve pas
             {
-
-                    if(procedure.getConfig().match(cube))
+                int i=0;
+                boolean trouve= procedure.getConfig().match(cube);
+                    while(!trouve && i<4)
                     {
-                        return procedure;
+
+                        cube.rotate(procedure.getFallbackOption());
+                        trouve= procedure.getConfig().match(cube);
+                        i++;
+
                     }
 
+                    if(trouve) //On ajoute a l'historique i fois le mouvement de fallback
+                    {
+                        if(i==3)
+                        {
+                           int diff=(procedure.getFallbackOption().getValue()%2)*2-1;
+                            historique.add(Rotation.values()[procedure.getFallbackOption().getValue()-diff]); //si on tourne 3 fois c'est le mvt inverse
+                        }
+                        for (int k=0;k<i;k++)
+                        {
+                            historique.add(procedure.getFallbackOption());
+                        }
+
+
+                    }
             }
         }
         return null;

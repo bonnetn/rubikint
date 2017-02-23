@@ -12,14 +12,25 @@ import rubikscube.enums.Rotation;
  */
 public class Procedure {
     private ArrayList<Rotation> proc;
+    private  Rotation fallbackOption;
     private int priority; // On utilisera les procédures de plus haute priorité en premier
     private RubiksConfiguration config;
-    public Procedure(ArrayList<Rotation> rot,int priority,RubiksConfiguration config)
+
+    public Procedure(ArrayList<Rotation> rot,int priority,RubiksConfiguration config,Rotation fallback)
     {
         this.proc=rot;
         this.priority=priority;
         this.config=config;
+        this.fallbackOption=fallback;
 
+    }
+
+    public Rotation getFallbackOption() {
+        return fallbackOption;
+    }
+
+    public void setFallbackOption(Rotation fallbackOption) {
+        this.fallbackOption = fallbackOption;
     }
 
     /**
