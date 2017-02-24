@@ -16,6 +16,10 @@ public class RubiksConfiguration {
     {
         this.facetConfig=facetConfig;
     }
+    public RubiksConfiguration(RubiksConfiguration conf)
+    {
+        this.facetConfig=new ArrayList<FacetConfig>(conf.getFacetConfig());
+    }
 
     public ArrayList<FacetConfig> getFacetConfig() {
         return facetConfig;

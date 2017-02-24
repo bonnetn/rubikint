@@ -7,6 +7,8 @@ import rubikscube.RubiksCube;
 import rubikscube.enums.Face;
 import rubikscube.enums.Rotation;
 
+import javax.security.auth.login.Configuration;
+
 /**
  * Created by shininisan on 26/01/17.
  */
@@ -23,6 +25,13 @@ public class Procedure {
         this.config=config;
         this.fallbackOption=fallback;
 
+    }
+    public Procedure(Procedure p)
+    {
+        this.proc=new ArrayList<Rotation>(p.getProc());
+        this.priority=this.getPriority();
+        this.config=new RubiksConfiguration(p.getConfig());
+        this.fallbackOption=p.getFallbackOption();
     }
 
     public Rotation getFallbackOption() {

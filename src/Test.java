@@ -8,6 +8,8 @@ import rubikscube.enums.Face;
 import rubikscube.enums.Rotation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import resolution.RubiksConfiguration;
 public class Test {
 
@@ -19,25 +21,23 @@ public class Test {
 
 		rc.randomMelange();
 		 r.drawItem(rc);
-
+ArrayList<Procedure> listeProcedure= new ArrayList<Procedure>();
 
 		//Procédure seconde couronne
-		ArrayList<Rotation> rotater=new ArrayList<Rotation>();
-		rotater.add(Rotation.B);
-		rotater.add(Rotation.R);
-		rotater.add(Rotation.Bi);
-		rotater.add(Rotation.Ri);
-		rotater.add(Rotation.Fi);
-		rotater.add(Rotation.B);
-		rotater.add(Rotation.F);
+		ArrayList<Rotation> rotater=new ArrayList<Rotation>(Arrays.asList(Rotation.B,Rotation.R,Rotation.Bi,Rotation.Ri,Rotation.Fi,Rotation.B,Rotation.F));
+		RubiksConfiguration conf=new RubiksConfiguration(new ArrayList<FacetConfig>(Arrays.asList(new FacetConfig(1,0,Face.F,Face.R))));
+		Procedure p=new Procedure(rotater,10,conf,Rotation.B);
+        Procedure p2=new Procedure(p);
+        p2.symetry();
+        for(int i=1;i<=4;i++) {
+            listeProcedure.add(new Procedure(p));
+            listeProcedure.add(new Procedure(p2));
+            p.translation(Face.values()[Face.F.getValue()+i]);
+            p2.translation(Face.values()[Face.F.getValue()+i]);
+        }
 
-		ArrayList<FacetConfig> confl= new ArrayList<FacetConfig>();
-		confl.add(new FacetConfig(1,0,Face.F,Face.R));
-		RubiksConfiguration conf=new RubiksConfiguration(confl);
-		Procedure p=new Procedure(rotater,0,conf,Rotation.B);
-//	p.translation(Face.R);
-		p.symetry();
-		System.out.println(p);
+
+
 
 
 	}
