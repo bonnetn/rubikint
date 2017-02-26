@@ -18,7 +18,6 @@ import java.awt.*;
 public class Cube{
 
     public int x,y,z;
-    public int x3d,y3d,z3d;
 
     //bit pour definir les faces visibles.
     public int frontFace = (1 << 0);
@@ -36,6 +35,7 @@ public class Cube{
     public Color downColor;
 
     public final Cube[] listeCube = new Cube[27];
+
 
 
 

@@ -13,7 +13,13 @@ import com.jogamp.opengl.util.FPSAnimator;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import rubikscube.RubiksCube;
+import rubikscube.enums.Rotation;
+import rubikscube.enums.Rotation.*;
+
 public class Main extends Frame{
+
+    private static RubiksCube rubiksCube;
 
     private GLCanvas canvas; //Canvas pour le JPanel
 
@@ -27,6 +33,7 @@ public class Main extends Frame{
         private boolean isDownPressed;
         private boolean isLeftPressed;
         private boolean isrightPressed;
+        private boolean isUPressed;
 
         private MyKeyListener(Main m, OpenGLRenderer2 r) {
             $this = m;
@@ -42,6 +49,7 @@ public class Main extends Frame{
                 renderer.alphaY -= 2;
             if(isrightPressed)
                 renderer.alphaY += 2;
+
         }
 
         public void keyPressed(KeyEvent e) {
@@ -61,6 +69,10 @@ public class Main extends Frame{
                     break;
                 case KeyEvent.VK_LEFT:
                     isLeftPressed = true;
+                    break;
+                case KeyEvent.VK_Q: // tourne L
+                    renderer.rotate(0, Axis.X,true);
+                    System.out.println("La touche Q a été pressé");
                     break;
             }
             doThat();
@@ -86,7 +98,7 @@ public class Main extends Frame{
 
     public Main(){
         super();
-        setSize(1000,1000);
+        setSize(640,480);
         setTitle("Rubik'INT");
         // Permet de centrer la fenetre à l'ouverture
         setLocationRelativeTo(null);

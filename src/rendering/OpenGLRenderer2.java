@@ -7,12 +7,14 @@ package rendering;
 import rubikscube.RubiksCube;
 import rubikscube.enums.Color;
 import rubikscube.enums.Face;
+import rubikscube.enums.Rotation.*;
 import rubikscube.enums.Rotation;
 
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
+import java.lang.Object;
 
 // Attention, voire le probleme des fenetres qui ne se ferme pas
 
@@ -20,20 +22,35 @@ import javax.media.opengl.glu.GLU;
 public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseListener */ {
 
     private GLU glu;
-    public Cube[] listeCube = new Cube[27];
+    public Cube[][][] listeCube = new Cube[3][3][3];
 
 
-    // angle gerant la rotation suivant les differents angles
-    public float alphaX = 0f;
-    public float alphaY = 0f;
-    public float alphaZ = 90f;
-    public final float distanceEntreCube = 0.2f;
+    // angle gerant la rotation camera
+    private static final float defaultAlphaX = 45f;
+    private static final float defaultAlphaY = 45f;
+    private static final float defaultAlphaZ = 0f;
+    private static final float defaultZoom = -18f;
+
+    public float alphaX = defaultAlphaX;
+    public float alphaY = defaultAlphaY;
+    public float alphaZ = defaultAlphaZ;
+    public float zooom = defaultZoom;
+
+    public final float distanceEntreCube = 0.1f;
 
     private float[] coloneAnglesX;
     private float[] ligneAnglesY;
     private float[] profondeurAnglesZ;
 
+    private int rotateX = -1;
+    private int rotateY = -1;
+    private int rotateZ = -1;
+    private float rotationSpeed = 5f;
+
+
     private RubiksCube rubiksCube;
+
+
 
     public OpenGLRenderer2(){
         rubiksCube = new RubiksCube();
@@ -52,13 +69,15 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         gl.glDepthFunc(GL2.GL_LEQUAL);
         gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST);
         gl.glShadeModel(GL2.GL_SMOOTH);
-        rubiksCube.rotate(Rotation.R);
     }
 
     @Override
     public void display(GLAutoDrawable drawable) {
+
+        // faire une methode d'update des angles, on va appeler en boucle et faire des minis rotations de 5degre et cela va redessiner a chaque fois on aura alors une sensation d'animation de rotation.
+        updateAngles();
         GL2 gl = drawable.getGL().getGL2();
-        gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
+        gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT); // clear du buffer pour eviter chevauchement des faces.
         gl.glLoadIdentity();
         //glu.gluLookAt(4f, 5f, 12f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
 
@@ -67,6 +86,7 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         gl.glRotatef(alphaY, 0f, 1f, 0f);
 	    gl.glRotatef(alphaZ, 0f, 0f, 1f);
 	    drawRubiksCube(gl,rubiksCube);
+
 
     }
     @Override
@@ -167,17 +187,27 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         gl.glEnd();
     }
 
-    private void drawRubiksCube(GL2 gl, RubiksCube rubiksCube){
-        setCube(rubiksCube); // cree les differents cubes en fonction de la config des facette de rubikscube
-        for ( int i=0; i<27 ; i++){
-            gl.glPushMatrix();  //met en place le curseur qui va effectuer le tracé
-            Cube cubeToDraw = listeCube[i]; //recupere dans la liste
-            int[] position = cubeToDraw.getPosition(); // recupere les position pour placer le curseur
-            gl.glTranslatef(position[0],position[1],position[2]);
-            drawCube(gl,cubeToDraw,cubeToDraw.getColoredFaces()); //dessine le cube
-            gl.glPopMatrix(); //réinitialise le curseur de dessin
 
-
+    private void drawRubiksCube(GL2 gl, RubiksCube rubiksCube)
+    {
+        setCube(rubiksCube); // cree les differents cubes en fonction de la config des facettes de rubikscube
+        for (int x =0; x<3 ; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                for (int z = 0; z < 3; z++)
+                {
+                    // mettre ici des rotates des différents cube selon s'il sont en train de tourner
+                    gl.glPushMatrix();
+                    gl.glRotatef(coloneAnglesX[x],1f,0f,0f);
+                    gl.glRotatef(ligneAnglesY[y],0f,1f,0f);
+                    gl.glRotatef(profondeurAnglesZ[x],0f,0f,1f);
+                    Cube cubeToDraw = listeCube[x][y][z];
+                    gl.glTranslatef(x-1,y-1,z-1);
+                    drawCube(gl,cubeToDraw,cubeToDraw.getColoredFaces());
+                    gl.glPopMatrix();
+                }
+            }
         }
     }
 
@@ -186,65 +216,121 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
     public void setCube(RubiksCube rCube){  // POSITION X ET Y A VERIFIER SELON LA NORME UTILISE DANS RUBIKS CUBE
 
         // PREMIERE COURONNE FRONTALE
-        // [-1,-1,-1]
-        listeCube[0] = new Cube(rCube.getFacetColor(Face.F,0,0),Color.BLACK,rCube.getFacetColor(Face.L,2,0),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.D,0,2),-1,-1,-1);
-        // [0,-1,-1]
-        listeCube[1] = new Cube(rCube.getFacetColor(Face.F,1,0),Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.D,1,2),0,-1,-1);
+        // [-1,-1,-1] | [0,0,0] +1 a chaque composantes pour en faire une liste.
+        listeCube[0][0][0] = new Cube(rCube.getFacetColor(Face.F,0,0),Color.BLACK,rCube.getFacetColor(Face.L,2,0),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.D,0,2),-1,-1,-1);
+        // [0,-1,-1] | [1,0,0]
+        listeCube[1][0][0] = new Cube(rCube.getFacetColor(Face.F,1,0),Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.D,1,2),0,-1,-1);
         //[1,-1,-1]
-        listeCube[2] = new Cube(rCube.getFacetColor(Face.F,2,0),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,0,0),Color.BLACK,rCube.getFacetColor(Face.D,2,2),1,-1,-1);
+        listeCube[2][0][0] = new Cube(rCube.getFacetColor(Face.F,2,0),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,0,0),Color.BLACK,rCube.getFacetColor(Face.D,2,2),1,-1,-1);
         //[-1,-1,0]
-        listeCube[3] = new Cube(rCube.getFacetColor(Face.F,0,1),Color.BLACK,rCube.getFacetColor(Face.L,2,1),Color.BLACK,Color.BLACK,Color.BLACK,-1,-1,0);
+        listeCube[0][0][1] = new Cube(rCube.getFacetColor(Face.F,0,1),Color.BLACK,rCube.getFacetColor(Face.L,2,1),Color.BLACK,Color.BLACK,Color.BLACK,-1,-1,0);
         //[0,-1,0] centre front
-        listeCube[4] = new Cube(rCube.getFacetColor(Face.F,1,1),Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,0,-1,0);
+        listeCube[1][0][1] = new Cube(rCube.getFacetColor(Face.F,1,1),Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,0,-1,0);
         //[1,-1,0]
-        listeCube[5] = new Cube(rCube.getFacetColor(Face.F,2,1),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,0,1),Color.BLACK,Color.BLACK,1,-1,0);
+        listeCube[2][0][1] = new Cube(rCube.getFacetColor(Face.F,2,1),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,0,1),Color.BLACK,Color.BLACK,1,-1,0);
         //[-1,-1,1]
-        listeCube[6] = new Cube(rCube.getFacetColor(Face.F,0,2),Color.BLACK,rCube.getFacetColor(Face.L,2,2),Color.BLACK,rCube.getFacetColor(Face.U,0,0),Color.BLACK,-1,-1,1);
+        listeCube[0][0][2] = new Cube(rCube.getFacetColor(Face.F,0,2),Color.BLACK,rCube.getFacetColor(Face.L,2,2),Color.BLACK,rCube.getFacetColor(Face.U,0,0),Color.BLACK,-1,-1,1);
         //[0,-1,1]
-        listeCube[7] = new Cube(rCube.getFacetColor(Face.F,1,2),Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.U,1,0),Color.BLACK,0,-1,1);
+        listeCube[1][0][2] = new Cube(rCube.getFacetColor(Face.F,1,2),Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.U,1,0),Color.BLACK,0,-1,1);
         //[1,-1,1]
-        listeCube[8] = new Cube(rCube.getFacetColor(Face.F,2,2),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,0,2),rCube.getFacetColor(Face.U,2,0),Color.BLACK,1,-1,1);
+        listeCube[2][0][2] = new Cube(rCube.getFacetColor(Face.F,2,2),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,0,2),rCube.getFacetColor(Face.U,2,0),Color.BLACK,1,-1,1);
 
         //SECONDE COURONNE CENTRALE
         //[-1,0,-1]
-        listeCube[9] = new Cube(Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.L,1,0),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.D,0,1),-1,0,-1);
+        listeCube[0][1][0] = new Cube(Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.L,1,0),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.D,0,1),-1,0,-1);
         //[0,0,-1] centre down
-        listeCube[10] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.D,1,1),0,0,-1);
+        listeCube[1][1][0] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.D,1,1),0,0,-1);
         //[1,0,-1]
-        listeCube[11] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,1,0),Color.BLACK,rCube.getFacetColor(Face.D,2,1),1,0,-1);
+        listeCube[2][1][0] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,1,0),Color.BLACK,rCube.getFacetColor(Face.D,2,1),1,0,-1);
         //[-1,0,0] centre left
-        listeCube[12] = new Cube(Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.L,1,1),Color.BLACK,Color.BLACK,Color.BLACK,-1,0,0);
+        listeCube[0][1][1] = new Cube(Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.L,1,1),Color.BLACK,Color.BLACK,Color.BLACK,-1,0,0);
         //[0,0,0] cube interne tout en noir
-        listeCube[13] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,0,0,0);
+        listeCube[1][1][1] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,0,0,0);
         //[1,0,0] // centre right
-        listeCube[14] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,1,1),Color.BLACK,Color.BLACK,1,0,0);
+        listeCube[2][1][1] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,1,1),Color.BLACK,Color.BLACK,1,0,0);
         //[-1,0,1]
-        listeCube[15] = new Cube(Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.L,1,2),Color.BLACK,rCube.getFacetColor(Face.U,0,1),Color.BLACK,-1,0,1);
+        listeCube[0][1][2] = new Cube(Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.L,1,2),Color.BLACK,rCube.getFacetColor(Face.U,0,1),Color.BLACK,-1,0,1);
         //[0,0,1]
-        listeCube[16] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.U,1,1),Color.BLACK,0,0,1);
+        listeCube[1][1][2] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.U,1,1),Color.BLACK,0,0,1);
         //[1,0,1]
-        listeCube[17] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,1,2),rCube.getFacetColor(Face.U,2,1),Color.BLACK,1,0,1);
+        listeCube[2][1][2] = new Cube(Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.R,1,2),rCube.getFacetColor(Face.U,2,1),Color.BLACK,1,0,1);
 
 
         //TROISIEME COURONNE ARRIERE
         //[-1,1,-1]
-        listeCube[18] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,2,0),rCube.getFacetColor(Face.L,0,0),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.D,0,0),-1,1,-1);
+        listeCube[0][2][0] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,2,0),rCube.getFacetColor(Face.L,0,0),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.D,0,0),-1,1,-1);
         //[0,1,-1]
-        listeCube[19] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,1,0),Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.D,1,0),0,1,-1);
+        listeCube[1][2][0] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,1,0),Color.BLACK,Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.D,1,0),0,1,-1);
         //[1,1,-1]
-        listeCube[20] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,0,0),Color.BLACK,rCube.getFacetColor(Face.R,2,0),Color.BLACK,rCube.getFacetColor(Face.D,2,0),1,1,-1);
+        listeCube[2][2][0] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,0,0),Color.BLACK,rCube.getFacetColor(Face.R,2,0),Color.BLACK,rCube.getFacetColor(Face.D,2,0),1,1,-1);
         //[-1,1,0]
-        listeCube[21] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,2,1),rCube.getFacetColor(Face.L,0,1),Color.BLACK,Color.BLACK,Color.BLACK,-1,1,0);
+        listeCube[0][2][1] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,2,1),rCube.getFacetColor(Face.L,0,1),Color.BLACK,Color.BLACK,Color.BLACK,-1,1,0);
         //[0,1,0] centre back
-        listeCube[22] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,1,1),Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,0,1,0);
+        listeCube[1][2][1] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,1,1),Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,0,1,0);
         //[1,1,0]
-        listeCube[23] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,0,1),Color.BLACK,rCube.getFacetColor(Face.R,2,1),Color.BLACK,Color.BLACK,1,1,0);
+        listeCube[2][2][1] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,0,1),Color.BLACK,rCube.getFacetColor(Face.R,2,1),Color.BLACK,Color.BLACK,1,1,0);
         //[-1,1,1]
-        listeCube[24] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B, 2,2),rCube.getFacetColor(Face.L,2,2),Color.BLACK,rCube.getFacetColor(Face.U,0,2),Color.BLACK,-1,1,1);
+        listeCube[0][2][2] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B, 2,2),rCube.getFacetColor(Face.L,2,2),Color.BLACK,rCube.getFacetColor(Face.U,0,2),Color.BLACK,-1,1,1);
         //[0,1,1]
-        listeCube[25] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,1,2),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.U,1,2),Color.BLACK,0,1,1);
+        listeCube[1][2][2] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,1,2),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.U,1,2),Color.BLACK,0,1,1);
         //[1,1,1]
-        listeCube[26] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,0,2),Color.BLACK,rCube.getFacetColor(Face.R,2,2),rCube.getFacetColor(Face.U,2,2),Color.BLACK,1,1,1);
+        listeCube[2][2][2] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,0,2),Color.BLACK,rCube.getFacetColor(Face.R,2,2),rCube.getFacetColor(Face.U,2,2),Color.BLACK,1,1,1);
 
     }
+
+    public boolean isRotating()
+    {
+        return rotateX + rotateY + rotateZ > -3; // valeur par default des rotate font = -3
+    }
+
+
+    /* Rotation sur X :
+           rotateX = 0 => tourne L   rotateX = 2 => tourne R selon axe X  si 1 on tourne couronne centrale selon X
+           rotateY = 0 => tourne F   rotateY = 2 => tourne B selon axe Y  si 1 on tourne couronne centrale selon Y
+           rotateZ = 0 => tourne D   rotateZ = 2 => tourne U selon axe Z  si 1 on tourne couronne centrale selon Z
+     */
+    public void updateAngles()
+    {
+        Direction direction = (rotationSpeed > 0) ? Direction.COUNTER_CLOCKWISE : Direction.CLOCKWISE;
+
+        if (rotateX >=0)
+        {
+            coloneAnglesX[rotateX] += rotationSpeed;
+            if (coloneAnglesX[rotateX] % 90f ==0)
+            {
+                coloneAnglesX[rotateX] = 0;
+                if (rotateX ==0) rubiksCube.rotate(Rotation.Li);
+                rotateX = -1;
+
+            }
+        }else if (rotateY >=0)
+        {
+            ligneAnglesY[rotateY] += rotationSpeed;
+            if (ligneAnglesY[rotateY] % 90f ==0)
+            {
+                ligneAnglesY[rotateY] = 0;
+                rotateY = -1;
+            }
+        }else if (rotateZ >=0)
+        {
+            profondeurAnglesZ[rotateZ] += rotationSpeed;
+            if (profondeurAnglesZ[rotateZ] % 90f ==0)
+            {
+                profondeurAnglesZ[rotateZ] = 0;
+                rotateZ = -1;
+            }
+        }
+    }
+
+    public void rotate(int face,Axis axis,boolean clock)
+    {
+        if (!isRotating())
+        {
+            if (axis == Axis.X) rotateX = face;
+            if (axis == Axis.Y) rotateY = face;
+            if (axis == Axis.Z) rotateZ = face;
+            rotationSpeed = clock ? - Math.abs(rotationSpeed) : Math.abs(rotationSpeed); //permet de definir si la rotation est clockwise ou counter_clockwise
+        }
+    }
+
 }
