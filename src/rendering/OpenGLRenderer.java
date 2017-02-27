@@ -19,7 +19,7 @@ import java.lang.Object;
 // Attention, voire le probleme des fenetres qui ne se ferme pas
 
 
-public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseListener */ {
+public class OpenGLRenderer implements GLEventListener /* KeyListener, MouseListener */ {
 
     private GLU glu;
     public Cube[][][] listeCube = new Cube[3][3][3];
@@ -52,7 +52,7 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
 
 
 
-    public OpenGLRenderer2(){
+    public OpenGLRenderer(){
         rubiksCube = new RubiksCube();
         this.coloneAnglesX = new float[3];
         this.ligneAnglesY = new float[3];
@@ -69,7 +69,7 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         gl.glDepthFunc(GL2.GL_LEQUAL);
         gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST);
         gl.glShadeModel(GL2.GL_SMOOTH);
-    }
+    } //initialisation de mon rendu OpenGL
 
     @Override
     public void display(GLAutoDrawable drawable) {
@@ -88,11 +88,11 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
 	    drawRubiksCube(gl,rubiksCube);
 
 
-    }
-    @Override
+    } //est appelé en boucle : le cube se dessine en boucle ce qui permet de faire les rotations en redessinant
+    @Override                                          // par de petite rotation petit à petit, petite rotation defini par rotationSpeed
     public void dispose (GLAutoDrawable arg0) {
         // rien a mettre ici mais la methode doit être présente.
-    }
+    } // pas utile ici mais doit être Override (demande par OpenGL)
 
     @Override
     public void reshape (GLAutoDrawable drawable, int x, int y, int width, int height) {
@@ -107,7 +107,7 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
 
-    }
+    }  //permet de changer la taille de la fenetre
 
     private void setGlColor(GL2 gl, Color color) {
         switch (color) {
@@ -126,9 +126,9 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
             case BLACK:
                 gl.glColor3f(0f,0f,0f); break;
         }
-    }
+    } //permet de definir les couleur pour OpenGL
 
-    private void drawCube( GL2 gl, Cube cube, int coloredFaces ){
+    private void drawCube( GL2 gl, Cube cube){
 
 
         gl.glBegin(GL2.GL_QUADS);
@@ -187,10 +187,10 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         gl.glVertex3f(1f,1f,1f);
         gl.glVertex3f(1f,0f,1f);
         gl.glEnd();
-    }
+    } //dessine un petit cube dont les couleurs sont donnée en argument.
 
 
-    private void drawRubiksCube(GL2 gl, RubiksCube rubiksCube)
+    private void drawRubiksCube(GL2 gl, RubiksCube rubiksCube) // dessine tous les petits cube a partir de la config de RubiksCube
     {
         setCube(rubiksCube); // cree les differents cubes en fonction de la config des facettes de rubikscube
         for (int x =0; x<3 ; x++)
@@ -217,7 +217,7 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
                     if (z == 2) gl.glTranslatef(0f,0f,distanceEntreCube); // decalage si à gauche de origine
                     gl.glTranslatef(-0.5f,-0.5f,-0.5f);
 
-                    drawCube(gl,cubeToDraw,cubeToDraw.getColoredFaces());
+                    drawCube(gl,cubeToDraw);
                     gl.glPopMatrix();
                 }
             }
@@ -289,20 +289,20 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         //[1,1,1]
         listeCube[2][2][2] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,0,2),Color.BLACK,rCube.getFacetColor(Face.R,2,2),rCube.getFacetColor(Face.U,2,2),Color.BLACK,1,1,1);
 
-    }
+    } // cree les petits cube à partir de la representation plan par facettes de RubiksCube
 
-    public boolean isRotating()
+    public boolean isRotating() //determine si le cube a deja une face qui est en train de tourner, eviter plusieurs mouvement en meme temps
     {
         return rotateX + rotateY + rotateZ > -3; // valeur par default des rotate font = -3
     }
 
 
-    /* Rotation sur X :
+    /* Rotations :
            rotateX = 0 => tourne L   rotateX = 2 => tourne R selon axe X  si 1 on tourne couronne centrale selon X
            rotateY = 0 => tourne F   rotateY = 2 => tourne B selon axe Y  si 1 on tourne couronne centrale selon Y
            rotateZ = 0 => tourne D   rotateZ = 2 => tourne U selon axe Z  si 1 on tourne couronne centrale selon Z
      */
-    public void updateAngles()
+    public void updateAngles() // va etre appele a chaque boucle de display et permet donc d'avoir les angles qui s'incrémente au fur et a mesure pour effectuer la rotation
     {
         Direction direction = (rotationSpeed > 0) ? Direction.COUNTER_CLOCKWISE : Direction.CLOCKWISE;
 
@@ -336,7 +336,7 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
         }
     }
 
-    public void rotate(int face,Axis axis,boolean clock)
+    public void rotate(int face,Axis axis,boolean clock) // permet de faire une rotation et d'en définir le sens (horaire ou trigo)
     {
         if (!isRotating())
         {

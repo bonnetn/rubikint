@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 /*
 public class Fenetre{
 
-    OpenGLRenderer2 renderer = new OpenGLRenderer2();
+    renderermachin renderer = new renderermachin();
     RubiksCube cube = new RubiksCube();
 
 

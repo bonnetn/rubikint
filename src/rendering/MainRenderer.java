@@ -14,10 +14,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import rubikscube.RubiksCube;
-import rubikscube.enums.Rotation;
 import rubikscube.enums.Rotation.*;
 
-public class Main extends Frame{
+public class MainRenderer extends Frame{
 
     private static RubiksCube rubiksCube;
 
@@ -27,15 +26,15 @@ public class Main extends Frame{
 
     private static final class MyKeyListener extends KeyAdapter {
 
-        private final Main $this;
-        private final OpenGLRenderer2 renderer;
+        private final MainRenderer $this;
+        private final OpenGLRenderer renderer;
         private boolean isUpPressed;
         private boolean isDownPressed;
         private boolean isLeftPressed;
         private boolean isrightPressed;
         private boolean isUPressed;
 
-        private MyKeyListener(Main m, OpenGLRenderer2 r) {
+        private MyKeyListener(MainRenderer m, OpenGLRenderer r) {
             $this = m;
             renderer = r;
         }
@@ -98,14 +97,14 @@ public class Main extends Frame{
         }
     }
 
-    public Main(){
+    public MainRenderer(){
         super();
         setSize(640,480);
         setTitle("Rubik'INT");
         // Permet de centrer la fenetre à l'ouverture
         setLocationRelativeTo(null);
 
-        OpenGLRenderer2 renderer = new OpenGLRenderer2();
+        OpenGLRenderer renderer = new OpenGLRenderer();
         canvas = new GLCanvas();
         canvas.addGLEventListener(renderer);
         add(canvas);
@@ -132,7 +131,7 @@ public class Main extends Frame{
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Main();
+                new MainRenderer();
             }
         });
     }
