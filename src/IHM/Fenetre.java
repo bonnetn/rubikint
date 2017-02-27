@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 /*
 public class Fenetre{
 
-    Java3DRenderer r = new Java3DRenderer();
+    OpenGLRenderer2 renderer = new OpenGLRenderer2();
     RubiksCube cube = new RubiksCube();
 
 
@@ -95,9 +95,9 @@ public class Fenetre{
         //panel.setLayout(new BorderLayout());
         //Java3DRenderer r = new Java3DRenderer();
         //RubiksCube cube = new RubiksCube();
-        cube.rotate(Rotation.Ui);
-        cube.rotate(Rotation.Ui);
-        r.drawItem(cube);
+        //cube.rotate(Rotation.Ui);
+        //cube.rotate(Rotation.Ui);
+        r.drawRubiksCube(cube);
         panel.add(r.getCanvas3D());
 
         return panel;

@@ -45,7 +45,7 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
     private int rotateX = -1;
     private int rotateY = -1;
     private int rotateZ = -1;
-    private float rotationSpeed = 5f;
+    private float rotationSpeed = 3f;
 
 
     private RubiksCube rubiksCube;
@@ -129,6 +129,8 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
     }
 
     private void drawCube( GL2 gl, Cube cube, int coloredFaces ){
+
+
         gl.glBegin(GL2.GL_QUADS);
 
         //face du haut
@@ -199,11 +201,22 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
                 {
                     // mettre ici des rotates des différents cube selon s'il sont en train de tourner
                     gl.glPushMatrix();
+                    gl.glTranslatef(0f,0f,0f); // revient au centre pour eviter un decalage
+
                     gl.glRotatef(coloneAnglesX[x],1f,0f,0f);
                     gl.glRotatef(ligneAnglesY[y],0f,1f,0f);
                     gl.glRotatef(profondeurAnglesZ[x],0f,0f,1f);
+
                     Cube cubeToDraw = listeCube[x][y][z];
-                    gl.glTranslatef(x-1,y-1,z-1);
+                    gl.glTranslatef((x-1f),(y-1f),(z-1f)); // va au centre du petit cube
+                    if (x == 0) gl.glTranslatef(-distanceEntreCube,0f,0f); // decalage si à gauche de origine
+                    if (x == 2) gl.glTranslatef(distanceEntreCube,0f,0f); // decalage si à droite de origine
+                    if (y == 0) gl.glTranslatef(0f,-distanceEntreCube,0f); // decalage si à l'avant de origine
+                    if (y == 2) gl.glTranslatef(0f,distanceEntreCube,0f); // decalage si à l'arrière de origine
+                    if (z == 0) gl.glTranslatef(0f,0f,-distanceEntreCube); // decalage si à gauche de origine
+                    if (z == 2) gl.glTranslatef(0f,0f,distanceEntreCube); // decalage si à gauche de origine
+                    gl.glTranslatef(-0.5f,-0.5f,-0.5f);
+
                     drawCube(gl,cubeToDraw,cubeToDraw.getColoredFaces());
                     gl.glPopMatrix();
                 }
@@ -300,6 +313,7 @@ public class OpenGLRenderer2 implements GLEventListener /* KeyListener, MouseLis
             {
                 coloneAnglesX[rotateX] = 0;
                 if (rotateX ==0) rubiksCube.rotate(Rotation.Li);
+                if (rotateX ==2) rubiksCube.rotate(Rotation.R);
                 rotateX = -1;
 
             }

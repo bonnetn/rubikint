@@ -72,7 +72,9 @@ public class Main extends Frame{
                     break;
                 case KeyEvent.VK_Q: // tourne L
                     renderer.rotate(0, Axis.X,true);
-                    System.out.println("La touche Q a été pressé");
+                    break;
+                case KeyEvent.VK_A :
+                    renderer.rotate(2,Axis.X,true);
                     break;
             }
             doThat();
