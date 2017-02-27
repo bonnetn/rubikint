@@ -18,6 +18,8 @@ import rubikscube.enums.Rotation.*;
 
 public class MainRenderer extends Frame{
 
+    public OpenGLRenderer renderer;
+
     private static RubiksCube rubiksCube;
 
     private GLCanvas canvas; //Canvas pour le JPanel
@@ -100,7 +102,7 @@ public class MainRenderer extends Frame{
     public MainRenderer(){
         super();
         setSize(640,480);
-        setTitle("Rubik'INT");
+        //setTitle("Rubik'INT");
         // Permet de centrer la fenetre à l'ouverture
         setLocationRelativeTo(null);
 
@@ -110,7 +112,7 @@ public class MainRenderer extends Frame{
         add(canvas);
 
         animator  = new FPSAnimator(canvas, 60);
-        addWindowListener(new WindowAdapter() {
+/*        addWindowListener(new WindowAdapter() {
 
             @Override
             public void windowClosing(WindowEvent e) {
@@ -119,15 +121,15 @@ public class MainRenderer extends Frame{
                 System.exit(0);
             }
         });
-
+*/
         addKeyListener(new MyKeyListener(this, renderer));
         canvas.addKeyListener(new MyKeyListener(this, renderer));
 
         animator.start();
-        setVisible(true);
+        //setVisible(true);
     }
-
-    public static void main(String[] args) {
+/*
+     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -135,5 +137,7 @@ public class MainRenderer extends Frame{
             }
         });
     }
-
+*/
+    public GLCanvas getCanvas() { return canvas;}
+    public OpenGLRenderer getOpenGLRenderer() {return renderer;}
 }

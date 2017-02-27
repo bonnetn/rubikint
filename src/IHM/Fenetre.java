@@ -1,12 +1,14 @@
-/*
 package IHM;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import rendering.OpenGLRenderer;
 import rubikscube.RubiksCube;
 import rubikscube.enums.Rotation;
+import rendering.MainRenderer;
+import sun.applet.Main;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,11 +18,10 @@ import javax.swing.JPanel;
  * Created by florian on 29/01/17.
  */
 
-/*
 public class Fenetre{
 
-    renderermachin renderer = new renderermachin();
-    RubiksCube cube = new RubiksCube();
+    MainRenderer renderer = new MainRenderer();
+    RubiksCube rubikscube = new RubiksCube();
 
 
 
@@ -57,8 +58,6 @@ public class Fenetre{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == white){
-                    cube.rotate(Rotation.U);
-
                 }
                 if (e.getSource() == yellow)
                     ;//tourne la face jaune
@@ -93,15 +92,10 @@ public class Fenetre{
     private JPanel cube(){
         JPanel panel = new JPanel(new GridLayout());
         //panel.setLayout(new BorderLayout());
-        //Java3DRenderer r = new Java3DRenderer();
-        //RubiksCube cube = new RubiksCube();
-        //cube.rotate(Rotation.Ui);
-        //cube.rotate(Rotation.Ui);
-        r.drawRubiksCube(cube);
-        panel.add(r.getCanvas3D());
+        MainRenderer r = new MainRenderer();
+        RubiksCube cube = new RubiksCube();
+        panel.add(r.getCanvas());
 
         return panel;
     }
 }
-
-*/
