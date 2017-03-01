@@ -27,6 +27,7 @@ ArrayList<Procedure> listeProcedure= new ArrayList<Procedure>();
 		ArrayList<Rotation> rotater=new ArrayList<Rotation>(Arrays.asList(Rotation.B,Rotation.R,Rotation.Bi,Rotation.Ri,Rotation.Fi,Rotation.B,Rotation.F));
 		RubiksConfiguration conf=new RubiksConfiguration(new ArrayList<FacetConfig>(Arrays.asList(new FacetConfig(1,0,Face.F,Face.R))));
 		Procedure p=new Procedure(rotater,10,conf,Rotation.B);
+
         Procedure p2=new Procedure(p);
         p2.symetry();
         for(int i=1;i<=4;i++) {
@@ -35,7 +36,9 @@ ArrayList<Procedure> listeProcedure= new ArrayList<Procedure>();
             p.translation(Face.values()[Face.F.getValue()+i]);
             p2.translation(Face.values()[Face.F.getValue()+i]);
         }
-
+		ArrayList<Rotation> croix=new ArrayList<Rotation>(Arrays.asList(Rotation.Fi,Rotation.Li,Rotation.Bi,Rotation.L,Rotation.B,Rotation.F));
+		RubiksConfiguration confcroix=new RubiksConfiguration(new ArrayList<FacetConfig>(Arrays.asList(new FacetConfig(1,0,Face.F,Face.D),new FacetConfig(1,0,Face.B,Face.D))));
+		listeProcedure.add(new Procedure(croix,20,confcroix,Rotation.B));
 
 
 
