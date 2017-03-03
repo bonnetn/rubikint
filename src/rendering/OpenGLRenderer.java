@@ -14,12 +14,19 @@ import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
+
+import java.awt.Frame;
+import javax.media.opengl.awt.GLCanvas;
+import com.jogamp.opengl.util.FPSAnimator;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.lang.Object;
 
 // Attention, voire le probleme des fenetres qui ne se ferme pas
 
 
-public class OpenGLRenderer implements GLEventListener /* KeyListener, MouseListener */ {
+public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListener, MouseListener */ {
 
     private GLU glu;
     public Cube[][][] listeCube = new Cube[3][3][3];
@@ -57,6 +64,7 @@ public class OpenGLRenderer implements GLEventListener /* KeyListener, MouseList
         this.coloneAnglesX = new float[3];
         this.ligneAnglesY = new float[3];
         this.profondeurAnglesZ = new float[3];
+
     }
 
     @Override
@@ -346,5 +354,8 @@ public class OpenGLRenderer implements GLEventListener /* KeyListener, MouseList
             rotationSpeed = clock ? - Math.abs(rotationSpeed) : Math.abs(rotationSpeed); //permet de definir si la rotation est clockwise ou counter_clockwise
         }
     }
+
+
+
 
 }

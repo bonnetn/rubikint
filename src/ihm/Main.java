@@ -1,4 +1,4 @@
-package IHM;
+package ihm;
 
 /**
  * Created by florian on 27/02/17.
