@@ -13,8 +13,10 @@ public class AccBackground extends JPanel { //background de Accueil
         ImageIcon image = new ImageIcon("AccueilBackground.png");
         JLabel label = new JLabel("",image,JLabel.CENTER);
         //BorderLayout();
-        add(label/*,BorderLayout.CENTER*/);
-        this.setBounds(0,0,1280,720);
+        add(label);
+        setBounds(0,0,1280,720);
+        setBorder(null);
+        setOpaque(false);
     }
 
 }

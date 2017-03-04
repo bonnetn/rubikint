@@ -14,10 +14,10 @@ public class AccRandomCube extends JPanel {
         //this.setSize(600,30);
         //this.setLayout(null);
         JButton accRandom = new JButton();
-        accRandom.setBackground(Color.BLACK);
         Icon i = new ImageIcon("AccueilSolveRandom.png");
         accRandom.setIcon(i);
-        //setOpaque(true);
+        //setOpaque(false);
+        accRandom.setBorder(null);
         accRandom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
