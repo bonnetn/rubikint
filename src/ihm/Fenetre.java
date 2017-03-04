@@ -3,13 +3,11 @@ package ihm;
 import java.awt.*;
 import java.awt.event.*;
 
-import com.jogamp.opengl.util.FPSAnimator;
 import ihm.frame.Accueil;
 import ihm.frame.SolvingCube;
-import rendering.OpenGLRenderer;
-import rubikscube.RubiksCube;
+import ihm.frame.accueil.AccBackground;
+import ihm.frame.accueil.AccRandomCube;
 
-import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
 
 /**
@@ -23,40 +21,62 @@ public class Fenetre{
         JFrame frame = new JFrame();
 
         frame.setTitle("Rubik'INT");
-        frame.setSize(1280, 750);
+        frame.setSize(1280, 755); //tester et aprouve pour BACKGROUND VISIBLE
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.setLayout(new BorderLayout());
+        //frame.setLayout(new GridLayout());
+        frame.setLayout(new GridLayout());
+
+        JLayeredPane accueil = new JLayeredPane();
+        accueil.setLayout(null);
+        AccBackground accBackground = new AccBackground();
+        AccRandomCube accRandomCube = new AccRandomCube();
+
+
+        accueil.add(accBackground, 1);
+        accRandomCube.setPreferredSize(new Dimension(400,33));
+        accueil.add(accRandomCube, 2);
+        accBackground.setVisible(true);
+        accRandomCube.setVisible(true);
+        frame.add(accueil);
+
 
         //SolvingCube sCube = new SolvingCube();
-        Accueil acc = new Accueil();
-        SolvingCube sCube = new SolvingCube();
-        sCube.setLocation(0,20);
-        frame.add("Center",sCube);
-        frame.add("Center",acc);
+        //AccBackground background = new AccBackground();
+        //AccRandomCube randomCube = new AccRandomCube();
 
-        acc.setVisible(true);
-        sCube.setVisible(false);
+        //randomCube.setLocation(600,200);
+        //sCube.setLocation(0,20);
+        //frame.add(sCube);
+        //frame.add(randomCube);
+        //frame.add(background);
+        //frame.add("Center",randomCube);
+
+
+        //sCube.setVisible(false);
+        //background.setVisible(true);
+        //randomCube.setVisible(true);
         frame.setVisible(true);
 
-        //JButton bouton = acc.getBouton();
-        acc.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                acc.setVisible(false);
-                sCube.setVisible(true);
-            }
-        });
+/*
         JButton boutonCube = sCube.getBouton();
         boutonCube.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 sCube.setVisible(false);
-                acc.setVisible(true);
+                //acc.setVisible(true);
             }
         });
 
+        randomCube.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                randomCube.setVisible(false);
+                sCube.setVisible(true);
+            }
+        });
+*/
 
     }
 
