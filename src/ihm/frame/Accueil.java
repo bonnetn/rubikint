@@ -11,6 +11,10 @@ import java.awt.event.ActionListener;
  */
 public class Accueil extends JLabel{
 
+    JButton accCapture = new JButton();
+    JButton accRandom;
+    JButton accQuit;
+
 
     public Accueil() {
 
@@ -19,7 +23,7 @@ public class Accueil extends JLabel{
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        JButton accCapture = new JButton();
+       // JButton accCapture = new JButton();
         Icon i = new ImageIcon("AccueilCaptureCube.png");
         accCapture.setIcon(i);
         accCapture.setBorder(null);
@@ -54,16 +58,17 @@ public class Accueil extends JLabel{
             }
         });
 
+        gbc.insets = new Insets(50,0,0,0);
         gbc.gridx=0;
         gbc.gridy=0;
         gbc.gridwidth=2;
         gbc.gridheight=2;
         add(accCapture,gbc);
        // gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.insets = new Insets(7,0,50,0);
+        gbc.insets = new Insets(100,0,50,0);
         gbc.gridy=3;
         add(accRandom,gbc);
-        gbc.insets = new Insets(50,0,0,0);
+        gbc.insets = new Insets(100,0,0,0);
         gbc.gridy=6;
         add(accQuit,gbc);
 
@@ -71,4 +76,10 @@ public class Accueil extends JLabel{
 
 
     }
+
+    public JButton getCapture(){return accCapture;}
+    public JButton getRandom(){return accRandom;}
+    public JButton getQuit(){return accQuit;}
+
+
 }

@@ -14,7 +14,7 @@ import rubikscube.RubiksCube;
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
 
-public class SolvingCube extends JPanel{
+public class Solverold extends JPanel{
     RubiksCube rubiksCube = new RubiksCube();
     private GLCanvas canvas;
     OpenGLRenderer renderer; //= new OpenGLRenderer();
@@ -22,7 +22,7 @@ public class SolvingCube extends JPanel{
     JButton bouton = new JButton("Accueil");
 
 
-    public SolvingCube(){
+    public Solverold(){
         //JPanel pan = new JPanel();
 
         setSize(800, 700);
@@ -121,4 +121,5 @@ public class SolvingCube extends JPanel{
             }
         }
     }
+
 }

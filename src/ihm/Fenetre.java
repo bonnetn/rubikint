@@ -1,14 +1,11 @@
 package ihm;
 
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import ihm.frame.Accueil;
-import ihm.frame.SolvingCube;
-import ihm.frame.accueil.AccBackground;
-import ihm.frame.accueil.AccCapture;
-import ihm.frame.accueil.AccQuit;
-import ihm.frame.accueil.AccRandomCube;
+import ihm.frame.Solver;
 
 import javax.swing.*;
 
@@ -18,8 +15,10 @@ import javax.swing.*;
 
 public class Fenetre{
 
-    public Fenetre() { // constructeur pour etablir les settings de la fenetre
+    String[] listeScene = {"Accueil","Solver","Capture"};
 
+    public Fenetre() { // constructeur pour etablir les settings de la fenetre
+        CardLayout cl = new CardLayout();
         JFrame frame = new JFrame();
 
         frame.setTitle("Rubik'INT");
@@ -29,8 +28,31 @@ public class Fenetre{
         frame.setResizable(false);
 
         Accueil accueil = new Accueil();
-        frame.setLayout(new BorderLayout());
-        frame.setContentPane(accueil);
+        Solver solver = new Solver();
+
+        JButton accSolver = accueil.getCapture();
+        accSolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                accueil.setVisible(false);
+                solver.setVisible(true);
+            }
+        });
+
+        JButton retAccueil = solver.getacc();
+        retAccueil.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                solver.setVisible(false);
+                accueil.setVisible(true);
+            }
+        });
+
+
+        frame.setLayout(cl); //utiliser ici un CardLayout
+        frame.add(accueil,listeScene[0]);
+        solver.setVisible(true);
+        frame.add(solver,listeScene[1]);
         frame.setVisible(true);
     }
 
