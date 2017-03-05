@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class AccQuit extends JPanel{
 
     public AccQuit() {
-
+        this.setBounds(395,450,455,40);
         //this.setLayout(null);
         JButton accQuit = new JButton();
         Icon i = new ImageIcon("AccueilQuit.png");
@@ -23,7 +23,8 @@ public class AccQuit extends JPanel{
                 System.out.println("Bouton Quit OK");
             }
         });
-        this.setBounds(425,450,455,40);
+        //this.setBounds(425,450,455,40);
         this.add(accQuit);
+        repaint();
     }
 }

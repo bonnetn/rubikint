@@ -28,11 +28,10 @@ public class Fenetre{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
 
-        Accueil accueil = new Accueil(); //Affichache d'accueil.
-        frame.add(accueil);
+        Accueil accueil = new Accueil();
+        frame.setLayout(new BorderLayout());
+        frame.setContentPane(accueil);
         frame.setVisible(true);
-
-
     }
 
 }

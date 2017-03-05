@@ -13,6 +13,7 @@ public class AccRandomCube extends JPanel {
     public AccRandomCube() {
         //this.setSize(600,30);
         //this.setLayout(null);
+        this.setBounds(425,350,455,40);
         JButton accRandom = new JButton();
         Icon i = new ImageIcon("AccueilSolveRandom.png");
         accRandom.setIcon(i);
@@ -24,7 +25,7 @@ public class AccRandomCube extends JPanel {
                 System.out.println("Bouton Random OK");
             }
         });
-        this.setBounds(400,250,455,40);
+        //this.setBounds(400,250,455,40);
         this.add(accRandom);
     }
 }
