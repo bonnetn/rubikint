@@ -13,7 +13,6 @@ import rubikscube.RubiksCube;
 
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
-
 public class Solverold extends JPanel{
     RubiksCube rubiksCube = new RubiksCube();
     private GLCanvas canvas;

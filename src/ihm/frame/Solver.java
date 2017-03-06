@@ -17,19 +17,26 @@ import java.awt.event.KeyEvent;
  */
 public class Solver extends JLabel{
 
+    String[] testListMove = new String[4];
+
+    JLabel afficheEtape;
     RubiksCube rubiksCube;
     private GLCanvas canvas;
     OpenGLRenderer renderer;
     JButton retAccueil = new JButton();
+    int indice = 0;
 
 
     public Solver(){
+        setTestListMove();
 
         final ImageIcon background = new ImageIcon("solverRubikINT.png");
         setIcon(background);
         //setLayout(new GridBagLayout());
         //GridBagConstraints gbc = new GridBagConstraints();
         setLayout(null);
+
+
 
 
         //JButton retAccueil = new JButton();
@@ -42,7 +49,27 @@ public class Solver extends JLabel{
                 System.out.println("Bouton retour accueil OK");
             }
         });
-        retAccueil.setBounds(50,500,190,100);
+        retAccueil.setBounds(50,500,180,90);
+
+
+        afficheEtape = new JLabel(testListMove[indice]);
+        afficheEtape.setBounds(50,100,100,100);
+
+        JButton next = new JButton("NEXT");
+        next.setBounds(50,300,190,100);
+        next.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                indice ++;
+                afficheEtape.setVisible(false);
+                afficheEtape = new JLabel(testListMove[indice]);
+                afficheEtape.setBounds(50,100,100,100);
+                afficheEtape.setVisible(true);
+                add(afficheEtape);
+            }
+        });
+
+
 
         //JLabel rendu3D = new JLabel();
         //rendu3D.setLayout(null);
@@ -59,6 +86,8 @@ public class Solver extends JLabel{
 
         add(retAccueil);
         add(canvas);
+        add(next);
+        add(afficheEtape);
 
 
 
@@ -134,5 +163,12 @@ public class Solver extends JLabel{
                     break;
             }
         }
+    }
+
+    public void setTestListMove(){
+        testListMove[0] = "U";
+        testListMove[1] = "L";
+        testListMove[2] = "B";
+        testListMove[3] = "R";
     }
 }
