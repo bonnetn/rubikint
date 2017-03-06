@@ -17,13 +17,23 @@ public class Procedure {
     private  Rotation fallbackOption;
     private int priority; // On utilisera les procédures de plus haute priorité en premier
     private RubiksConfiguration config;
+    private RubiksConfiguration finalState;
 
-    public Procedure(ArrayList<Rotation> rot,int priority,RubiksConfiguration config,Rotation fallback)
+    public RubiksConfiguration getFinalState() {
+        return finalState;
+    }
+
+    public void setFinalState(RubiksConfiguration finalState) {
+        this.finalState = finalState;
+    }
+
+    public Procedure(ArrayList<Rotation> rot, int priority, RubiksConfiguration config, Rotation fallback,RubiksConfiguration finalState)
     {
         this.proc=rot;
         this.priority=priority;
         this.config=config;
         this.fallbackOption=fallback;
+        this.finalState=finalState;
 
     }
     public Procedure(Procedure p)
@@ -32,6 +42,7 @@ public class Procedure {
         this.priority=this.getPriority();
         this.config=new RubiksConfiguration(p.getConfig());
         this.fallbackOption=p.getFallbackOption();
+        this.finalState=p.getFinalState();
     }
 
     public Rotation getFallbackOption() {

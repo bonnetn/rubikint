@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class ProceduralSolution {
     private RubiksCube cube;
     private int priority;//désigne l'étape à laquelle on est: On ne regardera pas les procédures de priorité plus faible
+
     private ArrayList<Rotation> historique;
     public ProceduralSolution(RubiksCube cube,int priority)
     {
@@ -61,7 +62,7 @@ public class ProceduralSolution {
     {
         for(Procedure procedure:procs)
         {
-            if(procedure.getPriority()>=this.priority) //On cherche a match la prio. On utilise la fallback option si on ne trouve pas
+            if(procedure.getPriority()>=this.priority && ! procedure.getFinalState().match(cube)) //On cherche a match la prio si on est pas déjà dans l'état final de la procedure. On utilise la fallback option si on ne trouve pas
             {
                 int i=0;
                 boolean trouve= procedure.getConfig().match(cube);
