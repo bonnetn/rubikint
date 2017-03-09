@@ -1,8 +1,11 @@
+/*
 package ihm.frame;
 
 /**
  * Created by florian on 02/03/17.
  */
+
+/*
 import java.awt.*;
 import java.awt.event.*;
 
@@ -122,3 +125,5 @@ public class Solverold extends JPanel{
     }
 
 }
+
+*/

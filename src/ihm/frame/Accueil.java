@@ -55,20 +55,21 @@ public class Accueil extends JLabel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Bouton Quit OK");
+                System.exit(0);
             }
         });
 
-        gbc.insets = new Insets(50,0,0,0);
+        gbc.insets = new Insets(100,0,0,0);
         gbc.gridx=0;
         gbc.gridy=0;
         gbc.gridwidth=2;
         gbc.gridheight=2;
         add(accCapture,gbc);
        // gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.insets = new Insets(100,0,50,0);
+        gbc.insets = new Insets(120,0,50,0);
         gbc.gridy=3;
         add(accRandom,gbc);
-        gbc.insets = new Insets(100,0,0,0);
+        gbc.insets = new Insets(75,0,0,0);
         gbc.gridy=6;
         add(accQuit,gbc);
 

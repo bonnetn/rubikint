@@ -1,4 +1,4 @@
-package rendering;
+//package rendering;
 
 /**
  * Created by florian on 17/02/17.
@@ -15,6 +15,8 @@ import java.awt.event.KeyEvent;
 
 import rubikscube.RubiksCube;
 import rubikscube.enums.Rotation.*;
+
+/*
 
 public class MainRenderer extends Frame{
 
@@ -122,6 +124,7 @@ public class MainRenderer extends Frame{
             }
         });
 */
+/*
         addKeyListener(new MyKeyListener(this, renderer));
         canvas.addKeyListener(new MyKeyListener(this, renderer));
 
@@ -138,6 +141,9 @@ public class MainRenderer extends Frame{
         });
     }
 */
+/*
     public GLCanvas getCanvas() { return canvas;}
     public OpenGLRenderer getOpenGLRenderer() {return renderer;}
 }
+
+*/

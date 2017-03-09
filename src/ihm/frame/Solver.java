@@ -3,6 +3,7 @@ package ihm.frame;
 import com.jogamp.opengl.util.FPSAnimator;
 import rendering.OpenGLRenderer;
 import rubikscube.RubiksCube;
+import rubikscube.enums.Rotation;
 
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
@@ -11,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
 
 /**
  * Created by florian on 05/03/17.
@@ -24,7 +26,9 @@ public class Solver extends JLabel{
     private GLCanvas canvas;
     OpenGLRenderer renderer;
     JButton retAccueil = new JButton();
+    JButton next = new JButton("NEXT");
     int indice = 0;
+    int max = testListMove.length;
 
 
     public Solver(){
@@ -53,21 +57,34 @@ public class Solver extends JLabel{
 
 
         afficheEtape = new JLabel(testListMove[indice]);
-        afficheEtape.setBounds(50,100,100,100);
+        afficheEtape.setFont(new Font("Tahoma", Font.BOLD,100));
+        afficheEtape.setForeground(Color.RED);
+        afficheEtape.setBounds(200,150,200,120);
 
-        JButton next = new JButton("NEXT");
         next.setBounds(50,300,190,100);
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                indice ++;
-                afficheEtape.setVisible(false);
-                afficheEtape = new JLabel(testListMove[indice]);
-                afficheEtape.setBounds(50,100,100,100);
-                afficheEtape.setVisible(true);
-                add(afficheEtape);
+
+                    indice++;
+                    afficheEtape.setVisible(false);
+                    if (indice < max){
+                        afficheEtape=new JLabel(testListMove[indice]);
+                        renderer.rotate(0, Rotation.Axis.X,true);
+                    }else{
+                        afficheEtape=new JLabel("GG");
+                    }
+                    afficheEtape.setFont(new Font("Tahoma", Font.BOLD,100));
+                    afficheEtape.setForeground(Color.RED);
+                    afficheEtape.setBounds(200, 150, 200,120);
+                    afficheEtape.setVisible(true);
+                    add(afficheEtape);
+
+
             }
         });
+
+        /* TO DO : Definir a partir d'une liste de rotation [U,L,R,...] L'axe et l'indice de face à tourner et clockwise ou counterclockwise */
 
 
 
@@ -109,6 +126,7 @@ public class Solver extends JLabel{
     }
 
     public JButton getacc(){ return retAccueil;}
+    public JButton getNext(){return next;}
 
 
     final class MyKeyListener extends KeyAdapter

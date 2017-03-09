@@ -223,7 +223,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
                     if (y == 2) gl.glTranslatef(0f,distanceEntreCube,0f); // decalage si à l'arrière de origine
                     if (z == 0) gl.glTranslatef(0f,0f,-distanceEntreCube); // decalage si à gauche de origine
                     if (z == 2) gl.glTranslatef(0f,0f,distanceEntreCube); // decalage si à gauche de origine
-                    gl.glTranslatef(-0.5f,-0.5f,-0.5f);
+                    gl.glTranslatef(-0.5f,-0.5f,-0.5f); //passage du centre du cube au coin avant bas gauche là ou demarre dessin de drawCube()
 
                     drawCube(gl,cubeToDraw);
                     gl.glPopMatrix();
