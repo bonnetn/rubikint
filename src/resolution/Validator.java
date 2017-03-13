@@ -4,6 +4,6 @@ import rubikscube.RubiksCube;
 
 abstract public class Validator {
 
-	abstract boolean isValid( RubiksCube cube ); 
+	public abstract boolean isValid( RubiksCube cube ); 
 	
 }
