@@ -35,4 +35,12 @@ public enum Rotation {
 	public void setValue(int value) {
 		this.value = value;
 	}
+	
+	public static Rotation getOpposite( Rotation r ) {
+		if(r.getValue() % 2 == 0)
+			return Rotation.values()[r.getValue()+1];
+		else
+			return Rotation.values()[r.getValue()-1];
+		
+	}
 }
