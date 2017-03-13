@@ -117,14 +117,23 @@ ArrayList<Procedure> listeProcedure= new ArrayList<Procedure>();
 		pchaisesym.symetry();
 		listeProcedure.add(pchaisesym);
 
+
 		//Copain
 		ArrayList<Rotation> copain=new ArrayList<Rotation>(Arrays.asList(Rotation.R,Rotation.Di,Rotation.Li,Rotation.D,Rotation.Ri,Rotation.Di,Rotation.L,Rotation.D));
-		RubiksConfiguration confcopain=new RubiksConfiguration(new ArrayList<FacetConfig>(Arrays.asList(new FacetConfig(1,0,Face.F,Face.F),new FacetConfig(1,0,Face.R,Face.B),new FacetConfig(1,0,Face.B,Face.L),new FacetConfig(1,0,Face.L,Face.R))));
+
+		RubiksConfiguration confcopain=new RubiksConfiguration(new ArrayList<FacetConfig>(Arrays.asList(new FacetConfig(0,0,Face.F,Face.F),new FacetConfig(2,0,Face.L,Face.L),new FacetConfig(0,2,Face.D,Face.D)))); //Tous dans le bon sens
+		RubiksConfiguration confcopain2=new RubiksConfiguration(new ArrayList<FacetConfig>(Arrays.asList(new FacetConfig(2,0,Face.L,Face.F),new FacetConfig(0,0,Face.F,Face.R.getsetNotColor(true)),new FacetConfig(0,2,Face.D,Face.R.getsetNotColor(true))))); //Rouge à gauche, pas bleu pas bleu
+		RubiksConfiguration confcopain3=new RubiksConfiguration(new ArrayList<FacetConfig>(Arrays.asList(new FacetConfig(0,2,Face.D,Face.F),new FacetConfig(0,0,Face.F,Face.R.getsetNotColor(true)),new FacetConfig(2,0,Face.L,Face.R.getsetNotColor(true))))); //Rouge à gauche, pas bleu pas bleu
 		Procedure pcopain=new Procedure(copain,40,confcopain,Rotation.B,chaisejaune);
-		listeProcedure.add(pchaise);
+		Procedure pcopain2=new Procedure(copain,40,confcopain2,Rotation.B,chaisejaune);
+		Procedure pcopain3=new Procedure(copain,40,confcopain3,Rotation.B,chaisejaune);
+		listeProcedure.add(pcopain);
+		listeProcedure.add(pcopain2);
+		listeProcedure.add(pcopain3);
 
-
-
+		//Double chaise
+		ArrayList<Rotation> doublechaise=new ArrayList<Rotation>(Arrays.asList(Rotation.Li,Rotation.D,Rotation.D,Rotation.L,Rotation.D,Rotation.Li,Rotation.D,Rotation.L,Rotation.Ri,Rotation.Di,Rotation.Di,Rotation.R,Rotation.Di,Rotation.Ri,Rotation.Di,Rotation.R));
+		//RubiksConfiguration confdoublechaise=new RubiksConfiguration(new ArrayList<FacetConfig>(Arrays.asList(new FacetConfig(2,2,Face.L,Face.F)
 
 
 

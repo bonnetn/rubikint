@@ -25,6 +25,10 @@ public enum Face {
 	public void setNotColor(boolean notColor) {
 		this.notColor = notColor;
 	}
+	public Face getsetNotColor(boolean notColor) {
+		this.notColor = notColor;
+		return this;
+	}
 
 	private Face(int value) {
 		this.value = value;
