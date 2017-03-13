@@ -2,8 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8fc6479-4ccc-4a9a-af90-b025470948e2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/gluegen_rt_natives_linux_amd64.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/javacpp.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccueilBackground.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccueilCaptureCube.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccueilQuit.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccueilSolveRandom.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/gluegen-rt-natives-linux-amd64.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/gluegen-rt-natives-windows-amd64.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/gluegen-rt.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jogl-all-natives-linux-amd64.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jogl-all-natives-windows-amd64.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jogl-all.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/solverAcc.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/solverRubikINT.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ihm/Fenetre.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ihm/Main.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ihm/frame/Accueil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ihm/frame/Solver.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ihm/frame/Solverold.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/rendering/Cube.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/rendering/MainRenderer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/rendering/OpenGLRenderer.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/IHM/Main.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rendering/AbstractRenderer.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rendering/Java3DRenderer.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IHM/Fenetre.java" afterPath="$PROJECT_DIR$/src/IHM/Fenetre.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test.java" afterPath="$PROJECT_DIR$/src/Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rubikscube/RubiksCube.java" afterPath="$PROJECT_DIR$/src/rubikscube/RubiksCube.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rubikscube/enums/Color.java" afterPath="$PROJECT_DIR$/src/rubikscube/enums/Color.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rubikscube/enums/Rotation.java" afterPath="$PROJECT_DIR$/src/rubikscube/enums/Rotation.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -153,6 +179,42 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="rendering" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rubik-int" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rubik-int" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ihm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rubik-int" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rubik-int" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IHM" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>

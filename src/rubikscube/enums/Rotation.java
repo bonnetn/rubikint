@@ -35,4 +35,13 @@ public enum Rotation {
 	public void setValue(int value) {
 		this.value = value;
 	}
+
+	//axes pour la rotation dans le rendu 3D
+	public enum Axis {X,Y,Z;}
+	public enum Direction { CLOCKWISE, COUNTER_CLOCKWISE;}
+	Axis axis;
+	Direction direction;
+
+	public Axis getAxis(){return axis;}
+	public Direction getDirection(){return direction;}
 }
