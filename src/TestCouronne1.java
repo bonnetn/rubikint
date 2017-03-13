@@ -34,20 +34,46 @@ public class TestCouronne1 {
 		ArrayList<Validator> test = new ArrayList<Validator>();
 		
 		rb.randomMelange();
-		for( int x=0; x<=2; x++)
-		{
+		rb.rotate(Rotation.U);
+		rb.rotate(Rotation.R);
+		rb.rotate(Rotation.B);
+		rb.rotate(Rotation.D);
+		rb.rotate(Rotation.U);
+		rb.rotate(Rotation.U);
+		rb.rotate(Rotation.R);
+		rb.rotate(Rotation.D);
+		rb.rotate(Rotation.B);
+		rb.rotate(Rotation.F);
+		rb.rotate(Rotation.F);
+		rb.rotate(Rotation.L);
+		rb.rotate(Rotation.L);
+		
+		
+		
+		long startTime = System.nanoTime();
+		BFSSearcher b = new BFSSearcher(rb, rotation, test);
+		for( int x=0; x<=2; x++) {
 			for( int y=0; y<=2; y++) {
-				System.out.println("Pos " + x +";" + y);
-				System.out.println();
-				EdgePositionned v =  new EdgePositionned(Face.U, x,y);
-				test.add(v);
 				
-				BFSSearcher b = new BFSSearcher(rb, rotation, test);
+				if( x==1 && y==1)
+					continue;
+				System.out.println("Pos " + x +";" + y);
+			
+				EdgePositionned v =  new EdgePositionned(Face.U, x,y);
+				test.add(0,v);
+				b.v = test;
+				
 				b.getSolution();
+				rb.printFace(Face.U);
 			}
 		}
+		System.out.println( (System.nanoTime() - startTime)/1000/1000 );
 		
 		System.out.println("done.");
+		
+	
+		
+		
 				
 	}
 }

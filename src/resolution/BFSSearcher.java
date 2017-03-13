@@ -11,7 +11,7 @@ public class BFSSearcher {
 	private RubiksCube cube;
 	private ArrayList< Rotation > movements;
 	private Stack< Rotation > path;
-	private ArrayList<Validator> v;
+	public ArrayList<Validator> v;
 	
 	boolean goToDepth( int depth)
 	{
@@ -25,6 +25,9 @@ public class BFSSearcher {
 			return true;
 		} else {
 			for( Rotation r : movements ) {
+				
+				if( !path.empty() && Rotation.getOpposite(r) == path.peek())
+					continue;
 				
 				path.add(r);
 				cube.rotate(r);			
