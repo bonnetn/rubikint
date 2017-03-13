@@ -87,6 +87,17 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 		return _getColor(rubiksPermutations[face.ordinal() * 8 + posToID[x][y]]);
 	}
 	
+	public boolean isAtRightLocation( Face face, int x, int y ) throws IllegalArgumentException {
+		/*
+		 * return true if the facet is at its right location on the cube.
+		 */
+		if( x < 0 || x > 2 || y < 0 || y > 2)
+			throw new IllegalArgumentException();
+		int id = face.ordinal() * 8 + posToID[x][y];
+		
+		return rubiksPermutations[id] == id;
+	}
+	
 	/**
 	 * Affiche une face dans la console
 	 * @param face Face à afficher
