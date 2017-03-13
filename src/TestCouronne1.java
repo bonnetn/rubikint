@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import resolution.BFSSearcher;
 import resolution.Validator;
@@ -33,25 +35,19 @@ public class TestCouronne1 {
 		
 		ArrayList<Validator> test = new ArrayList<Validator>();
 		
-		rb.randomMelange();
-		rb.rotate(Rotation.U);
-		rb.rotate(Rotation.R);
-		rb.rotate(Rotation.B);
-		rb.rotate(Rotation.D);
-		rb.rotate(Rotation.U);
-		rb.rotate(Rotation.U);
-		rb.rotate(Rotation.R);
-		rb.rotate(Rotation.D);
-		rb.rotate(Rotation.B);
-		rb.rotate(Rotation.F);
-		rb.rotate(Rotation.F);
-		rb.rotate(Rotation.L);
-		rb.rotate(Rotation.L);
+		Random rand = new Random(42);
 		
+		for(int i=0;i<60;i++)
+		{
+			
+			int rot=rand.nextInt(11 + 1);
+			rb.rotate(Rotation.values()[rot]);
+		}
 		
 		
 		long startTime = System.nanoTime();
 		BFSSearcher b = new BFSSearcher(rb, rotation, test);
+
 		for( int x=0; x<=2; x++) {
 			for( int y=0; y<=2; y++) {
 				
@@ -63,11 +59,13 @@ public class TestCouronne1 {
 				test.add(0,v);
 				b.v = test;
 				
-				b.getSolution();
-				rb.printFace(Face.U);
+				System.out.println("nb coups:"+b.getSolution().size());
+				//rb.printFace(Face.U);
 			}
 		}
-		System.out.println( (System.nanoTime() - startTime)/1000/1000 );
+	
+		System.out.println("Time to solve: " +((System.nanoTime() - startTime)/1000/1000) +"ms");
+		
 		
 		System.out.println("done.");
 		

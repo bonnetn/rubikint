@@ -40,14 +40,15 @@ public class BFSSearcher {
 		}
 	}
 	
-	public boolean getSolution() {
-		for( int i=0; i<10; i++) {
+	public Stack<Rotation> getSolution() {
+		for( int i=0; i<100; i++) {
 			//System.out.println("depth " + i);
 			if(goToDepth(i))
-				return true;
+				return path;
 			
 		}
-		return false;
+		return new Stack<Rotation>();
+		
 	}
 	
 	public BFSSearcher( RubiksCube c, ArrayList< Rotation > r,ArrayList<Validator> val) {
