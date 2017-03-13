@@ -7,19 +7,50 @@ import rubikscube.RubiksCube;
 import rubikscube.enums.Face;
 import rubikscube.enums.Rotation;
 
+import javax.security.auth.login.Configuration;
+
 /**
  * Created by shininisan on 26/01/17.
  */
 public class Procedure {
     private ArrayList<Rotation> proc;
+    private  Rotation fallbackOption;
     private int priority; // On utilisera les procédures de plus haute priorité en premier
     private RubiksConfiguration config;
-    public Procedure(ArrayList<Rotation> rot,int priority,RubiksConfiguration config)
+    private RubiksConfiguration finalState;
+
+    public RubiksConfiguration getFinalState() {
+        return finalState;
+    }
+
+    public void setFinalState(RubiksConfiguration finalState) {
+        this.finalState = finalState;
+    }
+
+    public Procedure(ArrayList<Rotation> rot, int priority, RubiksConfiguration config, Rotation fallback,RubiksConfiguration finalState)
     {
         this.proc=rot;
         this.priority=priority;
         this.config=config;
+        this.fallbackOption=fallback;
+        this.finalState=finalState;
 
+    }
+    public Procedure(Procedure p)
+    {
+        this.proc=new ArrayList<Rotation>(p.getProc());
+        this.priority=this.getPriority();
+        this.config=new RubiksConfiguration(p.getConfig());
+        this.fallbackOption=p.getFallbackOption();
+        this.finalState=p.getFinalState();
+    }
+
+    public Rotation getFallbackOption() {
+        return fallbackOption;
+    }
+
+    public void setFallbackOption(Rotation fallbackOption) {
+        this.fallbackOption = fallbackOption;
     }
 
     /**
