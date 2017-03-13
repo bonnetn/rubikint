@@ -25,3 +25,13 @@ Ainsi nous avons U,D,L,R,F,B pour la rotation *antihoraire* des faces Up Down Le
 > Note: Dans le code on remplace le ' par un i pour inversed. Ainsi U' devient Ui
 
 
+###3/ Installation des bibliothèques
+
+Liste des bibliothèques à ajouter au projet pour le livrable 2 (13/03/2017) :
+    
+    gluegen-rt.jar 
+    jogl-all.jar 
+    gluegen-rt_native_OS.jar (à choisir selon son OS)
+    jogl-all_native_OS.jar (même chose ici)
+
+
