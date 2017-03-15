@@ -52,7 +52,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
     private int rotateX = -1;
     private int rotateY = -1;
     private int rotateZ = -1;
-    private float rotationSpeed = 3f;
+    private float rotationSpeed = 5f;
 
 
     private RubiksCube rubiksCube;
@@ -82,14 +82,13 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
     @Override
     public void display(GLAutoDrawable drawable) {
 
-        // faire une methode d'update des angles, on va appeler en boucle et faire des minis rotations de 5degre et cela va redessiner a chaque fois on aura alors une sensation d'animation de rotation.
         updateAngles();
         GL2 gl = drawable.getGL().getGL2();
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT); // clear du buffer pour eviter chevauchement des faces.
         gl.glLoadIdentity();
-        //glu.gluLookAt(4f, 5f, 12f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
+        glu.gluLookAt(4f, 5f, 12f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
 
-        gl.glTranslatef(0f,0f,-10f);
+        //gl.glTranslatef(0f,0f,-10f);
         gl.glRotatef(alphaX, 1f, 0f, 0f); // rotation matrice courante d'angle alphaX autour de axe X
         gl.glRotatef(alphaY, 0f, 1f, 0f);
 	    gl.glRotatef(alphaZ, 0f, 0f, 1f);
@@ -213,7 +212,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
 
                     gl.glRotatef(coloneAnglesX[x],1f,0f,0f);
                     gl.glRotatef(ligneAnglesY[y],0f,1f,0f);
-                    gl.glRotatef(profondeurAnglesZ[x],0f,0f,1f);
+                    gl.glRotatef(profondeurAnglesZ[z],0f,0f,1f);
 
                     Cube cubeToDraw = listeCube[x][y][z];
                     gl.glTranslatef((x-1f),(y-1f),(z-1f)); // va au centre du petit cube
@@ -291,7 +290,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
         //[1,1,0]
         listeCube[2][2][1] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,0,1),Color.BLACK,rCube.getFacetColor(Face.R,2,1),Color.BLACK,Color.BLACK,1,1,0);
         //[-1,1,1]
-        listeCube[0][2][2] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B, 2,2),rCube.getFacetColor(Face.L,2,2),Color.BLACK,rCube.getFacetColor(Face.U,0,2),Color.BLACK,-1,1,1);
+        listeCube[0][2][2] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B, 2,2),rCube.getFacetColor(Face.L,0,2),Color.BLACK,rCube.getFacetColor(Face.U,0,2),Color.BLACK,-1,1,1);
         //[0,1,1]
         listeCube[1][2][2] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,1,2),Color.BLACK,Color.BLACK,rCube.getFacetColor(Face.U,1,2),Color.BLACK,0,1,1);
         //[1,1,1]
@@ -312,7 +311,11 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
      */
     public void updateAngles() // va etre appele a chaque boucle de display et permet donc d'avoir les angles qui s'incrémente au fur et a mesure pour effectuer la rotation
     {
-        Direction direction = (rotationSpeed > 0) ? Direction.COUNTER_CLOCKWISE : Direction.CLOCKWISE;
+        Direction direction = (rotationSpeed > 0) ? Direction.CLOCKWISE : Direction.COUNTER_CLOCKWISE;
+        // Il est possible que le boolean clockwise ne soit pas coherent avec la rotation reele
+        // car la convention de rotation des mouvements d'un rubik'cube est fait de façon a ce que la face soit devant nous.
+        // Or les rotation dans OpenGL se font quelque soit la position de la face dont il est question, des inversions peuvent alors
+        // apparaitre.
 
         if (rotateX >=0)
         {
@@ -320,8 +323,11 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
             if (coloneAnglesX[rotateX] % 90f ==0)
             {
                 coloneAnglesX[rotateX] = 0;
-                if (rotateX ==0) rubiksCube.rotate(Rotation.Li);
-                if (rotateX ==2) rubiksCube.rotate(Rotation.R);
+                if (rotateX ==0 && direction == Direction.CLOCKWISE){ rubiksCube.rotate(Rotation.L);}
+                if (rotateX ==0 && direction == Direction.COUNTER_CLOCKWISE){rubiksCube.rotate(Rotation.Li);}
+                if (rotateX ==2 && direction == Direction.CLOCKWISE) {rubiksCube.rotate(Rotation.Ri);}
+                if (rotateX ==2 && direction == Direction.COUNTER_CLOCKWISE){ rubiksCube.rotate(Rotation.R);}
+
                 rotateX = -1;
 
             }
@@ -331,6 +337,10 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
             if (ligneAnglesY[rotateY] % 90f ==0)
             {
                 ligneAnglesY[rotateY] = 0;
+                if (rotateY == 0 && direction == Direction.CLOCKWISE) {rubiksCube.rotate(Rotation.F);}
+                if (rotateY == 0 && direction == Direction.COUNTER_CLOCKWISE) {rubiksCube.rotate(Rotation.Fi);}
+                if (rotateY == 2 && direction == Direction.CLOCKWISE) {rubiksCube.rotate(Rotation.Bi);}
+                if (rotateY == 2 && direction == Direction.COUNTER_CLOCKWISE) {rubiksCube.rotate(Rotation.B);}
                 rotateY = -1;
             }
         }else if (rotateZ >=0)
@@ -339,6 +349,10 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
             if (profondeurAnglesZ[rotateZ] % 90f ==0)
             {
                 profondeurAnglesZ[rotateZ] = 0;
+                if (rotateZ == 0 && direction == Direction.CLOCKWISE) rubiksCube.rotate(Rotation.D);
+                if (rotateZ == 0 && direction == Direction.COUNTER_CLOCKWISE) rubiksCube.rotate(Rotation.Di);
+                if (rotateZ == 2 && direction == Direction.CLOCKWISE) rubiksCube.rotate(Rotation.Ui);
+                if (rotateZ == 2 && direction == Direction.COUNTER_CLOCKWISE) rubiksCube.rotate(Rotation.Ui);
                 rotateZ = -1;
             }
         }
@@ -351,7 +365,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
             if (axis == Axis.X) rotateX = face;
             if (axis == Axis.Y) rotateY = face;
             if (axis == Axis.Z) rotateZ = face;
-            rotationSpeed = clock ? - Math.abs(rotationSpeed) : Math.abs(rotationSpeed); //permet de definir si la rotation est clockwise ou counter_clockwise
+            rotationSpeed = clock ?  Math.abs(rotationSpeed) : -Math.abs(rotationSpeed); //permet de definir si la rotation est clockwise ou counter_clockwise
         }
     }
 

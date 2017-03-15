@@ -96,10 +96,8 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 		for(int i=0; i<3; i++) {
 			String line = "|";
 			for(int j=0; j<3; j++) {
-				if(j==1 && i==1)
-					line += _getColor(face.ordinal()).name().charAt(0);
-				else
-					line += getFacetColor(face,j,2-i).name().charAt(0);
+
+				line += getFacetColor(face,j,2-i).name().charAt(0);
 					
 				if(j!=2)
 					line+=",";

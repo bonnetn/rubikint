@@ -19,7 +19,7 @@ import java.awt.event.KeyEvent;
  */
 public class Solver extends JLabel{
 
-    String[] testListMove = new String[4];
+    int[] testListMove = new int[6];
 
     JLabel afficheEtape;
     RubiksCube rubiksCube;
@@ -29,6 +29,7 @@ public class Solver extends JLabel{
     JButton next = new JButton("NEXT");
     int indice = 0;
     int max = testListMove.length;
+    boolean isclockwise;
 
 
     public Solver(){
@@ -56,21 +57,57 @@ public class Solver extends JLabel{
         retAccueil.setBounds(50,500,180,90);
 
 
-        afficheEtape = new JLabel(testListMove[indice]);
+        afficheEtape = new JLabel();
         afficheEtape.setFont(new Font("Tahoma", Font.BOLD,100));
         afficheEtape.setForeground(Color.RED);
         afficheEtape.setBounds(200,150,200,120);
 
         next.setBounds(50,300,190,100);
+              /*L(0), Li(1),
+                B(2), Bi(3),
+                R(4), Ri(5),
+                F(6), Fi(7),
+                U(8), Ui(9),
+                D(10), Di(11);*/
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                     indice++;
                     afficheEtape.setVisible(false);
-                    if (indice < max){
-                        afficheEtape=new JLabel(testListMove[indice]);
-                        renderer.rotate(0, Rotation.Axis.X,true);
+                    if (indice <= max){
+                        if(testListMove[indice-1]% 2 ==0) //si la rotation est clockwise
+                        {
+                            isclockwise = true;
+                            switch(testListMove[indice-1]){
+                                case 0:
+                                    afficheEtape = new JLabel("L");
+                                    renderer.rotate(0, Rotation.Axis.X,isclockwise);
+                                    break;
+                                case 2:
+                                    afficheEtape = new JLabel("B");
+                                    renderer.rotate(2,Rotation.Axis.Z,isclockwise);
+                                    break;
+                                case 4:
+                                    afficheEtape = new JLabel("R");
+                                    renderer.rotate(2, Rotation.Axis.X,isclockwise);
+                                    break;
+                                case 6:
+                                    afficheEtape = new JLabel("F");
+                                    renderer.rotate(0, Rotation.Axis.Z,isclockwise);
+                                    break;
+                                case 8:
+                                    afficheEtape = new JLabel("U");
+                                    renderer.rotate(2, Rotation.Axis.Y,isclockwise);
+                                    break;
+                                case 10:
+                                    afficheEtape = new JLabel("D");
+                                    renderer.rotate(0, Rotation.Axis.Y,isclockwise);
+                                    break;
+                            }
+                        }
+                       // afficheEtape=new JLabel("U");
+                      //  renderer.rotate(0, Rotation.Axis.X,true);
                     }else{
                         afficheEtape=new JLabel("GG");
                     }
@@ -84,7 +121,7 @@ public class Solver extends JLabel{
             }
         });
 
-        /* TO DO : Definir a partir d'une liste de rotation [U,L,R,...] L'axe et l'indice de face à tourner et clockwise ou counterclockwise */
+        /* TO DO : FAIRE UNE IHM SIMPLISTE POUR RETESTER TOUTE MES ROTATIONS PROBLEME AU NIVEAU DE AXE Z */
 
 
 
@@ -184,9 +221,12 @@ public class Solver extends JLabel{
     }
 
     public void setTestListMove(){
-        testListMove[0] = "U";
-        testListMove[1] = "L";
-        testListMove[2] = "B";
-        testListMove[3] = "R";
+        testListMove[0] = 0;
+        testListMove[1] = 2;
+        testListMove[2] = 4;
+        testListMove[3] = 6;
+        testListMove[4] = 8;
+        testListMove[5] = 10;
+
     }
 }

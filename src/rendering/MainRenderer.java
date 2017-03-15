@@ -13,10 +13,9 @@ import com.jogamp.opengl.util.FPSAnimator;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import rendering.OpenGLRenderer;
 import rubikscube.RubiksCube;
 import rubikscube.enums.Rotation.*;
-
-/*
 
 public class MainRenderer extends Frame{
 
@@ -74,10 +73,16 @@ public class MainRenderer extends Frame{
                     isLeftPressed = true;
                     break;
                 case KeyEvent.VK_Q: // tourne L
-                    renderer.rotate(0, Axis.X,true);
+                    renderer.rotate(0, Axis.Y,true);
                     break;
                 case KeyEvent.VK_A :
-                    renderer.rotate(2,Axis.X,true);
+                    renderer.rotate(2,Axis.Y,true); //toute une face tourne au lieu d'une seule couronne sur axe Z
+                    break;
+                case KeyEvent.VK_Z: // tourne L
+                    renderer.rotate(0, Axis.Z,true);
+                    break;
+                case KeyEvent.VK_S :
+                    renderer.rotate(2,Axis.Z,true); //toute une face tourne au lieu d'une seule couronne sur axe Z
                     break;
             }
             doThat();
@@ -114,7 +119,8 @@ public class MainRenderer extends Frame{
         add(canvas);
 
         animator  = new FPSAnimator(canvas, 60);
-/*        addWindowListener(new WindowAdapter() {
+
+        addWindowListener(new WindowAdapter() {
 
             @Override
             public void windowClosing(WindowEvent e) {
@@ -123,15 +129,14 @@ public class MainRenderer extends Frame{
                 System.exit(0);
             }
         });
-*/
-/*
+
         addKeyListener(new MyKeyListener(this, renderer));
         canvas.addKeyListener(new MyKeyListener(this, renderer));
 
+        setVisible(true);
         animator.start();
-        //setVisible(true);
     }
-/*
+
      public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -140,10 +145,7 @@ public class MainRenderer extends Frame{
             }
         });
     }
-*/
-/*
+
     public GLCanvas getCanvas() { return canvas;}
     public OpenGLRenderer getOpenGLRenderer() {return renderer;}
 }
-
-*/
