@@ -39,12 +39,23 @@ public class Procedure {
     public Procedure(Procedure p)
     {
         this.proc=new ArrayList<Rotation>(p.getProc());
-        this.priority=this.getPriority();
+        this.priority=p.getPriority();
         this.config=new RubiksConfiguration(p.getConfig());
         this.fallbackOption=p.getFallbackOption();
         this.finalState=p.getFinalState();
     }
+    public Procedure invertedRotation()
+    {
+        Procedure p=new Procedure(this);
+        for(int i=0;i<p.proc.size();i++)
+        {
 
+            int dif=(p.proc.get(i).getValue()%2)*2-1;
+            p.proc.set(i,Rotation.values()[p.proc.get(i).getValue()-dif]); // on ajoute 1 au pairs, on soustrait 1 aux impairs
+
+        }
+        return p;
+    }
     public Rotation getFallbackOption() {
         return fallbackOption;
     }
