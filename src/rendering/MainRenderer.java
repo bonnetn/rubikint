@@ -1,4 +1,4 @@
-//package rendering;
+//Lpackage rendering;
 
 /**
  * Created by florian on 17/02/17.
@@ -35,7 +35,6 @@ public class MainRenderer extends Frame{
         private boolean isDownPressed;
         private boolean isLeftPressed;
         private boolean isrightPressed;
-        private boolean isUPressed;
 
         private MyKeyListener(MainRenderer m, OpenGLRenderer r) {
             $this = m;
@@ -73,15 +72,21 @@ public class MainRenderer extends Frame{
                     isLeftPressed = true;
                     break;
                 case KeyEvent.VK_Q: // tourne L
-                    renderer.rotate(0, Axis.Y,true);
+                    renderer.rotate(2, Axis.X,true);
                     break;
                 case KeyEvent.VK_A :
-                    renderer.rotate(2,Axis.Y,true); //toute une face tourne au lieu d'une seule couronne sur axe Z
+                    renderer.rotate(0,Axis.X,true); //toute une face tourne au lieu d'une seule couronne sur axe Z
                     break;
                 case KeyEvent.VK_Z: // tourne L
-                    renderer.rotate(0, Axis.Z,true);
+                    renderer.rotate(0, Axis.Y,true);
                     break;
                 case KeyEvent.VK_S :
+                    renderer.rotate(2,Axis.Y,true); //toute une face tourne au lieu d'une seule couronne sur axe Z
+                    break;
+                case KeyEvent.VK_E :
+                    renderer.rotate(0,Axis.Z,true); //toute une face tourne au lieu d'une seule couronne sur axe Z
+                    break;
+                case KeyEvent.VK_D :
                     renderer.rotate(2,Axis.Z,true); //toute une face tourne au lieu d'une seule couronne sur axe Z
                     break;
             }

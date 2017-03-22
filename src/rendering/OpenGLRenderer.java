@@ -352,7 +352,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
                 if (rotateZ == 0 && direction == Direction.CLOCKWISE) rubiksCube.rotate(Rotation.D);
                 if (rotateZ == 0 && direction == Direction.COUNTER_CLOCKWISE) rubiksCube.rotate(Rotation.Di);
                 if (rotateZ == 2 && direction == Direction.CLOCKWISE) rubiksCube.rotate(Rotation.Ui);
-                if (rotateZ == 2 && direction == Direction.COUNTER_CLOCKWISE) rubiksCube.rotate(Rotation.Ui);
+                if (rotateZ == 2 && direction == Direction.COUNTER_CLOCKWISE) rubiksCube.rotate(Rotation.U);
                 rotateZ = -1;
             }
         }
