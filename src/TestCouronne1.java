@@ -5,6 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import resolution.BFSSearcher;
 import resolution.Validator;
 import resolution.validators.EdgePositionned;
+import resolution.validators.FirstCrownValidator;
 import rubikscube.RubiksCube;
 import rubikscube.enums.Face;
 import rubikscube.enums.Rotation;
@@ -43,27 +44,22 @@ public class TestCouronne1 {
 			int rot=rand.nextInt(11 + 1);
 			rb.rotate(Rotation.values()[rot]);
 		}
-		
+		rb.randomMelange();
 		
 		long startTime = System.nanoTime();
 		BFSSearcher b = new BFSSearcher(rb, rotation, test);
 
-		for( int x=0; x<=2; x++) {
-			for( int y=0; y<=2; y++) {
-				
-				if( x==1 && y==1)
-					continue;
-				System.out.println("Pos " + x +";" + y);
+		for( int i=1; i<=8; i++) {
 			
-				EdgePositionned v =  new EdgePositionned(Face.U, x,y);
-				test.add(0,v);
-				b.v = test;
-				
-				System.out.println("nb coups:"+b.getSolution().size());
-				//rb.printFace(Face.U);
-			}
+			Validator v = new FirstCrownValidator(i);
+			ArrayList<Validator> a = new ArrayList<Validator>();
+			a.add(v);
+			b.v = a;
+			System.out.println("Movment count: " + b.getSolution().size());
+			rb.printFace(Face.U);
+			
+			
 		}
-	
 		System.out.println("Time to solve: " +((System.nanoTime() - startTime)/1000/1000) +"ms");
 		
 		
