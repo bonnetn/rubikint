@@ -44,4 +44,12 @@ public enum Rotation {
 
 	public Axis getAxis(){return axis;}
 	public Direction getDirection(){return direction;}
+	
+	public static Rotation getOpposite( Rotation r ) {
+		if(r.getValue() % 2 == 0)
+			return Rotation.values()[r.getValue()+1];
+		else
+			return Rotation.values()[r.getValue()-1];
+		
+	}
 }
