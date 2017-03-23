@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import IHM.Fenetre;
 import rendering.Java3DRenderer;
 import resolution.*;
 import resolution.validators.EdgePositionned;
@@ -192,51 +191,20 @@ public class TestCouronne1 {
 		Procedure pcopain=new Procedure(copain,40,confcopain,Rotation.B,chaisejaune);
 		listeProcedure.add(pchaise);
 */
-		ProceduralSolution procsol=new ProceduralSolution(rb,10);
+		ProceduralSolver procsol=new ProceduralSolver(rb,10,listeProcedure);
 
 
-		Procedure procedurechoisie=procsol.selectProcedure(listeProcedure);
-
+		Procedure procedurechoisie=procsol.selectProcedure();
 		procsol.useProcedure(procedurechoisie.invertedRotation());
         System.out.println("U");
         rb.printFace(Face.U);
         System.out.println("F");
         rb.printFace(Face.F);
-        //System.out.println("D");
-        //rb.printFace(Face.D);
         System.out.println("L");
         rb.printFace(Face.L);
         System.out.println("B");
         rb.printFace(Face.B);
 
-		Procedure procedurechoisie2=procsol.selectProcedure(listeProcedure);
-		//procedurechoisie2.invertRotation();
-		procsol.useProcedure(procedurechoisie2);
-        System.out.println("U");
-        rb.printFace(Face.U);
-        System.out.println("F");
-        rb.printFace(Face.F);
-        //System.out.println("D");
-        //rb.printFace(Face.D);
-        System.out.println("L");
-        rb.printFace(Face.L);
-        System.out.println("B");
-        rb.printFace(Face.B);
-
-		Procedure procedurechoisie3=procsol.selectProcedure(listeProcedure);
-
-		procsol.useProcedure(procedurechoisie3);
-
-        System.out.println("U");
-        rb.printFace(Face.U);
-        System.out.println("F");
-        rb.printFace(Face.F);
-        //System.out.println("D");
-        //rb.printFace(Face.D);
-        System.out.println("L");
-        rb.printFace(Face.L);
-        System.out.println("B");
-        rb.printFace(Face.B);
 
 
 
