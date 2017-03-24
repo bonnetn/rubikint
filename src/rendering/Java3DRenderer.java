@@ -9,7 +9,7 @@ import rubikscube.enums.Face;
 import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 
 import javax.media.j3d.*;
-
+import javax.*;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Color3b;
 import javax.vecmath.Point3f;
