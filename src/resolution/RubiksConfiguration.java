@@ -10,7 +10,7 @@ import rubikscube.enums.Face;
  * Created by shininisan on 26/01/17.
  Cube dont seules quelques facettes sont précisées et décrivent un état du cube néceessaire pour lancer une procédure
  */
-public class RubiksConfiguration {
+public class RubiksConfiguration extends Validator{
     private ArrayList<FacetConfig> facetConfig;
     public RubiksConfiguration(ArrayList<FacetConfig> facetConfig)
     {
@@ -29,7 +29,7 @@ public class RubiksConfiguration {
         this.facetConfig = facetConfig;
     }
 
-    public boolean match(RubiksCube cube)
+    public boolean isValid(RubiksCube cube)
     {
         for (FacetConfig facette:this.facetConfig)
         {

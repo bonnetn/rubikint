@@ -1,13 +1,9 @@
 package resolution;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-import rubikscube.RubiksCube;
 import rubikscube.enums.Face;
 import rubikscube.enums.Rotation;
-
-import javax.security.auth.login.Configuration;
 
 /**
  * Created by shininisan on 26/01/17.
@@ -17,34 +13,45 @@ public class Procedure {
     private  Rotation fallbackOption;
     private int priority; // On utilisera les procédures de plus haute priorité en premier
     private RubiksConfiguration config;
-    private RubiksConfiguration finalState;
+    private Validator validator;
 
-    public RubiksConfiguration getFinalState() {
-        return finalState;
+    public Validator getValidator() {
+        return validator;
     }
 
-    public void setFinalState(RubiksConfiguration finalState) {
-        this.finalState = finalState;
+    public void setValidator(RubiksConfiguration validator) {
+        this.validator = validator;
     }
 
-    public Procedure(ArrayList<Rotation> rot, int priority, RubiksConfiguration config, Rotation fallback,RubiksConfiguration finalState)
+    public Procedure(ArrayList<Rotation> rot, int priority, RubiksConfiguration config, Rotation fallback,Validator finalState)
     {
         this.proc=rot;
         this.priority=priority;
         this.config=config;
         this.fallbackOption=fallback;
-        this.finalState=finalState;
+        this.validator =finalState;
 
     }
     public Procedure(Procedure p)
     {
         this.proc=new ArrayList<Rotation>(p.getProc());
-        this.priority=this.getPriority();
+        this.priority=p.getPriority();
         this.config=new RubiksConfiguration(p.getConfig());
         this.fallbackOption=p.getFallbackOption();
-        this.finalState=p.getFinalState();
+        this.validator =p.getValidator();
     }
+    public Procedure invertedRotation()
+    {
+        Procedure p=new Procedure(this);
+        for(int i=0;i<p.proc.size();i++)
+        {
 
+            int dif=(p.proc.get(i).getValue()%2)*2-1;
+            p.proc.set(i,Rotation.values()[p.proc.get(i).getValue()-dif]); // on ajoute 1 au pairs, on soustrait 1 aux impairs
+
+        }
+        return p;
+    }
     public Rotation getFallbackOption() {
         return fallbackOption;
     }
@@ -86,25 +93,25 @@ public class Procedure {
             if(this.proc.get(i)==Rotation.R)
             {
 
-                this.proc.set(i,Rotation.L);
+                this.proc.set(i,Rotation.Li);
 
             }
             else if(this.proc.get(i)==Rotation.Ri)
             {
 
-                this.proc.set(i,Rotation.Li);
+                this.proc.set(i,Rotation.L);
 
             }
             else if(this.proc.get(i)==Rotation.L)
             {
 
-                this.proc.set(i,Rotation.R);
+                this.proc.set(i,Rotation.Ri);
 
             }
             else if(this.proc.get(i)==Rotation.Li)
             {
 
-                this.proc.set(i,Rotation.Ri);
+                this.proc.set(i,Rotation.R);
 
             }
             else
