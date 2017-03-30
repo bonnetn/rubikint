@@ -2,7 +2,6 @@ package rubikscube;
 import java.util.concurrent.ThreadLocalRandom;
 
 
-import rendering.Cube;
 import rendering.Renderable;
 import rubikscube.enums.Color;
 import rubikscube.enums.Face;
@@ -62,7 +61,7 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 	 * @return Retourne la couleur associée à cet index
 	 * @throws IllegalArgumentException
 	 */
-	private Color _getColor(int value) throws IllegalArgumentException {
+	public Color getColorPermutation(int value) throws IllegalArgumentException {
 		int i = value/8;
 		
 		switch(i) {
@@ -83,9 +82,9 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 			throw new IllegalArgumentException();
 		
 		if( x==1 && y==1)
-			return _getColor(face.ordinal()*8);
+			return getColorPermutation(face.ordinal()*8);
 		
-		return _getColor(rubiksPermutations[face.ordinal() * 8 + posToID[x][y]]);
+		return getColorPermutation(rubiksPermutations[face.ordinal() * 8 + posToID[x][y]]);
 	}
 	
 	public boolean isAtRightLocation( Face face, int x, int y ) throws IllegalArgumentException {
@@ -116,6 +115,7 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 			line += "|";
 			System.out.println(line);
 		}
+		System.out.println("");
 	}
 
 	@Override
@@ -191,6 +191,10 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 			int rot=ThreadLocalRandom.current().nextInt(0, 11 + 1);
 			this.rotate(Rotation.values()[rot]);
 		}
+	}
+	
+	public int[] getPermutationTable() {
+		return rubiksPermutations.clone();
 	}
 	
 	/**

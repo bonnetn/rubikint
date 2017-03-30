@@ -21,6 +21,10 @@ abstract public class AbstractRubiksCube {
 	 */
 	abstract public Color getFacetColor( Face face, int x, int y) throws IllegalArgumentException;
 	
+	abstract public int[] getPermutationTable();
+	
+	abstract public Color getColorPermutation(int value) throws IllegalArgumentException;
+	
 	/**
 	 * Permet d'obtenir un tableau avec les couleurs de la face dans l'ordre croisssant
 	 * des x puis l'axe croissant des y

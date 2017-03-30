@@ -1,9 +1,9 @@
 package resolution;
 
-import rubikscube.RubiksCube;
+import rubikscube.AbstractRubiksCube;
 
 abstract public class Validator {
 
-	public abstract boolean isValid( RubiksCube cube ); 
+	public abstract boolean isValid( AbstractRubiksCube cube ); 
 	
 }

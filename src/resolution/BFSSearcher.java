@@ -1,61 +1,77 @@
 package resolution;
 
-import java.util.ArrayList;
-import java.util.Stack;
+import java.util.LinkedList;
 
-import rubikscube.RubiksCube;
-import rubikscube.enums.Face;
-import rubikscube.enums.Rotation;
+import rubikscube.AbstractRubiksCube;
 
 public class BFSSearcher {
-	private RubiksCube cube;
-	private ArrayList< Rotation > movements;
-	private Stack< Rotation > path;
-	public ArrayList<Validator> v;
 	
-	boolean goToDepth( int depth)
-	{
-		
-		if(depth == 0) {
-			for( Validator validator : v) {
-				if( ! validator.isValid(cube) ) {
-					return false;
+	private final static int MAX_DEPTH = 10;
+	
+	private AbstractRubiksCube _rubiks;
+	private Validator _validator;
+	private Maneuver[] _maneuvers;
+	private LinkedList<Maneuver> _currentSolution;
+	
+	private LinkedList<Maneuver> findSolution( int depth ) throws NoSolutionFound {
+		LinkedList<Maneuver> solution;
+		if( depth > 0 ) {
+			depth--;
+			for( Maneuver m : _maneuvers ) {
+
+				_currentSolution.addLast(m);
+				m.apply(_rubiks);
+				try {
+					return findSolution( depth );
+				}
+				catch(NoSolutionFound s) {
+					
+				}
+				finally {
+					m.getInverse().apply(_rubiks);
+					_currentSolution.pollLast();
 				}
 			}
-			return true;
+			throw new NoSolutionFound();
 		} else {
-			for( Rotation r : movements ) {
-				
-				if( !path.empty() && Rotation.getOpposite(r) == path.peek())
-					continue;
-				
-				path.add(r);
-				cube.rotate(r);			
-				if(goToDepth(depth-1))
-					return true;
-				cube.rotate(Rotation.getOpposite(r));
-				path.pop();
+			if(_validator.isValid(_rubiks)) {
+				return (LinkedList<Maneuver>) (_currentSolution.clone());
+			} else {
+				throw new NoSolutionFound();
 			}
-			return false;
+				
 		}
-	}
-	
-	public Stack<Rotation> getSolution() {
-		for( int i=0; i<100; i++) {
-			//System.out.println("depth " + i);
-			if(goToDepth(i))
-				return path;
-			
-		}
-		return new Stack<Rotation>();
 		
 	}
 	
-	public BFSSearcher( RubiksCube c, ArrayList< Rotation > r,ArrayList<Validator> val) {
-		cube = c;
-		movements = r;
-		path = new Stack<Rotation>();
-		v = val;
+	public Maneuver getSolution( AbstractRubiksCube rc, Validator v, Maneuver[] m )
+	throws NoSolutionFound
+	{
+	
+		_rubiks = rc;
+		_validator = v;
+		_maneuvers = m;
+		_currentSolution = new LinkedList<Maneuver>();
+		
+		for( int depth = 0; depth < MAX_DEPTH; depth++) {
+			try {
+				LinkedList<Maneuver> s = findSolution( depth );
+				ManeuverSet mSet = new ManeuverSet();
+				while(s.size() > 0 )
+					mSet.add(s.pollFirst());
+				return mSet;
+					
+			}  
+			catch(NoSolutionFound s) {
+				
+			}
+		}
+		
+		throw new NoSolutionFound();
+	}
+	
+	public BFSSearcher() {
+		
 	}
 	
 }
