@@ -1,4 +1,4 @@
-//Lpackage rendering;
+package rendering;
 
 /**
  * Created by florian on 17/02/17.
@@ -13,9 +13,8 @@ import com.jogamp.opengl.util.FPSAnimator;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import rendering.OpenGLRenderer;
+import rendering.enums.Axis;
 import rubikscube.RubiksCube;
-import rubikscube.enums.Rotation.*;
 
 public class MainRenderer extends Frame{
 

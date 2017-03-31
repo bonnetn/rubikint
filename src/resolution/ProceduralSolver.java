@@ -1,3 +1,4 @@
+/*
 package resolution;
 
 import rubikscube.RubiksCube;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
  * Created by shininisan on 26/01/17.
  * Implémente une résolution par utilisation de procédures.
  */
+/*
 public class ProceduralSolver {
     private RubiksCube cube;
     private int priority;//désigne l'étape à laquelle on est: On ne regardera pas les procédures de priorité plus faible
@@ -131,7 +133,7 @@ public class ProceduralSolver {
      *Effectue les rotations de la Procédure
      * @param proc
      */
-
+/*
     public void useProcedure(Procedure proc)
     {
         for(Rotation x:proc.getProc())
@@ -179,3 +181,4 @@ public class ProceduralSolver {
     }
 
 }
+*/

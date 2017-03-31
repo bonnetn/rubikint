@@ -6,6 +6,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import rendering.OpenGLRenderer;
+import resolution.Solver;
+import rubikscube.RubiksCube;
+
 /**
  * Created by florian on 02/03/17.
  */
@@ -43,6 +47,7 @@ public class Accueil extends JLabel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Bouton Random OK");
+
             }
         });
 

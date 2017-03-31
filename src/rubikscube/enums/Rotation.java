@@ -21,5 +21,5 @@ public enum Rotation {
 	R, Ri,
 	F, Fi,
 	U, Ui,
-	D, Di;
+	D, Di
 }

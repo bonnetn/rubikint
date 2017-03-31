@@ -4,10 +4,11 @@ package rendering;
  * Created by florian on 17/02/17.
  */
 
+import rendering.enums.Direction;
+import rendering.enums.Axis;
 import rubikscube.RubiksCube;
 import rubikscube.enums.Color;
 import rubikscube.enums.Face;
-import rubikscube.enums.Rotation.*;
 import rubikscube.enums.Rotation;
 
 import javax.media.opengl.GL2;
@@ -16,12 +17,6 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
 
 import java.awt.Frame;
-import javax.media.opengl.awt.GLCanvas;
-import com.jogamp.opengl.util.FPSAnimator;
-
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.lang.Object;
 
 // Attention, voire le probleme des fenetres qui ne se ferme pas
 
@@ -197,7 +192,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
     } //dessine un petit cube dont les couleurs sont donnée en argument.
 
 
-    private void drawRubiksCube(GL2 gl, RubiksCube rubiksCube) // dessine tous les petits cube a partir de la config de RubiksCube
+    public void drawRubiksCube(GL2 gl, RubiksCube rubiksCube) // dessine tous les petits cube a partir de la config de RubiksCube
     {
         setCube(rubiksCube); // cree les differents cubes en fonction de la config des facettes de rubikscube
         for (int x =0; x<3 ; x++)
@@ -358,7 +353,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
         }
     }
 
-    public void rotate(int face,Axis axis,boolean clock) // permet de faire une rotation et d'en définir le sens (horaire ou trigo)
+    public void rotate(int face, Axis axis, boolean clock) // permet de faire une rotation et d'en définir le sens (horaire ou trigo)
     {
         if (!isRotating())
         {
@@ -368,6 +363,11 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
             rotationSpeed = clock ?  Math.abs(rotationSpeed) : -Math.abs(rotationSpeed); //permet de definir si la rotation est clockwise ou counter_clockwise
         }
     }
+
+    public void setRubiksCube(RubiksCube cube){rubiksCube = cube;}
+
+    public void randomGLMelange(){rubiksCube.randomMelange();}
+    public RubiksCube getCube(){return rubiksCube;}
 
 
 

@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import ihm.frame.Accueil;
-import ihm.frame.Solver;
+import ihm.frame.SolverIhm;
 
 import javax.swing.*;
 
@@ -15,7 +15,7 @@ import javax.swing.*;
 
 public class Fenetre{
 
-    String[] listeScene = {"Accueil","Solver","Capture"};
+    String[] listeScene = {"Accueil","SolverIhm","Capture"};
 
     public Fenetre() { // constructeur pour etablir les settings de la fenetre
         CardLayout cl = new CardLayout();
@@ -28,7 +28,7 @@ public class Fenetre{
         frame.setResizable(false);
 
         Accueil accueil = new Accueil();
-        Solver solver = new Solver();
+        SolverIhm solver = new SolverIhm();
 
         JButton accSolver = accueil.getCapture();
         accSolver.addActionListener(new ActionListener() {

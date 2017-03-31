@@ -1,8 +1,12 @@
 package ihm.frame;
 
 import com.jogamp.opengl.util.FPSAnimator;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import rendering.OpenGLRenderer;
+import rendering.enums.Axis;
+import resolution.NoSolutionFound;
 import rubikscube.RubiksCube;
+import rubikscube.enums.Face;
 import rubikscube.enums.Rotation;
 
 import javax.media.opengl.awt.GLCanvas;
@@ -12,29 +16,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 
 /**
  * Created by florian on 05/03/17.
  */
-public class Solver extends JLabel{
+public class SolverIhm extends JLabel{
 
-    Rotation[] testListMove = new Rotation[12];
+    Rotation[] testListMove;
+    ArrayList<Rotation> solution;
 
     JLabel afficheEtape;
     RubiksCube rubiksCube;
     private GLCanvas canvas;
     OpenGLRenderer renderer;
     JButton retAccueil = new JButton();
-    JButton next = new JButton("NEXT");
+    Boolean isSolved = false;
+    JButton next = new JButton("GENERER");
     int indice = 0;
-    int max = testListMove.length;
+    int max;
     boolean isclockwise;
 
 
-    public Solver(){
-        setTestListMove();
-
+    public SolverIhm(){
         final ImageIcon background = new ImageIcon("solverRubikINT.png");
         setIcon(background);
         //setLayout(new GridBagLayout());
@@ -68,12 +73,37 @@ public class Solver extends JLabel{
             @Override
             public void actionPerformed(ActionEvent e) {
                     afficheEtape.setVisible(false);
-                    if (indice < max) {
+
+                    if (indice ==0 && isSolved == false){
+                        isSolved = true;
+                        resolution.Solver solver = new resolution.Solver();
+                        renderer.setVisible(false);
+                        renderer.randomGLMelange();
+                        renderer.setVisible(true);
+                        RubiksCube rubiksCube = renderer.getCube();
+                        System.out.println("Solving... please wait...");
+
+                        try{
+                            solution = solver.solve(rubiksCube);
+                            max = solution.size();
+                        }catch (NoSolutionFound ee){
+                            System.out.println("ERROR : No solution :(");
+                            return;
+                        }
+                        System.out.println("Solved in " + solution.size() + " moves!");
+
+
+                        //add(canvas);
+                        next.setText("NEXT");
+                    }else if (indice < max && isSolved == true ){
                         doNextRotation();
                         indice++;
                         setNextJLabel();
-                    }else if (indice >= max){
-                        afficheEtape=new JLabel("GG");
+                    }else if (indice >=max){
+                        indice =0;
+                        afficheEtape = new JLabel("GG");
+                        isSolved=false;
+                        next.setText("GENERER");
                     }
                     afficheEtape.setFont(new Font("Tahoma", Font.BOLD,100));
                     afficheEtape.setForeground(Color.RED);
@@ -93,9 +123,12 @@ public class Solver extends JLabel{
         renderer = new OpenGLRenderer();
         canvas = new GLCanvas();
         canvas.addGLEventListener(renderer);
-        FPSAnimator animator = new FPSAnimator(canvas, 60);
         addKeyListener(new MyKeyListener(renderer));
         canvas.addKeyListener(new MyKeyListener(renderer));
+        canvas = new GLCanvas();
+        canvas.addGLEventListener(renderer);
+        FPSAnimator animator = new FPSAnimator(canvas, 60);
+
         animator.start();
         //rendu3D.add(canvas);
         canvas.setBounds(600,50,600,600);
@@ -182,62 +215,46 @@ public class Solver extends JLabel{
         }
     }
 
-    public void setTestListMove(){
-        testListMove[0] = Rotation.L;
-        testListMove[1] = Rotation.Li;
-        testListMove[2] = Rotation.R;
-        testListMove[3] = Rotation.Ri;
-        testListMove[4] = Rotation.B;
-        testListMove[5] = Rotation.Bi;
-        testListMove[6] = Rotation.F;
-        testListMove[7] = Rotation.Fi;
-        testListMove[8] = Rotation.U;
-        testListMove[9] = Rotation.Ui;
-        testListMove[10] = Rotation.D;
-        testListMove[11] = Rotation.Di;
-
-    }
-
     public void setNextJLabel(){
         if (indice == max){
             afficheEtape = new JLabel("GG");
         }else{
 
-             switch(testListMove[indice].getValue()) {
-                case 0:
+             switch(solution.get(indice)) {
+                case L:
                 afficheEtape = new JLabel("L");
                 break;
-                case 2:
+                case B:
                 afficheEtape = new JLabel("B");
                 break;
-                case 4:
+                case R:
                 afficheEtape = new JLabel("R");
                 break;
-                case 6:
+                case F:
                 afficheEtape = new JLabel("F");
                 break;
-                case 8:
+                case U:
                 afficheEtape = new JLabel("U");
                 break;
-                case 10:
+                case D:
                 afficheEtape = new JLabel("D");
                 break;
-                case 1:
+                case Li:
                 afficheEtape = new JLabel("L'");
                 break;
-                case 3:
+                case Bi:
                 afficheEtape = new JLabel("B'");
                 break;
-                case 5:
+                case Ri:
                 afficheEtape = new JLabel("R'");
                 break;
-                case 7:
+                case Fi:
                 afficheEtape = new JLabel("F'");
                 break;
-                case 9:
+                case Ui:
                 afficheEtape = new JLabel("U'");
                 break;
-                case 11:
+                case Di:
                 afficheEtape = new JLabel("D'");
                 break;
              }
@@ -246,44 +263,47 @@ public class Solver extends JLabel{
 
     public void doNextRotation(){
 
-        switch(testListMove[indice].getValue()) {
-            case 0:
-                renderer.rotate(0, Rotation.Axis.X,true);
+        switch(solution.get(indice)) {
+            case L:
+                renderer.rotate(0, Axis.X,true);
                 break;
-            case 2:
-                renderer.rotate(2, Rotation.Axis.Y,false);
+            case B:
+                renderer.rotate(2, Axis.Y,false);
                 break;
-            case 4:
-                renderer.rotate(2, Rotation.Axis.X,false);
+            case R:
+                renderer.rotate(2, Axis.X,false);
                 break;
-            case 6:
-                renderer.rotate(0, Rotation.Axis.Y,true);
+            case F:
+                renderer.rotate(0, Axis.Y,true);
                 break;
-            case 8:
-                renderer.rotate(2, Rotation.Axis.Z,false);
+            case U:
+                renderer.rotate(2, Axis.Z,false);
                 break;
-            case 10:
-                renderer.rotate(0, Rotation.Axis.Z,true);
+            case D:
+                renderer.rotate(0, Axis.Z,true);
                 break;
-            case 1:
-                renderer.rotate(0, Rotation.Axis.X,false);
+            case Li:
+                renderer.rotate(0, Axis.X,false);
                 break;
-            case 3:
-                renderer.rotate(2, Rotation.Axis.Y,true);
+            case Bi:
+                renderer.rotate(2, Axis.Y,true);
                 break;
-            case 5:
-                renderer.rotate(2, Rotation.Axis.X,true);
+            case Ri:
+                renderer.rotate(2, Axis.X,true);
                 break;
-            case 7:
-                renderer.rotate(0, Rotation.Axis.Y,false);
+            case Fi:
+                renderer.rotate(0, Axis.Y,false);
                 break;
-            case 9:
-                renderer.rotate(2, Rotation.Axis.Z,true);
+            case Ui:
+                renderer.rotate(2, Axis.Z,true);
                 break;
-            case 11:
-                renderer.rotate(0, Rotation.Axis.Z,false);
+            case Di:
+                renderer.rotate(0, Axis.Z,false);
                 break;
         }
 
     }
+
+    public OpenGLRenderer getRenderer(){return renderer;}
 }
+
