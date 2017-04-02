@@ -6,6 +6,8 @@ package rendering;
 
 import rendering.enums.Direction;
 import rendering.enums.Axis;
+import resolution.NoSolutionFound;
+import resolution.Solver;
 import rubikscube.RubiksCube;
 import rubikscube.enums.Color;
 import rubikscube.enums.Face;
@@ -16,7 +18,9 @@ import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
 
+
 import java.awt.Frame;
+import java.util.ArrayList;
 
 // Attention, voire le probleme des fenetres qui ne se ferme pas
 
@@ -25,6 +29,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
 
     private GLU glu;
     public Cube[][][] listeCube = new Cube[3][3][3];
+    ArrayList<Rotation> solution;
 
 
     // angle gerant la rotation camera
@@ -51,6 +56,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
 
 
     private RubiksCube rubiksCube;
+    private RandomSolverThread animation;
 
 
 
@@ -367,9 +373,98 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
     public void setRubiksCube(RubiksCube cube){rubiksCube = cube;}
 
     public void randomGLMelange(){rubiksCube.randomMelange();}
+
     public RubiksCube getCube(){return rubiksCube;}
 
+    private abstract class RandomSolverThread extends Thread {
+        private boolean isTerminated = false;
+
+        public void terminate() { isTerminated = true; }
 
 
+        protected abstract boolean isComplete(int i);
 
+        @Override
+        public void run() {
+            int i = 0;
+            while (!isTerminated && !isComplete(i)) {
+                while (isRotating()) {
+                    try { Thread.sleep(10); }
+                    catch (InterruptedException e) { }
+                }
+                doNextRotation(i);
+                i++;
+            }
+        }
+    }
+
+    public void ScrambleAndSolve(){
+        Solver solver = new Solver();
+        setVisible(false);
+        randomGLMelange();
+        setVisible(true);
+
+        if (animation == null || !animation.isAlive()){
+            try {
+                solution = solver.solve(rubiksCube);
+                System.out.println("Solved in " + solution.size() + "moves");
+                System.out.println(solution);
+            }catch(NoSolutionFound e){
+                System.out.println("ERROR : No solution !");
+                return;
+            }
+            animation = new RandomSolverThread() {
+                @Override
+                protected boolean isComplete(int i) {return (i == solution.size());}
+
+            };
+            animation.start();
+        }else{
+            animation.terminate();
+        }
+
+    }
+
+    public void doNextRotation(int indice){
+
+        switch(solution.get(indice)) {
+            case L:
+                rotate(0, Axis.X,true);
+                break;
+            case B:
+                rotate(2, Axis.Y,false);
+                break;
+            case R:
+                rotate(2, Axis.X,false);
+                break;
+            case F:
+                rotate(0, Axis.Y,true);
+                break;
+            case U:
+                rotate(2, Axis.Z,false);
+                break;
+            case D:
+                rotate(0, Axis.Z,true);
+                break;
+            case Li:
+                rotate(0, Axis.X,false);
+                break;
+            case Bi:
+                rotate(2, Axis.Y,true);
+                break;
+            case Ri:
+                rotate(2, Axis.X,true);
+                break;
+            case Fi:
+                rotate(0, Axis.Y,false);
+                break;
+            case Ui:
+                rotate(2, Axis.Z,true);
+                break;
+            case Di:
+                rotate(0, Axis.Z,false);
+                break;
+        }
+
+    }
 }

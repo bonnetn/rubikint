@@ -16,7 +16,7 @@ import rubikscube.RubiksCube;
 public class Accueil extends JLabel{
 
     JButton accCapture = new JButton();
-    JButton accRandom;
+    JButton accRandom = new JButton();
     JButton accQuit;
 
 
@@ -38,7 +38,6 @@ public class Accueil extends JLabel{
             }
         });
 
-        JButton accRandom = new JButton();
         Icon i2 = new ImageIcon("AccueilSolveRandom.png");
         accRandom.setIcon(i2);
         //setOpaque(false);

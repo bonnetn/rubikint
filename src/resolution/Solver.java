@@ -192,7 +192,7 @@ public class Solver {
 			solution.add(localSolution);
 			
 			int size = stepsManeuvers.size();
-			/*
+
 			if(size>=12)
 				System.out.println("1ere couronne: croix (" + size + ")");
 			else if(size >=12-4)
@@ -207,7 +207,7 @@ public class Solver {
 				System.out.println("3eme couronne: placer coins (" + size + ")");
 			else if(size >= 12-4-4-1-1-1)
 				System.out.println("3eme couronne: tourner coins (" + size + ")");
-			*/
+
 		}
 		
 		solution.getInverse().apply(rb);

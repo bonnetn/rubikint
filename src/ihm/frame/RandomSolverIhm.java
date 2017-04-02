@@ -22,7 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by florian on 05/03/17.
  */
-public class SolverIhm extends JLabel{
+public class RandomSolverIhm extends JLabel{
 
     Rotation[] testListMove;
     ArrayList<Rotation> solution;
@@ -39,7 +39,7 @@ public class SolverIhm extends JLabel{
     boolean isclockwise;
 
 
-    public SolverIhm(){
+    public RandomSolverIhm(){
         final ImageIcon background = new ImageIcon("solverRubikINT.png");
         setIcon(background);
         //setLayout(new GridBagLayout());
@@ -73,7 +73,7 @@ public class SolverIhm extends JLabel{
             @Override
             public void actionPerformed(ActionEvent e) {
                     afficheEtape.setVisible(false);
-
+/*
                     if (indice ==0 && isSolved == false){
                         isSolved = true;
                         resolution.Solver solver = new resolution.Solver();
@@ -94,17 +94,21 @@ public class SolverIhm extends JLabel{
 
 
                         //add(canvas);
-                        next.setText("NEXT");
+                        next.setText("SOLVE");
                     }else if (indice < max && isSolved == true ){
-                        doNextRotation();
-                        indice++;
-                        setNextJLabel();
+                        for(int i=0;i<max;i++){
+                            doNextRotation();
+                            indice++;
+                            setNextJLabel();
+                            //while(renderer.isRotating()){}
+                        }
                     }else if (indice >=max){
                         indice =0;
                         afficheEtape = new JLabel("GG");
                         isSolved=false;
                         next.setText("GENERER");
-                    }
+                    }*/
+                    renderer.ScrambleAndSolve();
                     afficheEtape.setFont(new Font("Tahoma", Font.BOLD,100));
                     afficheEtape.setForeground(Color.RED);
                     afficheEtape.setBounds(200, 150, 200,120);

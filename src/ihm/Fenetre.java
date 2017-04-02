@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import ihm.frame.Accueil;
-import ihm.frame.SolverIhm;
+import ihm.frame.RandomSolverIhm;
 
 import javax.swing.*;
 
@@ -15,7 +15,7 @@ import javax.swing.*;
 
 public class Fenetre{
 
-    String[] listeScene = {"Accueil","SolverIhm","Capture"};
+    String[] listeScene = {"Accueil","RandomSolverIhm","Capture"};
 
     public Fenetre() { // constructeur pour etablir les settings de la fenetre
         CardLayout cl = new CardLayout();
@@ -28,22 +28,22 @@ public class Fenetre{
         frame.setResizable(false);
 
         Accueil accueil = new Accueil();
-        SolverIhm solver = new SolverIhm();
+        RandomSolverIhm randomSolverIhm = new RandomSolverIhm();
 
-        JButton accSolver = accueil.getCapture();
+        JButton accSolver = accueil.getRandom();
         accSolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 accueil.setVisible(false);
-                solver.setVisible(true);
+                randomSolverIhm.setVisible(true);
             }
         });
 
-        JButton retAccueil = solver.getacc();
+        JButton retAccueil = randomSolverIhm.getacc();
         retAccueil.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                solver.setVisible(false);
+                randomSolverIhm.setVisible(false);
                 accueil.setVisible(true);
             }
         });
@@ -51,8 +51,8 @@ public class Fenetre{
 
         frame.setLayout(cl); //utiliser ici un CardLayout
         frame.add(accueil,listeScene[0]);
-        solver.setVisible(true);
-        frame.add(solver,listeScene[1]);
+        randomSolverIhm.setVisible(true);
+        frame.add(randomSolverIhm,listeScene[1]);
         frame.setVisible(true);
     }
 
