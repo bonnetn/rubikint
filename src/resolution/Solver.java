@@ -192,7 +192,7 @@ public class Solver {
 			solution.add(localSolution);
 			
 			int size = stepsManeuvers.size();
-			/*
+			
 			if(size>=12)
 				System.out.println("1ere couronne: croix (" + size + ")");
 			else if(size >=12-4)
@@ -207,13 +207,48 @@ public class Solver {
 				System.out.println("3eme couronne: placer coins (" + size + ")");
 			else if(size >= 12-4-4-1-1-1)
 				System.out.println("3eme couronne: tourner coins (" + size + ")");
-			*/
+			
 		}
 		
 		solution.getInverse().apply(rb);
 		
-		return solution.getRotationList();
+		ArrayList<Rotation> solutionNow  = solution.getRotationList();
+		ArrayList<Rotation> solutionNext = (ArrayList<Rotation>) (solutionNow.clone());
+		
+		int solCount = solutionNow.size();
+		
+		boolean skipNext = false;
+		boolean first = true;
+		while(solutionNow.size() != solutionNext.size() || first) {
 
+			solutionNow.clear();
+			solutionNow.addAll(solutionNext);
+			solutionNext.clear();
+			first =false;
+			
+			for( int i=0; i<solutionNow.size(); i++ ) {
+				
+				if(!skipNext) {
+					Rotation rot = solutionNow.get(i);
+					if( i != solutionNow.size() - 1) {
+						Rotation rotNext = solutionNow.get(i+1);
+						Move m1 = new Move(rot);
+						Move m2 = new Move(rotNext);
+						if( m1.equals(m2.getInverse()) ) {
+							skipNext = true;
+						} else {
+							solutionNext.add(rot);
+						}
+					} else {
+						solutionNext.add(rot);
+					}
+				} else {
+					skipNext = false;
+				}
+			}
+
+		}
+		return solutionNow;
 		
 		
 		
