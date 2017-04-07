@@ -425,6 +425,30 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
 
     }
 
+    public void Scramble(){
+        setVisible(false);
+        randomGLMelange();
+        setVisible(true);
+    }
+
+    public void Solve(){
+        Solver solver = new Solver();
+        if (animation == null || !animation.isAlive()){
+            try{
+                solution = solver.solve(rubiksCube);
+            }catch(NoSolutionFound e){
+                return;
+            }
+            animation = new RandomSolverThread() {
+                @Override
+                protected boolean isComplete(int i) {return (i== solution.size());}
+            };
+            animation.start();
+        }else{
+            animation.terminate();
+        }
+    }
+
     public void doNextRotation(int indice){
 
         switch(solution.get(indice)) {
@@ -467,4 +491,6 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
         }
 
     }
+
+    public int getSizeSolution(){return solution.size();}
 }

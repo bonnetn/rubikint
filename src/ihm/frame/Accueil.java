@@ -17,19 +17,23 @@ public class Accueil extends JLabel{
 
     JButton accCapture = new JButton();
     JButton accRandom = new JButton();
-    JButton accQuit;
+    JButton accQuit = new JButton();
 
 
     public Accueil() {
 
-        final ImageIcon background = new ImageIcon("AccueilBackground.png");
+        final ImageIcon background = new ImageIcon("Accueil.png");
         setIcon(background);
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
        // JButton accCapture = new JButton();
-        Icon i = new ImageIcon("AccueilCaptureCube.png");
+        Icon i = new ImageIcon("SolveYourCube.png");
+        Icon i_hover = new ImageIcon("SolveYourCube2.png");
+        Icon i_click = new ImageIcon("SolveYourCube3.png");
         accCapture.setIcon(i);
+        accCapture.setRolloverIcon(i_hover);
+        accCapture.setPressedIcon(i_click);
         accCapture.setBorder(null);
         accCapture.addActionListener(new ActionListener() {
             @Override
@@ -38,9 +42,12 @@ public class Accueil extends JLabel{
             }
         });
 
-        Icon i2 = new ImageIcon("AccueilSolveRandom.png");
+        Icon i2 = new ImageIcon("SolveRandomCube.png");
+        Icon i2_hover = new ImageIcon("SolveRandomCube2.png");
+        Icon i2_click = new ImageIcon("SolveRandomCube3.png");
+        accRandom.setRolloverIcon(i2_hover);
+        accRandom.setPressedIcon(i2_click);
         accRandom.setIcon(i2);
-        //setOpaque(false);
         accRandom.setBorder(null);
         accRandom.addActionListener(new ActionListener() {
             @Override
@@ -50,8 +57,11 @@ public class Accueil extends JLabel{
             }
         });
 
-        JButton accQuit = new JButton();
-        Icon i3 = new ImageIcon("AccueilQuit.png");
+        Icon i3 = new ImageIcon("Quit.png");
+        Icon i3_hover = new ImageIcon("Quit2.png");
+        Icon i3_click = new ImageIcon("Quit3.png");
+        accQuit.setRolloverIcon(i3_hover);
+        accQuit.setPressedIcon(i3_click);
         accQuit.setIcon(i3);
         //setOpaque(false);
         accQuit.setBorder(null);
@@ -65,13 +75,13 @@ public class Accueil extends JLabel{
 
         gbc.insets = new Insets(100,0,0,0);
         gbc.gridx=0;
-        gbc.gridy=0;
+        gbc.gridy=2;
         gbc.gridwidth=2;
         gbc.gridheight=2;
         add(accCapture,gbc);
        // gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.insets = new Insets(120,0,50,0);
-        gbc.gridy=3;
+        gbc.gridy=4;
         add(accRandom,gbc);
         gbc.insets = new Insets(75,0,0,0);
         gbc.gridy=6;

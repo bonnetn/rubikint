@@ -24,7 +24,6 @@ import java.util.ArrayList;
  */
 public class RandomSolverIhm extends JLabel{
 
-    Rotation[] testListMove;
     ArrayList<Rotation> solution;
 
     JLabel afficheEtape;
@@ -33,14 +32,15 @@ public class RandomSolverIhm extends JLabel{
     OpenGLRenderer renderer;
     JButton retAccueil = new JButton();
     Boolean isSolved = false;
-    JButton next = new JButton("GENERER");
+    JButton generate = new JButton();
+    JButton solve = new JButton();
     int indice = 0;
     int max;
     boolean isclockwise;
 
 
     public RandomSolverIhm(){
-        final ImageIcon background = new ImageIcon("solverRubikINT.png");
+        final ImageIcon background = new ImageIcon("randomSolver.png");
         setIcon(background);
         //setLayout(new GridBagLayout());
         //GridBagConstraints gbc = new GridBagConstraints();
@@ -50,8 +50,12 @@ public class RandomSolverIhm extends JLabel{
 
 
         //JButton retAccueil = new JButton();
-        Icon i = new ImageIcon("solverAcc.png");
+        Icon i = new ImageIcon("randomSolver_accueil.png");
+        Icon i_2 = new ImageIcon("randomSolver_accueil2.png");
+        Icon i_3 = new ImageIcon("randomSolver_accueil3.png");
         retAccueil.setIcon(i);
+        retAccueil.setRolloverIcon(i_2);
+        retAccueil.setPressedIcon(i_3);
         retAccueil.setBorder(null);
         retAccueil.addActionListener(new ActionListener() {
             @Override
@@ -59,64 +63,44 @@ public class RandomSolverIhm extends JLabel{
                 System.out.println("Bouton retour accueil OK");
             }
         });
-        retAccueil.setBounds(50,500,180,90);
+        retAccueil.setBounds(100,500,241,55);
 
-
-        setNextJLabel();
-        afficheEtape.setFont(new Font("Tahoma", Font.BOLD,100));
-        afficheEtape.setForeground(Color.RED);
-        afficheEtape.setBounds(200,150,200,120);
-        afficheEtape.setVisible(true);
-
-        next.setBounds(50,300,190,100);
-        next.addActionListener(new ActionListener() {
+        Icon i3 = new ImageIcon("randomSolver_solve.png");
+        Icon i3_2 = new ImageIcon("randomSolver_solve2.png");
+        Icon i3_3 = new ImageIcon("randomSolver_solve3.png");
+        solve.setIcon(i3);
+        solve.setRolloverIcon(i3_2);
+        solve.setPressedIcon(i3_3);
+        solve.setBorder(null);
+        solve.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    afficheEtape.setVisible(false);
-/*
-                    if (indice ==0 && isSolved == false){
-                        isSolved = true;
-                        resolution.Solver solver = new resolution.Solver();
-                        renderer.setVisible(false);
-                        renderer.randomGLMelange();
-                        renderer.setVisible(true);
-                        RubiksCube rubiksCube = renderer.getCube();
-                        System.out.println("Solving... please wait...");
-
-                        try{
-                            solution = solver.solve(rubiksCube);
-                            max = solution.size();
-                        }catch (NoSolutionFound ee){
-                            System.out.println("ERROR : No solution :(");
-                            return;
-                        }
-                        System.out.println("Solved in " + solution.size() + " moves!");
-
-
-                        //add(canvas);
-                        next.setText("SOLVE");
-                    }else if (indice < max && isSolved == true ){
-                        for(int i=0;i<max;i++){
-                            doNextRotation();
-                            indice++;
-                            setNextJLabel();
-                            //while(renderer.isRotating()){}
-                        }
-                    }else if (indice >=max){
-                        indice =0;
-                        afficheEtape = new JLabel("GG");
-                        isSolved=false;
-                        next.setText("GENERER");
-                    }*/
-                    renderer.ScrambleAndSolve();
-                    afficheEtape.setFont(new Font("Tahoma", Font.BOLD,100));
-                    afficheEtape.setForeground(Color.RED);
-                    afficheEtape.setBounds(200, 150, 200,120);
-                    afficheEtape.setVisible(true);
-                    add(afficheEtape);
-
-
+                renderer.Solve();
+                afficheEtape.setText("Found solution in "+renderer.getSizeSolution()+" moves");
+                afficheEtape.setFont(new Font("Tahoma", Font.BOLD,25));
+                afficheEtape.setForeground(Color.RED);
+                afficheEtape.setBounds(50, 100, 450,200);
+                afficheEtape.setVisible(true);
+                add(afficheEtape);
             }
+        });
+        solve.setBounds(100,400,210,58);
+
+
+        //setNextJLabel();
+        afficheEtape = new JLabel();
+
+        Icon i2 = new ImageIcon("randomSolver_generate.png");
+        Icon i2_2 = new ImageIcon("randomSolver_generate2.png");
+        Icon i2_3 = new ImageIcon("randomSolver_generate3.png");
+        generate.setIcon(i2);
+        generate.setRolloverIcon(i2_2);
+        generate.setPressedIcon(i2_3);
+        generate.setBorder(null);
+        generate.setBounds(50,300,322,59);
+        generate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {renderer.Scramble();}
         });
 
 
@@ -129,8 +113,6 @@ public class RandomSolverIhm extends JLabel{
         canvas.addGLEventListener(renderer);
         addKeyListener(new MyKeyListener(renderer));
         canvas.addKeyListener(new MyKeyListener(renderer));
-        canvas = new GLCanvas();
-        canvas.addGLEventListener(renderer);
         FPSAnimator animator = new FPSAnimator(canvas, 60);
 
         animator.start();
@@ -139,35 +121,19 @@ public class RandomSolverIhm extends JLabel{
 
         add(retAccueil);
         add(canvas);
-        add(next);
+        add(generate);
         add(afficheEtape);
-
-
-
-
-        /*
-        //gbc.insets = new Insets(500,0,0,0);
-        gbc.gridx=0;
-        gbc.gridy=0;
-        add(retAccueil);
-
-        gbc.gridx=1;
-        //gbc.insets=new Insets(0,500,0,0);
-        add(rendu3D);
-
-        //setVisible(true);
-        */
-
+        add(solve);
 
     }
 
     public JButton getacc(){ return retAccueil;}
-    public JButton getNext(){return next;}
+    public JButton getNext(){return generate;}
 
 
     final class MyKeyListener extends KeyAdapter
     {
-        OpenGLRenderer renderer = new OpenGLRenderer();
+        //OpenGLRenderer renderer = new OpenGLRenderer();
         boolean isUpPressed;
         boolean isDownPressed;
         boolean isLeftPressed;
