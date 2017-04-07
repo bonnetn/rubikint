@@ -32,14 +32,14 @@ public class InteractivSolverIhm_acc extends JLabel {
     int max;
 
     public InteractivSolverIhm_acc(){
-        final ImageIcon background = new ImageIcon("interactiv_solver.png");
+        final ImageIcon background = new ImageIcon("img/interactiv_solver.png");
         setIcon(background);
         setLayout(null);
 
 
-        Icon i = new ImageIcon("randomSolver_accueil.png");
-        Icon i_2 = new ImageIcon("randomSolver_accueil2.png");
-        Icon i_3 = new ImageIcon("randomSolver_accueil3.png");
+        Icon i = new ImageIcon("img/randomSolver_accueil.png");
+        Icon i_2 = new ImageIcon("img/randomSolver_accueil2.png");
+        Icon i_3 = new ImageIcon("img/randomSolver_accueil3.png");
         retAccueil.setIcon(i);
         retAccueil.setRolloverIcon(i_2);
         retAccueil.setPressedIcon(i_3);
@@ -54,9 +54,9 @@ public class InteractivSolverIhm_acc extends JLabel {
 
 
 
-        Icon i2 = new ImageIcon("capture.png");
-        Icon i2_2 = new ImageIcon("capture2.png");
-        Icon i2_3 = new ImageIcon("capture3.png");
+        Icon i2 = new ImageIcon("img/capture.png");
+        Icon i2_2 = new ImageIcon("img/capture2.png");
+        Icon i2_3 = new ImageIcon("img/capture3.png");
         capture.setIcon(i2);
         capture.setRolloverIcon(i2_2);
         capture.setPressedIcon(i2_3);
@@ -67,9 +67,9 @@ public class InteractivSolverIhm_acc extends JLabel {
             public void actionPerformed(ActionEvent e) {System.out.println("Bouton Capture OK");}
         });
 
-        Icon i3 = new ImageIcon("randomSolver_solve.png");
-        Icon i3_2 = new ImageIcon("randomSolver_solve2.png");
-        Icon i3_3 = new ImageIcon("randomSolver_solve3.png");
+        Icon i3 = new ImageIcon("img/randomSolver_solve.png");
+        Icon i3_2 = new ImageIcon("img/randomSolver_solve2.png");
+        Icon i3_3 = new ImageIcon("img/randomSolver_solve3.png");
         solve.setIcon(i3);
         solve.setRolloverIcon(i3_2);
         solve.setPressedIcon(i3_3);

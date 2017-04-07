@@ -22,15 +22,15 @@ public class Accueil extends JLabel{
 
     public Accueil() {
 
-        final ImageIcon background = new ImageIcon("Accueil.png");
+        final ImageIcon background = new ImageIcon("img/Accueil.png");
         setIcon(background);
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
        // JButton accCapture = new JButton();
-        Icon i = new ImageIcon("SolveYourCube.png");
-        Icon i_hover = new ImageIcon("SolveYourCube2.png");
-        Icon i_click = new ImageIcon("SolveYourCube3.png");
+        Icon i = new ImageIcon("img/SolveYourCube.png");
+        Icon i_hover = new ImageIcon("img/SolveYourCube2.png");
+        Icon i_click = new ImageIcon("img/SolveYourCube3.png");
         accCapture.setIcon(i);
         accCapture.setRolloverIcon(i_hover);
         accCapture.setPressedIcon(i_click);
@@ -42,9 +42,9 @@ public class Accueil extends JLabel{
             }
         });
 
-        Icon i2 = new ImageIcon("SolveRandomCube.png");
-        Icon i2_hover = new ImageIcon("SolveRandomCube2.png");
-        Icon i2_click = new ImageIcon("SolveRandomCube3.png");
+        Icon i2 = new ImageIcon("img/SolveRandomCube.png");
+        Icon i2_hover = new ImageIcon("img/SolveRandomCube2.png");
+        Icon i2_click = new ImageIcon("img/SolveRandomCube3.png");
         accRandom.setRolloverIcon(i2_hover);
         accRandom.setPressedIcon(i2_click);
         accRandom.setIcon(i2);
@@ -57,9 +57,9 @@ public class Accueil extends JLabel{
             }
         });
 
-        Icon i3 = new ImageIcon("Quit.png");
-        Icon i3_hover = new ImageIcon("Quit2.png");
-        Icon i3_click = new ImageIcon("Quit3.png");
+        Icon i3 = new ImageIcon("img/Quit.png");
+        Icon i3_hover = new ImageIcon("img/Quit2.png");
+        Icon i3_click = new ImageIcon("img/Quit3.png");
         accQuit.setRolloverIcon(i3_hover);
         accQuit.setPressedIcon(i3_click);
         accQuit.setIcon(i3);
