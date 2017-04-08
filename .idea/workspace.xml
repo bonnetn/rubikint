@@ -2,8 +2,47 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d06d3930-0f0e-46de-8e87-b3090eaf7453" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ihm/Main.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/Accueil.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/Quit.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/Quit2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/Quit3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/SolveRandomCube.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/SolveRandomCube2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/SolveRandomCube3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/SolveYourCube.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/SolveYourCube2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/SolveYourCube3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/capture.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/capture2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/capture3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/interacitiv_solver.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/randomSolver.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/randomSolver_accueil.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/randomSolver_accueil2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/randomSolver_accueil3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/randomSolver_generate.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/randomSolver_generate2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/randomSolver_generate3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/randomSolver_solve.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/randomSolver_solve2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/img/randomSolver_solve3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolverIhm_acc$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolverIhm_acc$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolverIhm_acc$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolverIhm_acc.class" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolverIhm_acc.java" afterPath="$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_acc.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/Fenetre$1.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/Fenetre$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/Fenetre$2.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/Fenetre$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/Fenetre.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/Fenetre.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/Accueil.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/Accueil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/InteractivSolver.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/InteractivSolver.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ihm/Fenetre.java" afterPath="$PROJECT_DIR$/src/ihm/Fenetre.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ihm/frame/Accueil.java" afterPath="$PROJECT_DIR$/src/ihm/frame/Accueil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ihm/frame/InteractivSolver.java" afterPath="$PROJECT_DIR$/src/ihm/frame/InteractivSolver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ihm/frame/RandomSolverIhm.java" afterPath="$PROJECT_DIR$/src/ihm/frame/RandomSolverIhm.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,12 +61,60 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Fenetre.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Fenetre.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ihm/Fenetre.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="59" column="76" lean-forward="false" selection-start-line="59" selection-start-column="76" selection-end-line="59" selection-end-column="76" />
+            <state relative-caret-position="1296">
+              <caret line="80" column="41" lean-forward="true" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InteractivSolver_Solver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_Solver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="412">
+              <caret line="36" column="87" lean-forward="false" selection-start-line="36" selection-start-column="87" selection-end-line="36" selection-end-column="87" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InteractivSolver_acc.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_acc.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="62" column="39" lean-forward="false" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InteractivSolver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ihm/frame/InteractivSolver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="392">
+              <caret line="125" column="19" lean-forward="false" selection-start-line="125" selection-start-column="19" selection-end-line="125" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InteractivSolver_capture.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_capture.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1126">
+              <caret line="92" column="42" lean-forward="false" selection-start-line="92" selection-start-column="42" selection-end-line="92" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -81,11 +168,14 @@
         <option value="$PROJECT_DIR$/src/rendering/OpenGLRenderer.java" />
         <option value="$PROJECT_DIR$/src/ihm/frame/InteractivSolverIhm.java" />
         <option value="$PROJECT_DIR$/src/ihm/frame/InteractivSolverIhm_acc.java" />
-        <option value="$PROJECT_DIR$/src/ihm/frame/InteractivSolver.java" />
         <option value="$PROJECT_DIR$/src/ihm/frame/Accueil.java" />
-        <option value="$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolverIhm_acc.java" />
         <option value="$PROJECT_DIR$/src/ihm/frame/RandomSolverIhm.java" />
+        <option value="$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolverIhm_acc.java" />
+        <option value="$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_capture.java" />
         <option value="$PROJECT_DIR$/src/ihm/Fenetre.java" />
+        <option value="$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_Solver.java" />
+        <option value="$PROJECT_DIR$/src/ihm/frame/InteractivSolver.java" />
+        <option value="$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_acc.java" />
       </list>
     </option>
   </component>
@@ -110,8 +200,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -204,8 +292,42 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rubik-int" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rubik-int" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rubik-int" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rubik-int" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InteractivSolver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -549,7 +671,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -566,7 +688,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17395833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1921875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -578,7 +701,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -623,22 +745,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ihm/frame/RandomSolverIhm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2214">
-          <caret line="123" column="104" lean-forward="false" selection-start-line="123" selection-start-column="104" selection-end-line="123" selection-end-column="104" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rendering/MainRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1116">
-          <caret line="78" column="115" lean-forward="false" selection-start-line="78" selection-start-column="115" selection-end-line="78" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rendering/OpenGLRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -654,13 +760,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ihm/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ihm/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/ihm/frame/RandomSolverIhm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -684,13 +784,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ihm/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ihm/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/ihm/frame/RandomSolverIhm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -714,13 +808,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ihm/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ihm/Main.java" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -731,13 +819,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ihm/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ihm/Main.java" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -854,9 +936,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="26" column="8" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -879,37 +958,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Demonstration.java" />
     <entry file="file://$PROJECT_DIR$/src/HoverButton.java" />
-    <entry file="file://$PROJECT_DIR$/src/ihm/frame/RandomSolverIhm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolverIhm_acc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ihm/frame/InteractivSolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="49" column="106" lean-forward="false" selection-start-line="49" selection-start-column="106" selection-end-line="49" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rubikscube/RubiksCube.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2542">
           <caret line="165" column="12" lean-forward="false" selection-start-line="165" selection-start-column="12" selection-end-line="165" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -921,29 +973,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ihm/frame/Accueil.java">
+    <entry file="file://$PROJECT_DIR$/src/ihm/Main.java" />
+    <entry file="file://$PROJECT_DIR$/src/ihm/frame/RandomSolverIhm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="61" column="43" lean-forward="false" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
-          <folding>
-            <marker date="1491576306145" expanded="true" signature="3003:3004" ph="{...}" />
-          </folding>
+        <state relative-caret-position="718">
+          <caret line="94" column="52" lean-forward="false" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ihm/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/ihm/frame/Accueil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="7" column="40" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="40" />
-          <folding />
+        <state relative-caret-position="178">
+          <caret line="61" column="51" lean-forward="false" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
+          <folding>
+            <marker date="1491591023879" expanded="true" signature="3083:3084" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ihm/Fenetre.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="59" column="76" lean-forward="false" selection-start-line="59" selection-start-column="76" selection-end-line="59" selection-end-column="76" />
+        <state relative-caret-position="1296">
+          <caret line="80" column="41" lean-forward="true" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_Solver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="36" column="87" lean-forward="false" selection-start-line="36" selection-start-column="87" selection-end-line="36" selection-end-column="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ihm/frame/InteractivSolver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="125" column="19" lean-forward="false" selection-start-line="125" selection-start-column="19" selection-end-line="125" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_capture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1126">
+          <caret line="92" column="42" lean-forward="false" selection-start-line="92" selection-start-column="42" selection-end-line="92" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_acc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="62" column="39" lean-forward="false" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

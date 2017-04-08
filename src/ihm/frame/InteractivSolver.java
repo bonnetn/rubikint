@@ -1,5 +1,14 @@
 package ihm.frame;
 
+import ihm.frame.interactivsolver.InteractivSolver_Solver;
+import ihm.frame.interactivsolver.InteractivSolver_acc;
+import ihm.frame.interactivsolver.InteractivSolver_capture;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * Created by florian on 07/04/17.
  */
@@ -22,7 +31,7 @@ package ihm.frame;
                                                                               InteractivSolver (similaire à Fenetre)
                                                                                     |
                                                                                     |
-                                                                         InteractivSolverIhm_acc
+                                                                         InteractivSolver_acc
                                                                           |         |         |
                                                                      CAPTURE      SOLVE     ACCUEIL
                                                                         |           |          |
@@ -33,12 +42,12 @@ package ihm.frame;
                                                                CAPTURE  NEXT  PREV  |
                                                                    & RETURN (OK)    |
                                                                           |        /|\
-                                                      InteractivSolverIhm_acc     / | \
+                                                      InteractivSolver_acc     / | \
                                                                                  /  |  \
                                                                                 /   |   \
                                                                              NEXT  PREV RETURN
                                                                                            |
-                                                                                           InteractivSolverIhm_acc
+                                                                                           InteractivSolver_acc
 
             POUR CAPTURE CUBE :
                       FAIRE UN AFFICHEUR D'INSTRUCTION DE LA CAPTURE :
@@ -51,5 +60,78 @@ package ihm.frame;
 
 
      */
-public class InteractivSolver {
+public class InteractivSolver extends JLabel {
+
+    String[] listeScene = {"Accueil","Solver","Capture"};
+    InteractivSolver_acc Accueil = new InteractivSolver_acc();
+    InteractivSolver_Solver Solver = new InteractivSolver_Solver();
+    InteractivSolver_capture Capture = new InteractivSolver_capture();
+
+    JButton retAccueil = Accueil.getAccueil();
+
+
+    public InteractivSolver(){
+        CardLayout cl = new CardLayout();
+        setLayout(cl);
+
+        // -------------------------ACCUEIL-------------------------------------------
+        JButton captureCube = Accueil.getCapture();
+        JButton solveCube = Accueil.getSolve();
+
+        captureCube.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Accueil.setVisible(false);
+                Solver.setVisible(false);
+                Capture.setVisible(true);
+            }
+        });
+
+        solveCube.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Accueil.setVisible(false);
+                Capture.setVisible(false);
+                Solver.setVisible(true);
+            }
+        });
+
+        //-------------------CAPTURE--------------------
+
+        JButton done = Capture.getDone();
+
+        done.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Solver.setVisible(false);
+                Capture.setVisible(false);
+                Accueil.setVisible(true);
+            }
+        });
+
+        //-------------------SOLVER------------------------
+        JButton returne = Solver.getReturne();
+
+        returne.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Capture.setVisible(false);
+                Solver.setVisible(false);
+                Accueil.setVisible(true);
+            }
+        });
+
+        add(Accueil,listeScene[0]);
+        add(Solver,listeScene[1]);
+        add(Capture,listeScene[2]);
+        Accueil.setVisible(true);
+        Solver.setVisible(false);
+        Capture.setVisible(false);
+        setVisible(true);
+
+    }
+
+    public JButton getRetAccueil(){return retAccueil;}
+
+
 }

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import ihm.frame.Accueil;
+import ihm.frame.InteractivSolver;
 import ihm.frame.RandomSolverIhm;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ import javax.swing.*;
 
 public class Fenetre{
 
-    String[] listeScene = {"Accueil","RandomSolverIhm","Capture"};
+    String[] listeScene = {"Accueil","RandomSolverIhm","InteractivSolver"};
 
     public Fenetre() { // constructeur pour etablir les settings de la fenetre
         CardLayout cl = new CardLayout();
@@ -29,13 +30,17 @@ public class Fenetre{
 
         Accueil accueil = new Accueil();
         RandomSolverIhm randomSolverIhm = new RandomSolverIhm();
+        InteractivSolver interactivSolver = new InteractivSolver();
+
 
         JButton accSolver = accueil.getRandom();
         accSolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 accueil.setVisible(false);
+                interactivSolver.setVisible(false);
                 randomSolverIhm.setVisible(true);
+
             }
         });
 
@@ -44,7 +49,29 @@ public class Fenetre{
             @Override
             public void actionPerformed(ActionEvent e) {
                 randomSolverIhm.setVisible(false);
+                interactivSolver.setVisible(false);
                 accueil.setVisible(true);
+            }
+        });
+
+        JButton retAccueil_interactiv = interactivSolver.getRetAccueil();
+        retAccueil_interactiv.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                randomSolverIhm.setVisible(false);
+                interactivSolver.setVisible(false);
+                accueil.setVisible(true);
+
+            }
+        });
+
+        JButton goCapture = accueil.getCapture();
+        goCapture.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                randomSolverIhm.setVisible(false);
+                accueil.setVisible(false);
+                interactivSolver.setVisible(true);
             }
         });
 
@@ -53,6 +80,7 @@ public class Fenetre{
         frame.add(accueil,listeScene[0]);
         randomSolverIhm.setVisible(true);
         frame.add(randomSolverIhm,listeScene[1]);
+        frame.add(interactivSolver,listeScene[2]);
         frame.setVisible(true);
     }
 

@@ -40,7 +40,7 @@ public class RandomSolverIhm extends JLabel{
 
 
     public RandomSolverIhm(){
-        final ImageIcon background = new ImageIcon("img/randomSolver.png");
+        final ImageIcon background = new ImageIcon("img/randomSolver/randomSolver.png");
         setIcon(background);
         //setLayout(new GridBagLayout());
         //GridBagConstraints gbc = new GridBagConstraints();
@@ -50,9 +50,9 @@ public class RandomSolverIhm extends JLabel{
 
 
         //JButton retAccueil = new JButton();
-        Icon i = new ImageIcon("img/randomSolver_accueil.png");
-        Icon i_2 = new ImageIcon("img/randomSolver_accueil2.png");
-        Icon i_3 = new ImageIcon("img/randomSolver_accueil3.png");
+        Icon i = new ImageIcon("img/randomSolver/randomSolver_accueil.png");
+        Icon i_2 = new ImageIcon("img/randomSolver/randomSolver_accueil2.png");
+        Icon i_3 = new ImageIcon("img/randomSolver/randomSolver_accueil3.png");
         retAccueil.setIcon(i);
         retAccueil.setRolloverIcon(i_2);
         retAccueil.setPressedIcon(i_3);
@@ -65,9 +65,9 @@ public class RandomSolverIhm extends JLabel{
         });
         retAccueil.setBounds(100,500,241,55);
 
-        Icon i3 = new ImageIcon("img/randomSolver_solve.png");
-        Icon i3_2 = new ImageIcon("img/randomSolver_solve2.png");
-        Icon i3_3 = new ImageIcon("img/randomSolver_solve3.png");
+        Icon i3 = new ImageIcon("img/randomSolver/randomSolver_solve.png");
+        Icon i3_2 = new ImageIcon("img/randomSolver/randomSolver_solve2.png");
+        Icon i3_3 = new ImageIcon("img/randomSolver/randomSolver_solve3.png");
         solve.setIcon(i3);
         solve.setRolloverIcon(i3_2);
         solve.setPressedIcon(i3_3);
@@ -90,9 +90,9 @@ public class RandomSolverIhm extends JLabel{
         //setNextJLabel();
         afficheEtape = new JLabel();
 
-        Icon i2 = new ImageIcon("img/randomSolver_generate.png");
-        Icon i2_2 = new ImageIcon("img/randomSolver_generate2.png");
-        Icon i2_3 = new ImageIcon("img/randomSolver_generate3.png");
+        Icon i2 = new ImageIcon("img/randomSolver/randomSolver_generate.png");
+        Icon i2_2 = new ImageIcon("img/randomSolver/randomSolver_generate2.png");
+        Icon i2_3 = new ImageIcon("img/randomSolver/randomSolver_generate3.png");
         generate.setIcon(i2);
         generate.setRolloverIcon(i2_2);
         generate.setPressedIcon(i2_3);
