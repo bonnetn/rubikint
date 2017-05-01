@@ -33,15 +33,15 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
 
 
     // angle gerant la rotation camera
-    private static final float defaultAlphaX = 45f;
-    private static final float defaultAlphaY = 45f;
-    private static final float defaultAlphaZ = 0f;
+    private static final float defaultAlphaX = -45f;
+    private static final float defaultAlphaY = 0f;
+    private static final float defaultAlphaZ = -30f;
     private static final float defaultZoom = -18f;
 
     public float alphaX = defaultAlphaX;
     public float alphaY = defaultAlphaY;
     public float alphaZ = defaultAlphaZ;
-    public float zooom = defaultZoom;
+    public float zoom = defaultZoom;
 
     public final float distanceEntreCube = 0.1f;
 
@@ -78,6 +78,8 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
         gl.glDepthFunc(GL2.GL_LEQUAL);
         gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST);
         gl.glShadeModel(GL2.GL_SMOOTH);
+        //glu.gluLookAt(0f, 0f, 12f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
+
     } //initialisation de mon rendu OpenGL
 
     @Override
@@ -87,7 +89,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
         GL2 gl = drawable.getGL().getGL2();
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT); // clear du buffer pour eviter chevauchement des faces.
         gl.glLoadIdentity();
-        glu.gluLookAt(4f, 5f, 12f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
+        glu.gluLookAt(0f, 0f, 12f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
 
         //gl.glTranslatef(0f,0f,-10f);
         gl.glRotatef(alphaX, 1f, 0f, 0f); // rotation matrice courante d'angle alphaX autour de axe X
