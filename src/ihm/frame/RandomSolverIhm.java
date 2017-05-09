@@ -12,10 +12,7 @@ import rubikscube.enums.Rotation;
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 
@@ -113,6 +110,7 @@ public class RandomSolverIhm extends JLabel{
         canvas.addGLEventListener(renderer);
         addKeyListener(new MyKeyListener(renderer));
         canvas.addKeyListener(new MyKeyListener(renderer));
+        //canvas.addMouseListener((MouseListener) renderer);
         FPSAnimator animator = new FPSAnimator(canvas, 60);
 
         animator.start();

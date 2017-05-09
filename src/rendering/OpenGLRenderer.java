@@ -4,6 +4,8 @@ package rendering;
  * Created by florian on 17/02/17.
  */
 
+import com.jogamp.newt.event.MouseEvent;
+import com.jogamp.newt.event.MouseListener;
 import rendering.enums.Direction;
 import rendering.enums.Axis;
 import resolution.NoSolutionFound;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 // Attention, voire le probleme des fenetres qui ne se ferme pas
 
 
-public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListener, MouseListener */ {
+public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListener, MouseListener */ {
 
     private GLU glu;
     public Cube[][][] listeCube = new Cube[3][3][3];
@@ -37,6 +39,8 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
     private static final float defaultAlphaY = 0f;
     private static final float defaultAlphaZ = -30f;
     private static final float defaultZoom = -18f;
+    public static final float max_zoom = -10f;
+    public static final float min_zoom = -80f;
 
     public float alphaX = defaultAlphaX;
     public float alphaY = defaultAlphaY;
@@ -53,6 +57,9 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
     private int rotateY = -1;
     private int rotateZ = -1;
     private float rotationSpeed = 5f;
+
+    public int mouseX = 300; // la moitie de la taille du rendu
+    public int mouseY = 300;
 
 
     private RubiksCube rubiksCube;
@@ -315,10 +322,6 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
     public void updateAngles() // va etre appele a chaque boucle de display et permet donc d'avoir les angles qui s'incrémente au fur et a mesure pour effectuer la rotation
     {
         Direction direction = (rotationSpeed > 0) ? Direction.CLOCKWISE : Direction.COUNTER_CLOCKWISE;
-        // Il est possible que le boolean clockwise ne soit pas coherent avec la rotation reele
-        // car la convention de rotation des mouvements d'un rubik'cube est fait de façon a ce que la face soit devant nous.
-        // Or les rotation dans OpenGL se font quelque soit la position de la face dont il est question, des inversions peuvent alors
-        // apparaitre.
 
         if (rotateX >=0)
         {
@@ -377,6 +380,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener /* KeyListe
     public void randomGLMelange(){rubiksCube.randomMelange();}
 
     public RubiksCube getCube(){return rubiksCube;}
+
 
     private abstract class RandomSolverThread extends Thread {
         private boolean isTerminated = false;

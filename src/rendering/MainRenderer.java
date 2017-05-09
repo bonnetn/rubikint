@@ -5,13 +5,17 @@ package rendering;
  */
 import java.awt.EventQueue;
 import java.awt.Frame;
+import java.awt.event.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.media.opengl.awt.GLCanvas;
-import com.jogamp.opengl.util.FPSAnimator;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import com.jogamp.newt.event.*;
+import com.jogamp.newt.event.MouseEvent;
+import com.jogamp.newt.event.MouseListener;
+import com.jogamp.opengl.util.FPSAnimator;
 
 import rendering.enums.Axis;
 import rubikscube.RubiksCube;
@@ -33,7 +37,7 @@ public class MainRenderer extends Frame{
         private boolean isUpPressed;
         private boolean isDownPressed;
         private boolean isLeftPressed;
-        private boolean isrightPressed;
+        private boolean isRightPressed;
 
         private MyKeyListener(MainRenderer m, OpenGLRenderer r) {
             $this = m;
@@ -47,7 +51,7 @@ public class MainRenderer extends Frame{
                 renderer.alphaX -= 2;
             if(isLeftPressed)
                 renderer.alphaY -= 2;
-            if(isrightPressed)
+            if(isRightPressed)
                 renderer.alphaY += 2;
 
         }
@@ -65,7 +69,7 @@ public class MainRenderer extends Frame{
                     isDownPressed = true;
                     break;
                 case KeyEvent.VK_RIGHT:
-                    isrightPressed = true;
+                    isRightPressed = true;
                     break;
                 case KeyEvent.VK_LEFT:
                     isLeftPressed = true;
@@ -101,7 +105,7 @@ public class MainRenderer extends Frame{
                     isDownPressed = false;
                     break;
                 case KeyEvent.VK_RIGHT:
-                    isrightPressed = false;
+                    isRightPressed = false;
                     break;
                 case KeyEvent.VK_LEFT:
                     isLeftPressed = false;

@@ -14,7 +14,7 @@ import javax.swing.*;
  * Created by florian on 29/01/17.
  */
 
-public class Fenetre{
+public class    Fenetre{
 
     String[] listeScene = {"Accueil","RandomSolverIhm","InteractivSolver"};
 
