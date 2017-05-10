@@ -2,33 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d06d3930-0f0e-46de-8e87-b3090eaf7453" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm$1.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm$2.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm$3.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm$4.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm$MyKeyListener.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm$MyKeyListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/RandomSolverIhm.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolver_capture$1.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolver_capture$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolver_capture$2.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolver_capture$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolver_capture$3.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolver_capture$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolver_capture$4.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolver_capture$4.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolver_capture.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/interactivsolver/InteractivSolver_capture.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/MainRenderer$1.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/rendering/MainRenderer$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/MainRenderer$2.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/rendering/MainRenderer$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/MainRenderer$MyKeyListener.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/rendering/MainRenderer$MyKeyListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/MainRenderer.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/rendering/MainRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/OpenGLRenderer$1.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/rendering/OpenGLRenderer$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/OpenGLRenderer$2.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/rendering/OpenGLRenderer$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/OpenGLRenderer$3.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/rendering/OpenGLRenderer$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/OpenGLRenderer$RandomSolverThread.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/rendering/OpenGLRenderer$RandomSolverThread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/OpenGLRenderer.class" afterPath="$PROJECT_DIR$/out/production/Rubik-int/rendering/OpenGLRenderer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rubik-int.iml" afterPath="$PROJECT_DIR$/Rubik-int.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ihm/Fenetre.java" afterPath="$PROJECT_DIR$/src/ihm/Fenetre.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ihm/frame/RandomSolverIhm.java" afterPath="$PROJECT_DIR$/src/ihm/frame/RandomSolverIhm.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_capture.java" afterPath="$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_capture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rendering/MainRenderer.java" afterPath="$PROJECT_DIR$/src/rendering/MainRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rendering/OpenGLRenderer.java" afterPath="$PROJECT_DIR$/src/rendering/OpenGLRenderer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,25 +27,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="InteractivSolver_capture.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="InteractivSolver_capture.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_capture.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="184" column="57" lean-forward="true" selection-start-line="184" selection-start-column="57" selection-end-line="184" selection-end-column="57" />
+            <state relative-caret-position="2590">
+              <caret line="290" column="27" lean-forward="false" selection-start-line="290" selection-start-column="27" selection-end-line="290" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3529#3530#0" expanded="true" />
-                <element signature="e#3597#3598#0" expanded="true" />
-                <element signature="e#3742#3743#0" expanded="true" />
-                <element signature="e#3810#3811#0" expanded="true" />
-                <element signature="e#7362#7363#0" expanded="true" />
-                <element signature="e#7410#7411#0" expanded="true" />
+                <element signature="class#Placement_Facette#0;class#InteractivSolver_capture#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Color.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Color.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rubikscube/enums/Color.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
@@ -143,11 +118,11 @@
         <option value="$PROJECT_DIR$/src/imageProcessing/testCV.java" />
         <option value="$PROJECT_DIR$/src/imageProcessing/CameraFrame.java" />
         <option value="$PROJECT_DIR$/src/imageProcessing/testCam.java" />
-        <option value="$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_capture.java" />
         <option value="$PROJECT_DIR$/src/imageProcessing/JavaCV2.java" />
         <option value="$PROJECT_DIR$/src/imageProcessing/JavaCv4.java" />
         <option value="$PROJECT_DIR$/src/imageProcessing/JavaCv5.java" />
         <option value="$PROJECT_DIR$/src/imageProcessing/WebcamViewerExample.java" />
+        <option value="$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_capture.java" />
       </list>
     </option>
   </component>
@@ -171,7 +146,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -238,94 +214,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubik-int" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubik-int" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rendering" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubik-int" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubik-int" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ihm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubik-int" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubik-int" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ihm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubik-int" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rubik-int" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ihm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="interactivsolver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -684,7 +575,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -701,7 +592,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1828125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18072917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -750,7 +641,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -762,7 +655,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -780,12 +672,7 @@
           <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3529#3530#0" expanded="true" />
-            <element signature="e#3597#3598#0" expanded="true" />
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3810#3811#0" expanded="true" />
-            <element signature="e#7362#7363#0" expanded="true" />
-            <element signature="e#7410#7411#0" expanded="true" />
+            <element signature="class#Placement_Facette#0;class#InteractivSolver_capture#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -794,7 +681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -812,30 +698,17 @@
           <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3529#3530#0" expanded="true" />
-            <element signature="e#3597#3598#0" expanded="true" />
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3810#3811#0" expanded="true" />
-            <element signature="e#7362#7363#0" expanded="true" />
-            <element signature="e#7410#7411#0" expanded="true" />
+            <element signature="class#Placement_Facette#0;class#InteractivSolver_capture#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCV2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCV2.java" />
     <entry file="file://$PROJECT_DIR$/src/imageProcessing/testCam.java" />
     <entry file="file://$PROJECT_DIR$/src/ihm/Fenetre.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -853,30 +726,17 @@
           <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3529#3530#0" expanded="true" />
-            <element signature="e#3597#3598#0" expanded="true" />
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3810#3811#0" expanded="true" />
-            <element signature="e#7362#7363#0" expanded="true" />
-            <element signature="e#7410#7411#0" expanded="true" />
+            <element signature="class#Placement_Facette#0;class#InteractivSolver_capture#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCV2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCV2.java" />
     <entry file="file://$PROJECT_DIR$/src/imageProcessing/testCam.java" />
     <entry file="file://$PROJECT_DIR$/src/ihm/Fenetre.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -894,29 +754,16 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3529#3530#0" expanded="true" />
-            <element signature="e#3597#3598#0" expanded="true" />
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3810#3811#0" expanded="true" />
-            <element signature="e#7362#7363#0" expanded="true" />
-            <element signature="e#7410#7411#0" expanded="true" />
+            <element signature="class#Placement_Facette#0;class#InteractivSolver_capture#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCV2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="37" column="33" lean-forward="true" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCV2.java" />
     <entry file="file://$PROJECT_DIR$/src/ihm/Fenetre.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -928,26 +775,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCv4.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="34" column="44" lean-forward="false" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCv4.java" />
     <entry file="file://$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_capture.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1566">
           <caret line="105" column="8" lean-forward="false" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3529#3530#0" expanded="true" />
-            <element signature="e#3597#3598#0" expanded="true" />
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3810#3811#0" expanded="true" />
-            <element signature="e#7362#7363#0" expanded="true" />
-            <element signature="e#7410#7411#0" expanded="true" />
+            <element signature="class#Placement_Facette#0;class#InteractivSolver_capture#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -957,7 +792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -965,73 +799,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCv4.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCv4.java" />
     <entry file="file://$PROJECT_DIR$/src/imageProcessing/CameraFrame.java" />
     <entry file="file://$PROJECT_DIR$/src/ihm/Fenetre.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/testCV.java" />
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCV2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="12" column="70" lean-forward="false" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCv4.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="16" column="72" lean-forward="false" selection-start-line="16" selection-start-column="72" selection-end-line="16" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCv5.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCV2.java" />
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCv4.java" />
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCv5.java" />
     <entry file="file://$PROJECT_DIR$/src/ihm/Fenetre.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/testCV.java" />
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCV2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="12" column="70" lean-forward="false" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCV2.java" />
     <entry file="file://$PROJECT_DIR$/src/rendering/Renderable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1061,7 +857,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-774">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1069,7 +864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1077,7 +871,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1089,6 +882,10 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCV2.java" />
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCv4.java" />
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCv5.java" />
+    <entry file="file://$PROJECT_DIR$/src/imageProcessing/WebcamViewerExample.java" />
     <entry file="file://$PROJECT_DIR$/src/rubikscube/enums/Color.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1099,49 +896,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ihm/frame/interactivsolver/InteractivSolver_capture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="184" column="57" lean-forward="true" selection-start-line="184" selection-start-column="57" selection-end-line="184" selection-end-column="57" />
+        <state relative-caret-position="2590">
+          <caret line="290" column="27" lean-forward="false" selection-start-line="290" selection-start-column="27" selection-end-line="290" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3529#3530#0" expanded="true" />
-            <element signature="e#3597#3598#0" expanded="true" />
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3810#3811#0" expanded="true" />
-            <element signature="e#7362#7363#0" expanded="true" />
-            <element signature="e#7410#7411#0" expanded="true" />
+            <element signature="class#Placement_Facette#0;class#InteractivSolver_capture#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCV2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCv4.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/JavaCv5.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/imageProcessing/WebcamViewerExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
