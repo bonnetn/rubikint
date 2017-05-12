@@ -2,10 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d06d3930-0f0e-46de-8e87-b3090eaf7453" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/rubikscube/enums/TripletToId.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/Fenetre$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/Fenetre$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/Fenetre.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/Accueil$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/Accueil$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/Accueil$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/ihm/frame/Accueil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/Cube.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/OpenGLRenderer$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/OpenGLRenderer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rendering/Renderable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/resolution/BFSSearcher.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/resolution/Validator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rubikscube/AbstractRubiksCube.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rubikscube/RubiksCube$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rubikscube/RubiksCube.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rubikscube/enums/Color.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rubikscube/enums/Face.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Rubik-int/rubikscube/enums/Rotation.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Test.java" afterPath="$PROJECT_DIR$/src/Test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rubikscube/RubiksCube.java" afterPath="$PROJECT_DIR$/src/rubikscube/RubiksCube.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,7 +95,7 @@
         <entry file="file://$PROJECT_DIR$/src/rubikscube/RubiksCube.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="110">
-              <caret line="107" column="8" lean-forward="false" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
+              <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -798,10 +814,18 @@
       <option name="presentableId" value="Default" />
       <updated>1489429537564</updated>
     </task>
+    <task id="LOCAL-00001" summary="Le tableau magique triplet couleur=&gt;id&#10;Askip parce que pas pu tester">
+      <created>1494603769512</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1494603769512</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1368" height="744" extended-state="6" />
+    <frame x="-1" y="0" width="1368" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -836,6 +860,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Le tableau magique triplet couleur=&gt;id&#10;Askip parce que pas pu tester" />
+    <option name="LAST_COMMIT_MESSAGE" value="Le tableau magique triplet couleur=&gt;id&#10;Askip parce que pas pu tester" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1083,17 +1111,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rubiks.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rubikscube/RubiksCube.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
-          <caret line="107" column="8" lean-forward="false" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="8" />
+          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rubiks.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
   </component>
