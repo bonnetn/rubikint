@@ -98,10 +98,12 @@ public class InteractivSolver_capture extends JLabel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Bouton Next OK");
-                if (faceCapture <6)
+                if (faceCapture <5)
                 {
                     faceCapture++;
                 }
+                System.out.println(faceCapture);
+
             }
         });
         previous.addActionListener(new ActionListener() {
@@ -111,7 +113,9 @@ public class InteractivSolver_capture extends JLabel{
                 if (faceCapture >0)
                 {
                     faceCapture--;
+
                 }
+                System.out.println(faceCapture);
             }
         });
         shoot.addActionListener(new ActionListener() {
@@ -308,6 +312,25 @@ public class InteractivSolver_capture extends JLabel{
             drawFacette.setOpaque(false);
             drawFacette.repaint();
             add(drawFacette);
+        }
+    }
+
+    public void setInstruction()
+    {
+        switch (faceCapture)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
         }
     }
 

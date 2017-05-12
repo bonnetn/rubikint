@@ -134,10 +134,10 @@ public class InteractivSolver_Solver extends JLabel {
 
         renderer = new OpenGLRenderer();
         canvas = new GLCanvas();
-        renderer.Scramble();
-        renderer.InteractivSolver();
-        solution = renderer.getSolution();
-        max = renderer.getSizeSolution();
+        //renderer.Scramble();
+        //renderer.InteractivSolver();
+        //solution = renderer.getSolution();
+        //max = renderer.getSizeSolution();
         setJLabel();
         afficheEtape.setFont(new Font("Tahoma", Font.BOLD,25));
         afficheEtape.setForeground(Color.RED);
