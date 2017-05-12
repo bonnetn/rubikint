@@ -20,11 +20,10 @@ public class InteractivSolver_acc extends JLabel {
 
 
     ArrayList<Rotation> solution;
-
     JLabel afficheEtape;
     RubiksCube rubiksCube;
     private GLCanvas canvas;
-    OpenGLRenderer renderer;
+    OpenGLRenderer renderer = new OpenGLRenderer();
     JButton retAccueil = new JButton();
     Boolean isSolved = false;
     JButton capture = new JButton();
@@ -90,4 +89,6 @@ public class InteractivSolver_acc extends JLabel {
     public JButton getAccueil(){return retAccueil;}
     public JButton getCapture(){ return capture;}
     public JButton getSolve(){return solve;}
+
+    public OpenGLRenderer getRenderer(){return renderer;}
 }

@@ -3,6 +3,9 @@ package ihm.frame;
 import ihm.frame.interactivsolver.InteractivSolver_Solver;
 import ihm.frame.interactivsolver.InteractivSolver_acc;
 import ihm.frame.interactivsolver.InteractivSolver_capture;
+import rendering.OpenGLRenderer;
+import rubikscube.enums.*;
+import rubikscube.enums.Color;
 
 import javax.swing.*;
 import java.awt.*;
@@ -59,6 +62,11 @@ import java.awt.event.ActionListener;
                                VOIR SI TOUT CA PEUT ETRE FAIT AUTOMATIQUEMENT MAIS PLUS SIMPLE AVEC BOUTON
 
 
+                               SET OPENGL RENDERER DANS SOLVER
+                               SET CONFIGURATION DE LA CAPTURE DANS CAPTURE
+                               ON RECUPERERE CES DONNEES DANS INTERATIVSOLVER MERE QUI PERMET DE SET TOUT CE QU IL FAUT A UN INSTANT T AU CHANGEMENT DE FENETRE.
+
+
      */
 public class InteractivSolver extends JLabel {
 
@@ -68,6 +76,9 @@ public class InteractivSolver extends JLabel {
     InteractivSolver_capture Capture = new InteractivSolver_capture();
 
     JButton retAccueil = Accueil.getAccueil();
+
+    OpenGLRenderer renderer;
+    Color[][][] faceColor;
 
 
     public InteractivSolver(){
@@ -98,6 +109,7 @@ public class InteractivSolver extends JLabel {
 
         //-------------------CAPTURE--------------------
 
+        faceColor = Capture.getFaceColor();
         JButton done = Capture.getDone();
 
         done.addActionListener(new ActionListener() {
@@ -110,6 +122,8 @@ public class InteractivSolver extends JLabel {
         });
 
         //-------------------SOLVER------------------------
+
+        renderer = Solver.getRenderer();
         JButton returne = Solver.getReturne();
 
         returne.addActionListener(new ActionListener() {
@@ -132,6 +146,9 @@ public class InteractivSolver extends JLabel {
     }
 
     public JButton getRetAccueil(){return retAccueil;}
+
+
+
 
 
 }

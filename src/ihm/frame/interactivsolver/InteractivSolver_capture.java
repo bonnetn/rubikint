@@ -3,38 +3,29 @@ package ihm.frame.interactivsolver;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
-import jogamp.nativewindow.windows.PIXELFORMATDESCRIPTOR;
-import org.bytedeco.javacpp.opencv_core.*;
-import org.bytedeco.javacpp.opencv_videoio.*;
-import org.bytedeco.javacv.*;
 import rubikscube.enums.Color;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.RescaleOp;
-import java.awt.image.WritableRaster;
-import java.io.File;
-import java.io.IOException;
-import java.nio.BufferUnderflowException;
-import java.nio.file.Watchable;
-
-import static org.bytedeco.javacpp.opencv_videoio.*;
+import static rubikscube.enums.Color.*;
 
 /**
  * Created by florian on 07/04/17.
  */
+/* SETLABEL pour afficher quel face est capture et affichage de la
+derniere face capture
 
+methode pour passer des couleurs au permutation.
+ */
 
 public class InteractivSolver_capture extends JLabel{
 
 
     int faceCapture = 0;
-    Color[][] faceColor = new Color[6][9];
+    Color[][][] faceColor = new Color[6][3][3];
     BufferedImage img;
 
     Webcam webcam;
@@ -46,6 +37,7 @@ public class InteractivSolver_capture extends JLabel{
     JLayeredPane kamera = new JLayeredPane();
     Color testcolor;
     Placement_Facette placement_facette = new Placement_Facette(java.awt.Color.BLACK);
+    drawFacette drawFacette = new drawFacette();
     int done_x=100;     int done_y=500;
     int next_x=400;     int next_y=400;
     int previous_x=50; int previous_y=400;
@@ -106,85 +98,38 @@ public class InteractivSolver_capture extends JLabel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Bouton Next OK");
+                if (faceCapture <6)
+                {
+                    faceCapture++;
+                }
             }
         });
         previous.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Bouton Previous OK");
-                setFace();
-                for (int i=0;i<9;i++)
+                if (faceCapture >0)
                 {
-                    System.out.println(faceColor[0][i].getValue());
+                    faceCapture--;
                 }
-
             }
         });
         shoot.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Bouton Shoot OK");
-                //setFace();
-                //for (int i=0;i<9;i++)
-                //{
-                //    System.out.println(faceColor[0][i].getValue());
-                //}
-                /*
-                System.out.println(java.awt.Color.YELLOW);
-                System.out.println(java.awt.Color.WHITE);
-                System.out.println(java.awt.Color.ORANGE);
-                System.out.println(java.awt.Color.RED);
-                System.out.println(java.awt.Color.BLUE);
-                System.out.println(java.awt.Color.GREEN);
-                */
+                setFace();
+                for (int i=0;i<3;i++)
+                {
+                    for (int j=0;j<3;j++)
+                    {
+                        System.out.println(faceColor[faceCapture][i][j].getValue());
+                    }
 
-                BufferedImage img = Webcam.getDefault().getImage();
-                float[] rgb = readColor(0,img);
-                System.out.println("Face HG");
-                System.out.println(rgb[0]);
-                //System.out.println(rgb[1]);
-                //System.out.println(rgb[2]);
-                rgb = readColor(1,img);
-                System.out.println("Face HM");
-                System.out.println(rgb[0]);
-                //System.out.println(rgb[1]);
-                //System.out.println(rgb[2]);
-                rgb = readColor(2,img);
-                System.out.println("Face HD");
-                System.out.println(rgb[0]);
-                //System.out.println(rgb[1]);
-                //System.out.println(rgb[2]);
-                rgb = readColor(3,img);
-                System.out.println("Face MG");
-                System.out.println(rgb[0]);
-                //System.out.println(rgb[1]);
-                //System.out.println(rgb[2]);
-                rgb = readColor(4,img);
-                System.out.println("Face MM");
-                System.out.println(rgb[0]);
-                //System.out.println(rgb[1]);
-                //System.out.println(rgb[2]);
-                rgb = readColor(5,img);
-                System.out.println("Face MD");
-                System.out.println(rgb[0]);
-                //System.out.println(rgb[1]);
-                //System.out.println(rgb[2]);
-                rgb = readColor(6,img);
-                System.out.println("Face BG");
-                System.out.println(rgb[0]);
-                //System.out.println(rgb[1]);
-                //System.out.println(rgb[2]);
-                rgb = readColor(7,img);
-                System.out.println("Face BM");
-                System.out.println(rgb[0]);
-                //System.out.println(rgb[1]);
-                //System.out.println(rgb[2]);
-                rgb = readColor(8,img);
-                System.out.println("Face BD");
-                System.out.println(rgb[0]);
-                //System.out.println(rgb[1]);
-                //System.out.println(rgb[2]);
-
+                }
+                Thread threadDrawFace = new Thread(new ThreadDrawFace());
+                threadDrawFace.start();
+                drawFacette.repaint();
             }
         });
         webcam = Webcam.getDefault();
@@ -212,30 +157,28 @@ public class InteractivSolver_capture extends JLabel{
         if (faceCapture<6)
         {
             img = Webcam.getDefault().getImage();
-            for (int j=0;j<9;j++)
-            {
-                faceColor[faceCapture][j] = defineColor(readColor(j,img));
+            for (int i=0;i<3;i++) {
+
+                for (int j = 0; j < 3; j++) {
+                    faceColor[faceCapture][i][j] = defineColor(readColor(i,j,img));
+                }
             }
-            //faceCapture ++;
         }
 
 
 
     }
 
-    public float[] readColor(int j, BufferedImage img)
+    public float[] readColor(int i,int j, BufferedImage img)
     {
         java.awt.Color PixelColor;
         int x=0; int y=0; int R=0; int G=0; int B=0;
-        if (j==0) {x = 215; y = 135;}
-        if (j==1) {x = 315; y = 135;}
-        if (j==2) {x = 415; y = 135;}
-        if (j==3) {x = 215; y = 235;}
-        if (j==4) {x = 315; y = 235;}
-        if (j==5) {x = 415; y = 235;}
-        if (j==6) {x = 215; y = 335;}
-        if (j==7) {x = 315; y = 335;}
-        if (j==8) {x = 415; y = 335;}
+        if (i==0) {x = 215;}
+        if (i==1) {x = 315;}
+        if (i==2) {x = 415;}
+        if (j==0) {y = 135;}
+        if (j==1) {y = 235;}
+        if (j==2) {y = 335;}
 
         for (int h=0;h<5;h++)
         {
@@ -264,11 +207,11 @@ public class InteractivSolver_capture extends JLabel{
         float V=rgb[2];
         if (H >= 0.9f) //OK
         {
-            return Color.RED;
+            return RED;
         }
-        if (H < 0.12f)
+        if (H < 0.13f)
         {
-            return Color.ORANGE;
+            return ORANGE;
         }
         if ( H < 0.50f && H >=0.30f)
         {
@@ -278,27 +221,19 @@ public class InteractivSolver_capture extends JLabel{
         {
             if (S <= 0.30)
             {
-                return Color.WHITE;
+                return WHITE;
             }else{
-                return Color.BLUE;
+                return BLUE;
             }
 
         }
-        if (H >= 0.12f && H < 0.30f)
+        if (H >= 0.13f && H < 0.30f)
         {
             return Color.YELLOW;
         }
         return Color.BLACK;
 
-    }
-        /* SEUIL COULEUR A TESTER
-        R > 100 && G < 50 && B < 50 ==> RED
-        R > 100 && G > 60 && B < 50 ==> ORANGE
-        R < 35  && G > 70 && 30 < B < 80 ==> GREEN
-        R < 30  && G > 50 && B > 110 ==> BLUE
-        R > 110 && G > 110 && 51 < B < 109 ==> YELLOW
-        R > 110 && G > 110 && B > 110 ==> WHITE
- */
+     }
 
     public class Placement_Facette extends JPanel
     {
@@ -323,4 +258,58 @@ public class InteractivSolver_capture extends JLabel{
 
         }
     }
+
+    public class drawFacette extends JPanel
+    {
+        int y = 0;
+        public drawFacette(){};
+        public void paintComponent(Graphics ge)
+        {
+            for (int indice=0;indice<=faceCapture;indice++) {
+                int x = indice*150 + 50;
+                for (int i=0;i<3;i++) {
+                    for (int j = 0; j < 3; j++) {
+                        switch (faceColor[indice][j][i]) {
+                            case BLUE:
+                                ge.setColor(java.awt.Color.BLUE);
+                                break;
+                            case GREEN:
+                                ge.setColor(java.awt.Color.GREEN);
+                                break;
+                            case ORANGE:
+                                ge.setColor(java.awt.Color.GRAY);
+                                break;
+                            case RED:
+                                ge.setColor(java.awt.Color.RED);
+                                break;
+                            case WHITE:
+                                ge.setColor(java.awt.Color.WHITE);
+                                break;
+                            case YELLOW:
+                                ge.setColor(java.awt.Color.YELLOW);
+                                break;
+                        }
+                        ge.fillRect(x+33*j,y+33*i,30,30);
+                    }
+                }
+            }
+
+        }
+    }
+
+    public class ThreadDrawFace implements Runnable
+    {
+        @Override
+        public void run()
+        {
+            drawFacette = new drawFacette();
+            drawFacette.setBounds(0,580,1280,200);
+            drawFacette.setVisible(true);
+            drawFacette.setOpaque(false);
+            drawFacette.repaint();
+            add(drawFacette);
+        }
+    }
+
+    public Color[][][] getFaceColor() {return faceColor;}
 }

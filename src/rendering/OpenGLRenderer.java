@@ -455,6 +455,15 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
         }
     }
 
+    public void InteractivSolver(){
+        Solver solver = new Solver();
+        try{
+            solution = solver.solve(rubiksCube);
+        }catch(NoSolutionFound e){
+            return;
+        }
+    }
+
     public void doNextRotation(int indice){
 
         switch(solution.get(indice)) {
@@ -499,4 +508,5 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
     }
 
     public int getSizeSolution(){return solution.size();}
+    public ArrayList<Rotation> getSolution(){return solution;}
 }
