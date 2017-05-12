@@ -6,6 +6,7 @@ import rendering.Renderable;
 import rubikscube.enums.Color;
 import rubikscube.enums.Face;
 import rubikscube.enums.Rotation;
+import rubikscube.enums.TripletToId;
 
 /**
  * Fonction représentant le RubiksCube
@@ -86,7 +87,29 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 		
 		return getColorPermutation(rubiksPermutations[face.ordinal() * 8 + posToID[x][y]]);
 	}
-	
+
+	/**
+	 * Retourne l'id associé a une position
+	 * @param face
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public int getFacetId(Face face, int x, int y)
+	{
+		if( x < 0 || x > 2 || y < 0 || y > 2)
+			throw new IllegalArgumentException();
+		if( x==1 && y==1)
+			return face.ordinal()*8;
+		return rubiksPermutations[face.ordinal() * 8 + posToID[x][y]];
+	}
+	public  void setFacetIdCorrespondante(Color[][][] matriceVue)
+	{
+
+
+	}
+
+
 	public boolean isAtRightLocation( Face face, int x, int y ) throws IllegalArgumentException {
 		/*
 		 * return true if the facet is at its right location on the cube.

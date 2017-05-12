@@ -1,19 +1,21 @@
-/*
-import rendering.Java3DRenderer;
-import resolution.FacetConfig;
-import resolution.Procedure;
+
 import rubikscube.RubiksCube;
 import rubikscube.enums.Color;
 import rubikscube.enums.Face;
 import rubikscube.enums.Rotation;
+import rubikscube.enums.TripletToId;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import resolution.RubiksConfiguration;
+
 public class Test {
 
-	public static void main( String[] args) {
+    public static void main(String[] args) {
+        System.out.println(TripletToId.withPermut(TripletToId.createTab()));
+    }
+}
+	    /*
 		Java3DRenderer r = new Java3DRenderer();
 		RubiksCube rc = new RubiksCube(); //R L U D OK
 		
