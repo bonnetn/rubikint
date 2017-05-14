@@ -35,6 +35,7 @@ public class InteractivSolver_capture extends JLabel{
     JButton previous = new JButton();
     JButton shoot = new JButton();
     JLayeredPane kamera = new JLayeredPane();
+    JLabel bottomText;
     Color testcolor;
     Placement_Facette placement_facette = new Placement_Facette(java.awt.Color.BLACK);
     drawFacette drawFacette = new drawFacette();
@@ -131,8 +132,11 @@ public class InteractivSolver_capture extends JLabel{
                     }
 
                 }
-                Thread threadDrawFace = new Thread(new ThreadDrawFace());
-                threadDrawFace.start();
+                drawFacette = new drawFacette();
+                drawFacette.setBounds(0,580,1280,200);
+                drawFacette.setVisible(true);
+                drawFacette.setOpaque(false);
+                add(drawFacette);
                 drawFacette.repaint();
             }
         });
@@ -153,6 +157,7 @@ public class InteractivSolver_capture extends JLabel{
         add(previous);
         add(shoot);
         add(kamera);
+        faceTextWindow();
     }
     public JButton getDone(){return done;}
 
@@ -177,12 +182,12 @@ public class InteractivSolver_capture extends JLabel{
     {
         java.awt.Color PixelColor;
         int x=0; int y=0; int R=0; int G=0; int B=0;
-        if (i==0) {x = 215;}
-        if (i==1) {x = 315;}
-        if (i==2) {x = 415;}
-        if (j==0) {y = 135;}
-        if (j==1) {y = 235;}
-        if (j==2) {y = 335;}
+        if (j==0) {x = 215;}
+        if (j==1) {x = 315;}
+        if (j==2) {x = 415;}
+        if (i==2) {y = 135;}
+        if (i==1) {y = 235;}
+        if (i==0) {y = 335;}
 
         for (int h=0;h<5;h++)
         {
@@ -270,10 +275,10 @@ public class InteractivSolver_capture extends JLabel{
         public void paintComponent(Graphics ge)
         {
             for (int indice=0;indice<=faceCapture;indice++) {
-                int x = indice*150 + 50;
+                int x = indice*200 + 90;
                 for (int i=0;i<3;i++) {
                     for (int j = 0; j < 3; j++) {
-                        switch (faceColor[indice][j][i]) {
+                        switch (faceColor[indice][i][j]) {
                             case BLUE:
                                 ge.setColor(java.awt.Color.BLUE);
                                 break;
@@ -281,7 +286,7 @@ public class InteractivSolver_capture extends JLabel{
                                 ge.setColor(java.awt.Color.GREEN);
                                 break;
                             case ORANGE:
-                                ge.setColor(java.awt.Color.GRAY);
+                                ge.setColor(new java.awt.Color(255,69,0));
                                 break;
                             case RED:
                                 ge.setColor(java.awt.Color.RED);
@@ -293,25 +298,11 @@ public class InteractivSolver_capture extends JLabel{
                                 ge.setColor(java.awt.Color.YELLOW);
                                 break;
                         }
-                        ge.fillRect(x+33*j,y+33*i,30,30);
+                        ge.fillRect(x+33*j,y+(2-i)*33,30,30);
                     }
                 }
             }
 
-        }
-    }
-
-    public class ThreadDrawFace implements Runnable
-    {
-        @Override
-        public void run()
-        {
-            drawFacette = new drawFacette();
-            drawFacette.setBounds(0,580,1280,200);
-            drawFacette.setVisible(true);
-            drawFacette.setOpaque(false);
-            drawFacette.repaint();
-            add(drawFacette);
         }
     }
 
@@ -334,5 +325,48 @@ public class InteractivSolver_capture extends JLabel{
         }
     }
 
+    public void faceTextWindow()
+    {
+        bottomText = new JLabel();
+        JLabel Front = new JLabel("F");
+        Front.setFont(new Font("Tahoma",Font.BOLD,25));
+        Front.setForeground(java.awt.Color.RED);
+        Front.setBounds(50,613,25,25);
+        Front.setVisible(true);
+        bottomText.add(Front);
+        JLabel Right = new JLabel("R");
+        Right.setFont(new Font("Tahoma",Font.BOLD,25));
+        Right.setForeground(java.awt.Color.RED);
+        Right.setBounds(225,613,25,25);
+        Right.setVisible(true);
+        bottomText.add(Right);
+        JLabel Back = new JLabel("B");
+        Back.setFont(new Font("Tahoma",Font.BOLD,25));
+        Back.setForeground(java.awt.Color.RED);
+        Back.setBounds(425,613,25,25);
+        Back.setVisible(true);
+        bottomText.add(Back);
+        JLabel Left = new JLabel("L");
+        Left.setFont(new Font("Tahoma",Font.BOLD,25));
+        Left.setForeground(java.awt.Color.RED);
+        Left.setBounds(635,613,25,25);
+        Left.setVisible(true);
+        bottomText.add(Left);
+        JLabel Up = new JLabel("U");
+        Up.setFont(new Font("Tahoma",Font.BOLD,25));
+        Up.setForeground(java.awt.Color.RED);
+        Up.setBounds(825,613,25,25);
+        Up.setVisible(true);
+        bottomText.add(Up);
+        JLabel Down = new JLabel("D");
+        Down.setFont(new Font("Tahoma",Font.BOLD,25));
+        Down.setForeground(java.awt.Color.RED);
+        Down.setBounds(1025,613,25,25);
+        Down.setVisible(true);
+        bottomText.add(Down);
+        bottomText.setBounds(0,0,1280,720);
+        bottomText.setVisible(true);
+        add(bottomText);
+    }
     public Color[][][] getFaceColor() {return faceColor;}
 }

@@ -101,20 +101,23 @@ public class InteractivSolver extends JLabel {
         solveCube.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                renderer.setRubiksCubecolor(faceColor);
+                System.out.println(renderer.getRubiksPermutation());
                 Accueil.setVisible(false);
                 Capture.setVisible(false);
                 Solver.setVisible(true);
+
             }
         });
 
         //-------------------CAPTURE--------------------
 
-        faceColor = Capture.getFaceColor();
         JButton done = Capture.getDone();
 
         done.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                faceColor = Capture.getFaceColor();
                 Solver.setVisible(false);
                 Capture.setVisible(false);
                 Accueil.setVisible(true);

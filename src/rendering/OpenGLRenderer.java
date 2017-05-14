@@ -509,4 +509,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
 
     public int getSizeSolution(){return solution.size();}
     public ArrayList<Rotation> getSolution(){return solution;}
+
+    public void setRubiksCubecolor(Color[][][] color){ rubiksCube.setRubiksCubeColor(color);}
+    public int[] getRubiksPermutation(){return rubiksCube.getPermutationTable();}
 }
