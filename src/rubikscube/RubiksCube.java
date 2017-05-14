@@ -425,4 +425,6 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 		setPermutationTable(getPermutationTableFromConfig(color));
 	}
 
+	public int[] getTable() {return rubiksPermutations;}
+
 }

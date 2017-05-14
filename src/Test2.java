@@ -12,7 +12,7 @@ public class Test2 {
 	
 		Solver solver = new Solver();
 		RubiksCube rubiksCube = new RubiksCube();
-		rubiksCube.randomMelange();
+		/*rubiksCube.randomMelange();
 		
 		System.out.println("Solving... please wait...");
 		ArrayList<Rotation> solution;
@@ -45,7 +45,10 @@ public class Test2 {
 		rubiksCube.printFace(Face.R);
 		rubiksCube.printFace(Face.B);
 		
-		
+		*/
+
+
+
 		
 		
 

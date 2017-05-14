@@ -80,6 +80,8 @@ public class InteractivSolver extends JLabel {
     OpenGLRenderer renderer;
     Color[][][] faceColor;
 
+    Color[][][] testColor = new Color[6][3][3];
+
 
     public InteractivSolver(){
         CardLayout cl = new CardLayout();
@@ -118,6 +120,15 @@ public class InteractivSolver extends JLabel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 faceColor = Capture.getFaceColor();
+                for( int i=0; i<faceColor.length; i++) {
+                    for( int j=0; j<faceColor[i].length; j++) {
+                        for( int k=0; k<faceColor[i][j].length; k++) {
+                            System.out.print(faceColor[i][j][k]);
+                            System.out.print(" ");
+                        }
+                    }
+                    System.out.println("");
+                }
                 Solver.setVisible(false);
                 Capture.setVisible(false);
                 Accueil.setVisible(true);
@@ -128,6 +139,7 @@ public class InteractivSolver extends JLabel {
 
         renderer = Solver.getRenderer();
         JButton returne = Solver.getReturne();
+
 
         returne.addActionListener(new ActionListener() {
             @Override
