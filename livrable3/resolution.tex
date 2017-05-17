@@ -1,5 +1,8 @@
 \chapter{Résoudre un Rubik's cube}
 
+\section{Le besoin}
+Cette partie est le coeur du projet: il s'agit de créer un algorithme étant capable d'à partir d'un Rubik's Cube quelquonque, de trouver la suite des rotations pour le résoudre.
+
 \section{Modéliser un Rubik's Cube}
 
 Dans ce projet, nous nous sommes rendu compte que modéliser un Rubik's Cube était moins trivial qu'il n'en avait l'air.
@@ -47,5 +50,45 @@ C'est finalement cette approche que nous avons décidé de garder car elle nous 
 Une fois que nous avons créé un objet représentant le cube que nous pouvions manipuler virtuellement, nous nous sommes attaqué à la partie résolution.
 Résoudre un Rubik's Cube nécessite d'être rigoureux et surtout méthodique.
 C'est donc pourquoi nous avions initialement pensé qu'un ordinateur serait parfaitement adapté pour appliquer une méthode de résolution.
-Cependant, nous nous sommes aperçu que il y a toujours une partie 
+Cependant, nous nous sommes aperçu que il y a toujours une partie d'intuition dans les méthodes de résolution (par exemple faire la première face).
+Cela nous a donc posé une difficulté.
+
+\subsection{Les premiers essais}
+Alban, complète ici
+
+\subsection{La solution retenue}
+Nous avons finalement décidé de simplier au maximum de résolution.
+La solution retenue a donc été basée sur de l'exploration de graphe en largeur et sur système de validateur.
+
+\subsubsection{Les validateurs}
+Les validateurs sont des éléments importants dans notre système de résolution.
+Ils prennent en argument une configuration de Rubik's Cube et renvoient vrai ou faux.
+Ils permettent de déterminer si une étape de résolution est finie.
+Par exemple, un validateur pourra être chargé de déterminer si la croix blanche est faite, ou alors regarder si la deuxième couronne est faite.
+
+Ainsi, tout d'abord nous lançons notre algorithme de résolution avec le premier validateur (celui qui vérifie la croix blanche).
+Cet algorithme reverra une configuration de Rubik's valide (donc avec la croix blanche de faite).
+
+Ensuite nous relançons l'algorithme avec le validateur 1 + le validateur 2 (qui vérifiera que les coins de la face blanche sont faits.
+On obtiendra donc un cube qui est valide selon les deux premiers validateurs: la face blanche sera faite.
+
+On relance successivement la résolution avec de plus en plus de validateurs (et donc de contraintes) jusqu'à ce que le Rubik's soit totalement résolu.
+
+\subsubsection{L'algorithme de résolution}
+Comme décrit précédemment, nous avons implémenté un algorithme permettant de partir d'une configuration du cub et de trouver les mouvements nécessaires pour qu'il passe le validateur.
+
+Pour cela nous avons utilisé un algorithme de parcours en profondeur.
+Nous lui fournissons une liste de Maneuvres (ensemble de rotations) qu'il peut faire, et il essaiera successivement toutes les manoeuvres jusqu'à trouver le bon RubiksCube.
+Bien entendu, les manoeuvres fournies sont les manipulations décrites par les techniques de résolution.
+
+En faisant cela, nous nous assurons de trouver la solution optimale entre chaque étape.
+
+\subsubsection{La fin}
+Une fois que nous avons une liste de rotations pour résoudre le Rubik's, nous appliquons un dernier algorithme.
+Il faut vérifier qu'il n'y a pas de mouvements inutiles.
+Par exemple: Tourner une couronne dans le sens trigonométrique puis horaire.
+Nous supprimons donc ces mouvements inutiles en passant sur la liste des rotations plusieurs fois en détectant les mouvements contraires et en les supprimant.
+
+
+
 
