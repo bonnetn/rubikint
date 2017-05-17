@@ -1,23 +1,42 @@
 \chapter{Cahier des charges}
 
-Nous avons découpé notre projet en trois grands pôles: la partie graphique, la partie résolution et la partie **computer vision**. 
-Chacun de ces trois pôles a eu des besoins spécifiques et a demandé l'utilisation de bibliothèques spécifiques.
+\section{Besoins}
+Notre application a pour but d'assister un utilisateur dans la résolution de son Rubik's Cube.
+L'utilisateur rentrera la configuration du cube qu'il a à résoudre via une interface facile d'utilisation.
+Le programme sera ensuite capable de lui indiquer la suite de manipulations qu'il doit effectuer pour résoudre le jeu.
 
+L'interface se voudra facile d'utilisation, tant au niveau des menus qu'au niveau de l'entrée de la configuration du Rubik's.
+L'utilisateur devra pouvoir suivre les étapes de résolution sans connaissance préalable.
 
-\begin{tabularx}{30cm}{|c|c|c|}
+\section{Les tâches}
+\subsection{Le tableau}
+\begin{tabularx}{\textwidth}{|X|X|X|}
   \hline
-  Fonctions & Tâches & Solution technique \\
+    \textbf{Fonctions} & \textbf{Tâches} & \textbf{Solution technique} \\
   \hline
   \multirow{5}*{Capturer l'état du RubiksCube} & Capturer un flux vidéo par webcam & WebcamPanel \\
+
+  \hhline{~--}
   & Afficher la capture & WebcamPanel \\
+
+  \hhline{~--}
   & Détecter les couleurs & Utilisation de l'espace HSV \\
+
+  \hhline{~--}
   & Transformer un tableau de couleurs en object RubiksCube & Algorithme de correspondance \\
   \hline
   \multirow{2}*{Trouver les étapes de résolution} & Modéliser le RubiksCube & Utiliser un tableau de permutations \\
+
+  \hhline{~--}
    & Résoudre le RubiksCube & Explorer un arbre avec des validateurs \\
   \hline
   \multirow{2}*{Faire une interface graphique} & Afficher des menus & Swing \\
+
+  \hhline{~--}
    & Afficher le cube en 3D & OpenGL \\
   \hline
 \end{tabularx}
+\subsection{Le découpage}
+Nous avons découpé notre projet en trois grands pôles: la partie graphique, la partie résolution et la partie \textit{computer vision}.
+Chacun de ces trois pôles a eu des besoins spécifiques et a demandé l'utilisation de bibliothèques spécifiques.
 
