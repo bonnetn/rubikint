@@ -1,0 +1,23 @@
+\chapter{Cahier des charges}
+
+Nous avons découpé notre projet en trois grands pôles: la partie graphique, la partie résolution et la partie **computer vision**. 
+Chacun de ces trois pôles a eu des besoins spécifiques et a demandé l'utilisation de bibliothèques spécifiques.
+
+
+\begin{tabularx}{30cm}{|c|c|c|}
+  \hline
+  Fonctions & Tâches & Solution technique \\
+  \hline
+  \multirow{5}*{Capturer l'état du RubiksCube} & Capturer un flux vidéo par webcam & WebcamPanel \\
+  & Afficher la capture & WebcamPanel \\
+  & Détecter les couleurs & Utilisation de l'espace HSV \\
+  & Transformer un tableau de couleurs en object RubiksCube & Algorithme de correspondance \\
+  \hline
+  \multirow{2}*{Trouver les étapes de résolution} & Modéliser le RubiksCube & Utiliser un tableau de permutations \\
+   & Résoudre le RubiksCube & Explorer un arbre avec des validateurs \\
+  \hline
+  \multirow{2}*{Faire une interface graphique} & Afficher des menus & Swing \\
+   & Afficher le cube en 3D & OpenGL \\
+  \hline
+\end{tabularx}
+
