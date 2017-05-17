@@ -1,7 +1,7 @@
 \chapter{Résoudre un Rubik's cube}
 
 \section{Le besoin}
-Cette partie est le coeur du projet: il s'agit de créer un algorithme étant capable d'à partir d'un Rubik's Cube quelquonque, de trouver la suite des rotations pour le résoudre.
+Cette partie est le coeur du projet: il s'agit de créer un algorithme étant capable d'à partir d'un Rubik's Cube quelquonque, de trouver la suite des rotations pour le résoudre. Celui-ci doit être le plus rapide possible, tant en terme de temps d'exécution qu'en terme de complexité de la solution trouvée, c'est à dire le nombre de rotations qui seront effectuées pour résoudre le cube.
 
 \section{Modéliser un Rubik's Cube}
 
@@ -54,8 +54,11 @@ Cependant, nous nous sommes aperçu que il y a toujours une partie d'intuition d
 Cela nous a donc posé une difficulté.
 
 \subsection{Les premiers essais}
-Alban, complète ici
-
+Le premier essai a été d'adapter la méthode de résolution qu'un humain met en place lorsqu'il apprend à résoudre le cube. Cette méthode se repose sur des manoeuvres connues qui doivent être exécutées dans un certain ordre prédéterminé.
+Ces manoeuvres doivent êtres exécutées lorsqu'on détecte une certaine configuration, c'est à dire lorsque la configuration du cube correspond à l'une des configurations dans laquelle la manoeuvre peut être exécutée. Cette approche devait par ailleurs être couplée avec le système de validateur pour permettre de couvrir plus de cas particuliers (dans lesquels il faut par exemple exécuter une même manoeuvre plusieurs fois, pour retrouver des configurations détectables).
+Cette méthode a été au final abandonnée pour plusieurs raisons: Tout d'abord elle est particulièrement rébarbative à coder et à debugger, car les erreurs dans les manoeuvres, et surtout dans les configurations sont particulièrement difficiles à détecter.
+De plus, cette approche présentait un gros défaut qui apparaissait lors de la résolution de la première croix blanche sur le Rubik's Cube, qui est faite de manière très instinctive par l'homme, et qui nécessitait une multiplication trop importante du nombre de manoeuvres prédéterminées.
+L'approche à donc été abandonnée.
 \subsection{La solution retenue}
 Nous avons finalement décidé de simplier au maximum de résolution.
 La solution retenue a donc été basée sur de l'exploration de graphe en largeur et sur système de validateur.
