@@ -2,6 +2,8 @@ package rendering;
 
 /**
  * Created by florian on 17/02/17.
+ *
+ * CETTE CLASSE EST UTILISEE DANS OpenGLRenderer pour passer DE LA CONFIGURATION PAR FACETTE A UNE CONFIGURATION PAR PEETIT CUBE
  */
 
 //  1 cube corresponds à 6 facettes. Il s'agit d'un petit cube du Rubik's cube.

@@ -2,10 +2,10 @@ package rendering;
 
 /**
  * Created by florian on 17/02/17.
+ *
+ * CETTE CLASSE CREE LE MOTEUR GRAPHIQUE PERMETTANT LE RENDU DU RUBIKSCUBE
  */
 
-import com.jogamp.newt.event.MouseEvent;
-import com.jogamp.newt.event.MouseListener;
 import rendering.enums.Direction;
 import rendering.enums.Axis;
 import resolution.NoSolutionFound;
@@ -24,23 +24,24 @@ import javax.media.opengl.glu.GLU;
 import java.awt.Frame;
 import java.util.ArrayList;
 
-// Attention, voire le probleme des fenetres qui ne se ferme pas
+
+
 
 
 public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListener, MouseListener */ {
 
-    private GLU glu;
+    /**----------------------------------------DEFINITION DES VARIABLES---------------------------------------------**/
+    private GLU glu; //C'est notre scene
     public Cube[][][] listeCube = new Cube[3][3][3];
     ArrayList<Rotation> solution;
 
 
-    // angle gerant la rotation camera
+    // angle gerant la rotation camera et valeur pour le zoom
     private static final float defaultAlphaX = -45f;
     private static final float defaultAlphaY = 0f;
     private static final float defaultAlphaZ = -30f;
     private static final float defaultZoom = -18f;
-    public static final float max_zoom = -10f;
-    public static final float min_zoom = -80f;
+
 
     public float alphaX = defaultAlphaX;
     public float alphaY = defaultAlphaY;
@@ -49,24 +50,22 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
 
     public final float distanceEntreCube = 0.1f;
 
+    // liste pour tourner les bonnes faces
     private float[] coloneAnglesX;
     private float[] ligneAnglesY;
     private float[] profondeurAnglesZ;
 
+    // entier pour definir la face a tourner
     private int rotateX = -1;
     private int rotateY = -1;
     private int rotateZ = -1;
     private float rotationSpeed = 5f;
 
-    public int mouseX = 300; // la moitie de la taille du rendu
-    public int mouseY = 300;
-
-
     private RubiksCube rubiksCube;
     private RandomSolverThread animation;
 
 
-
+/**----------------------CONSTRUCTEUR ET OVERRIDE DES METHODE NECESSAIRE AU RENDU 3D---------------------------------**/
     public OpenGLRenderer(){
         rubiksCube = new RubiksCube();
         this.coloneAnglesX = new float[3];
@@ -76,7 +75,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
     }
 
     @Override
-    public void init(GLAutoDrawable drawable){
+    public void init(GLAutoDrawable drawable){ //Initialisation du rendu
         GL2 gl = drawable.getGL().getGL2();
         glu = new GLU();
         gl.glClearColor(0.0f,0.0f,0.0f,0.0f); //fond noir
@@ -85,31 +84,29 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
         gl.glDepthFunc(GL2.GL_LEQUAL);
         gl.glHint(GL2.GL_PERSPECTIVE_CORRECTION_HINT, GL2.GL_NICEST);
         gl.glShadeModel(GL2.GL_SMOOTH);
-        //glu.gluLookAt(0f, 0f, 12f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
 
-    } //initialisation de mon rendu OpenGL
+    }
 
     @Override
     public void display(GLAutoDrawable drawable) {
-
-        updateAngles();
+        //Methode appelée en boucle : le cube se dessine en boucle ce qui permet de faire les rotations en redessinant
+        // par de petite rotation petit à petit, petite rotation defini par rotationSpeed
+        updateAngles(); //permet d'incrementer les angles des faces en train de tourner
         GL2 gl = drawable.getGL().getGL2();
-        gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT); // clear du buffer pour eviter chevauchement des faces.
-        gl.glLoadIdentity();
-        glu.gluLookAt(0f, 0f, 12f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
+        gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT); // evite les chevauchement de face
+        gl.glLoadIdentity(); //reset du rendu
+        glu.gluLookAt(0f, 0f, 12f, 0f, 0f, 0f, 0f, 1f, 0f); //Placement de la caméra
+        // au point (4,0,12) regardant vers (0,0,0) suivant axe y (0,1,0)
 
-        //gl.glTranslatef(0f,0f,-10f);
-        gl.glRotatef(alphaX, 1f, 0f, 0f); // rotation matrice courante d'angle alphaX autour de axe X
-        gl.glRotatef(alphaY, 0f, 1f, 0f);
+        gl.glRotatef(alphaX, 1f, 0f, 0f); // rotation de la matrice courante selon X,Y et Z.
+        gl.glRotatef(alphaY, 0f, 1f, 0f); // permet de tourner autour du cube
 	    gl.glRotatef(alphaZ, 0f, 0f, 1f);
-	    drawRubiksCube(gl,rubiksCube);
+	    drawRubiksCube(gl,rubiksCube); // Dessine le rubikscube en 3D
 
 
-    } //est appelé en boucle : le cube se dessine en boucle ce qui permet de faire les rotations en redessinant
-    @Override                                          // par de petite rotation petit à petit, petite rotation defini par rotationSpeed
-    public void dispose (GLAutoDrawable arg0) {
-        // rien a mettre ici mais la methode doit être présente.
-    } // pas utile ici mais doit être Override (demande par OpenGL)
+    }
+    @Override
+    public void dispose (GLAutoDrawable arg0) {} // pas utile ici mais doit être Override (demande par OpenGL)
 
     @Override
     public void reshape (GLAutoDrawable drawable, int x, int y, int width, int height) {
@@ -126,7 +123,9 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
 
     }  //permet de changer la taille de la fenetre
 
-    private void setGlColor(GL2 gl, Color color) {
+    /**-----------------------------------------RENDU DU RUBIKSCUBE--------------------------------------------------**/
+
+    private void setGlColor(GL2 gl, Color color) { //Definition des couleurs dans OpenGL à partir de l'enum Colo
         switch (color) {
             case WHITE:
                 gl.glColor3f(1f, 1f, 1f); break;
@@ -143,16 +142,15 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
             case BLACK:
                 gl.glColor3f(0f,0f,0f); break;
         }
-    } //permet de definir les couleur pour OpenGL
+    }
 
-    private void drawCube( GL2 gl, Cube cube){
+    private void drawCube( GL2 gl, Cube cube){ //Permet de dessiner un petit cube d'un RubiksCube par la class
+        //defini pour dans le package rendering
 
 
         gl.glBegin(GL2.GL_QUADS);
 
         //face du haut
-        //gl.glColor3f(1f,0f,0.5f); //noire par defaut
-        //if ((coloredFaces & cube.upFace) == cube.upFace) { setGlColor(gl, cube.upColor);}
         setGlColor(gl,cube.upColor);
         gl.glVertex3f(0f,0f,1f);
         gl.glVertex3f(0f,1f,1f);
@@ -160,8 +158,6 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
         gl.glVertex3f(1f,0f,1f);
 
         // face du bas
-        //gl.glColor3f(1f,0f,0.5f);
-        //if ((coloredFaces & cube.downFace) == cube.downFace) { setGlColor(gl,cube.downColor);}
         setGlColor(gl,cube.downColor);
         gl.glVertex3f(0f,0f,0f);
         gl.glVertex3f(0f,1f,0f);
@@ -169,8 +165,6 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
         gl.glVertex3f(1f,0f,0f);
 
         // face devant
-        //gl.glColor3f(1f,0f,0.5f);
-        //if ((coloredFaces & cube.frontFace) == cube.frontFace) { setGlColor(gl,cube.frontColor);}
         setGlColor(gl,cube.frontColor);
         gl.glVertex3f(0f,0f,0f);
         gl.glVertex3f(1f,0f,0f);
@@ -178,8 +172,6 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
         gl.glVertex3f(0f,0f,1f);
 
         // face arriere
-        //gl.glColor3f(1f,0f,0.5f);
-        //if ((coloredFaces & cube.backFace) == cube.backFace) { setGlColor(gl,cube.backColor);}
         setGlColor(gl,cube.backColor);
         gl.glVertex3f(0f,1f,0f);
         gl.glVertex3f(1f,1f,0f);
@@ -187,8 +179,6 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
         gl.glVertex3f(0f,1f,1f);
 
         //face de gauche
-        //gl.glColor3f(1f,0f,0.5f);
-        //if ((coloredFaces & cube.leftFace) == cube.leftFace) { setGlColor(gl,cube.leftColor);}
         setGlColor(gl,cube.leftColor);
         gl.glVertex3f(0f,0f,0f);
         gl.glVertex3f(0f,1f,0f);
@@ -196,15 +186,13 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
         gl.glVertex3f(0f,0f,1f);
 
         //face de droite
-        //gl.glColor3f(1f,0f,0.5f);
-        //if ((coloredFaces & cube.rightFace) == cube.rightFace) { setGlColor(gl,cube.rightColor);}
         setGlColor(gl,cube.rightColor);
         gl.glVertex3f(1f,0f,0f);
         gl.glVertex3f(1f,1f,0f);
         gl.glVertex3f(1f,1f,1f);
         gl.glVertex3f(1f,0f,1f);
         gl.glEnd();
-    } //dessine un petit cube dont les couleurs sont donnée en argument.
+    }
 
 
     public void drawRubiksCube(GL2 gl, RubiksCube rubiksCube) // dessine tous les petits cube a partir de la config de RubiksCube
@@ -216,7 +204,6 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
             {
                 for (int z = 0; z < 3; z++)
                 {
-                    // mettre ici des rotates des différents cube selon s'il sont en train de tourner
                     gl.glPushMatrix();
                     gl.glTranslatef(0f,0f,0f); // revient au centre pour eviter un decalage
 
@@ -243,7 +230,7 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
 
     // besoin de definir le cube dans un repère 3D (x,y,z)e [-1,1]³ (en petit cube) et non pas Face puis (x,y) e [0,2]² (par facette)
 
-    public void setCube(RubiksCube rCube){  // POSITION X ET Y A VERIFIER SELON LA NORME UTILISE DANS RUBIKS CUBE
+    public void setCube(RubiksCube rCube){ //Cree les petits cube en fonction de la configuration par facette de RubiksCube
 
         // PREMIERE COURONNE FRONTALE
         // [-1,-1,-1] | [0,0,0] +1 a chaque composantes pour en faire une liste.
@@ -306,8 +293,8 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
         //[1,1,1]
         listeCube[2][2][2] = new Cube(Color.BLACK,rCube.getFacetColor(Face.B,0,2),Color.BLACK,rCube.getFacetColor(Face.R,2,2),rCube.getFacetColor(Face.U,2,2),Color.BLACK,1,1,1);
 
-    } // cree les petits cube à partir de la representation plan par facettes de RubiksCube
-
+    }
+/**------------------------------------METHODE RELATIVE A L'ANIMATION DU CUBE (ROTATION)-----------------------------**/
     public boolean isRotating() //determine si le cube a deja une face qui est en train de tourner, eviter plusieurs mouvement en meme temps
     {
         return rotateX + rotateY + rotateZ > -3; // valeur par default des rotate font = -3
@@ -315,9 +302,9 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
 
 
     /* Rotations :
-           rotateX = 0 => tourne L   rotateX = 2 => tourne R selon axe X  si 1 on tourne couronne centrale selon X
-           rotateY = 0 => tourne F   rotateY = 2 => tourne B selon axe Y  si 1 on tourne couronne centrale selon Y
-           rotateZ = 0 => tourne D   rotateZ = 2 => tourne U selon axe Z  si 1 on tourne couronne centrale selon Z
+           rotateX = 0 => tourne L   rotateX = 2 => tourne R selon axe X
+           rotateY = 0 => tourne F   rotateY = 2 => tourne B selon axe Y
+           rotateZ = 0 => tourne D   rotateZ = 2 => tourne U selon axe Z
      */
     public void updateAngles() // va etre appele a chaque boucle de display et permet donc d'avoir les angles qui s'incrémente au fur et a mesure pour effectuer la rotation
     {
@@ -375,11 +362,14 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
         }
     }
 
+
     public void setRubiksCube(RubiksCube cube){rubiksCube = cube;}
 
     public void randomGLMelange(){rubiksCube.randomMelange();}
 
     public RubiksCube getCube(){return rubiksCube;}
+
+    /**----------CLASSE ET METHODE RELAVITE A LA RESOLUTION (THREAD POUR LA RESOLUDION DANS RandonSolverIhm----------**/
 
 
     private abstract class RandomSolverThread extends Thread {
@@ -463,7 +453,6 @@ public class OpenGLRenderer extends Frame implements GLEventListener/* KeyListen
             return;
         }
     }
-
     public void doNextRotation(int indice){
 
         switch(solution.get(indice)) {

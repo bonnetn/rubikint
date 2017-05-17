@@ -12,6 +12,8 @@ import javax.swing.*;
 
 /**
  * Created by florian on 29/01/17.
+ *
+ * GESTIONNAIRE PRINCIPAL DE SCENE ET PERMET DE SWITCH DE L'UNE A L'AUTRE PAR RECUPÉRATION DES JBUTTON CORRESPONDANT DANS CHAQUES SCENE
  */
 
 public class    Fenetre{
@@ -19,7 +21,7 @@ public class    Fenetre{
     String[] listeScene = {"Accueil","RandomSolverIhm","InteractivSolver"};
 
     public Fenetre() { // constructeur pour etablir les settings de la fenetre
-        CardLayout cl = new CardLayout();
+        CardLayout cl = new CardLayout(); // layout manager permetant de switch entre differentes scene
         JFrame frame = new JFrame();
 
         frame.setTitle("Rubik'INT");

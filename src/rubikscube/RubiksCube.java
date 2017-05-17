@@ -1,4 +1,6 @@
 package rubikscube;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -21,6 +23,16 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 	 */
 
 	private int rubiksPermutations[];
+
+	private ArrayList<Corner> capturedCorner = new ArrayList<>();
+	private ArrayList<Edge>   capturedEdge = new ArrayList<>();
+	private ArrayList<Corner> vanillaCorner = new ArrayList<>();
+	private ArrayList<Edge>   vanillaEdge = new ArrayList<>();
+	private ArrayList<ArrayList<Integer>>  settingPermutation = new ArrayList<>();
+	public ArrayList<Integer> indexToReach = new ArrayList<>();
+	public ArrayList<Integer> actualIndex = new ArrayList<>();
+
+
 
 	/**
 	 * Les permutations sous formes canoniques pour chacun des mouvements
@@ -409,8 +421,8 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 	public RubiksCube() {
 
 		// Initialise la liste qui sera permutée
-		rubiksPermutations = new int[6*9];
-		for( int i=0; i<6*9; i++)
+		rubiksPermutations = new int[6*8];
+		for( int i=0; i<6*8; i++)
 			rubiksPermutations[i] = i;
 	}
 
@@ -422,9 +434,180 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 
 	public void setRubiksCubeColor(Color[][][] color)
 	{
-		setPermutationTable(getPermutationTableFromConfig(color));
+		ColorToCubiesColor(color);
+		setPermutationTable();
 	}
 
 	public int[] getTable() {return rubiksPermutations;}
+
+	public void ColorToCubiesColor(Color[][][] color) // definis les differents coin et arrete capture
+	{
+		// Defini les coins dans cet ordre : ULF,URF,ULB,URB,DLF,DRF,DLB,DRB  F : 0 , R : 1 , B : 2, L : 3, U : 4, D : 5
+		//ULF 4 3 0
+
+		capturedCorner.add(new Corner(new Facette(color[4][0][0],13),new Facette(color[3][2][2],18),new Facette(color[0][0][2],0)));
+		//URF 4 1 0
+		capturedCorner.add(new Corner(new Facette(color[4][2][0],15),new Facette(color[1][0][2],32),new Facette(color[0][2][2],2)));
+		//ULB 4 3 2
+		capturedCorner.add(new Corner( new Facette(color[4][0][2],8),new Facette(color[3][0][2],16),new Facette(color[2][2][2],42)));
+		//URB 4 1 2
+		capturedCorner.add(new Corner( new Facette(color[4][2][2],10),new Facette(color[1][2][2],34), new Facette(color[2][0][2],40)));
+		//DLF 5 3 0
+		capturedCorner.add( new Corner( new Facette(color[5][0][2],24), new Facette(color[3][2][0],23), new Facette(color[0][0][0],5)));
+		//DRF
+		capturedCorner.add(new Corner(new Facette(color[5][2][2],26),new Facette(color[1][0][0],37),new Facette(color[0][2][0],7)));
+		//DLB
+		capturedCorner.add(new Corner(new Facette(color[5][0][0],29),new Facette(color[3][0][0],21), new Facette(color[2][2][0],47)));
+		//DRB
+		capturedCorner.add(new Corner(new Facette(color[5][2][0],31), new Facette(color[1][2][0],39),new Facette(color[2][0][0],45)));
+
+		// Arrete : UF , UR , UB , UL , DF , DR , DB , DL , FR , RB , BL , LF
+		//UF 4 0
+		capturedEdge.add(new Edge(new Facette(color[4][1][0],14),new Facette(color[0][1][2],1)));
+		//UR 4 1
+		capturedEdge.add(new Edge(new Facette(color[4][2][1],12),new Facette(color[1][1][2],33)));
+		//UB 4 2
+		capturedEdge.add(new Edge(new Facette(color[4][1][2],9), new Facette(color[2][1][2],41)));
+		//UL 4 3
+		capturedEdge.add(new Edge(new Facette(color[4][0][1],11), new Facette(color[3][1][2],17)));
+
+		//DF 5 0
+		capturedEdge.add(new Edge(new Facette(color[5][1][2],25), new Facette(color[0][1][0],6)));
+		//DR 5 1
+		capturedEdge.add(new Edge(new Facette(color[5][2][1],28),new Facette(color[1][1][0],38)));
+		//DB 5 2
+		capturedEdge.add(new Edge(new Facette(color[5][1][0],30),new Facette(color[2][1][0],46)));
+		//DL 5 3
+		capturedEdge.add(new Edge(new Facette(color[5][0][1],27),new Facette(color[3][1][0],22)));
+
+		//FR 0 1
+		capturedEdge.add(new Edge(new Facette(color[0][2][1],4),new Facette(color[1][0][1],35)));
+		//RB 1 2
+		capturedEdge.add(new Edge(new Facette(color[1][2][1],36),new Facette(color[2][0][1],43)));
+		//BL 2 3
+		capturedEdge.add(new Edge(new Facette(color[2][2][1],44),new Facette(color[3][0][1],29)));
+		//LF 3 0
+		capturedEdge.add(new Edge(new Facette(color[3][2][1],20),new Facette(color[0][0][1],3)));
+
+		//SET DES VANILLA CORNER ET EDGE QUI CONTIENT LES PERMID DES FACETTES.
+		vanillaCorner.add(new Corner(new Facette(getColorPermutation(13),13),new Facette(getColorPermutation(18),18),new Facette(getColorPermutation(0),0)));
+		vanillaCorner.add(new Corner(new Facette(getColorPermutation(15),15),new Facette(getColorPermutation(32),32),new Facette(getColorPermutation(2),2)));
+		vanillaCorner.add(new Corner( new Facette(getColorPermutation(8),8),new Facette(getColorPermutation(16),16),new Facette(getColorPermutation(42),42)));
+		vanillaCorner.add(new Corner( new Facette(getColorPermutation(10),10),new Facette(getColorPermutation(34),34), new Facette(getColorPermutation(40),40)));
+		vanillaCorner.add( new Corner( new Facette(getColorPermutation(24),24), new Facette(getColorPermutation(23),23), new Facette(getColorPermutation(5),5)));
+		vanillaCorner.add(new Corner(new Facette(getColorPermutation(26),26),new Facette(getColorPermutation(37),37),new Facette(getColorPermutation(7),7)));
+		vanillaCorner.add(new Corner(new Facette(getColorPermutation(29),29),new Facette(getColorPermutation(21),21), new Facette(getColorPermutation(47),47)));
+		vanillaCorner.add(new Corner(new Facette(getColorPermutation(31),31), new Facette(getColorPermutation(39),39),new Facette(getColorPermutation(45),45)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(14),14),new Facette(getColorPermutation(1),1)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(12),12),new Facette(getColorPermutation(33),33)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(9),9), new Facette(getColorPermutation(41),41)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(11),11), new Facette(getColorPermutation(17),17)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(25),25), new Facette(getColorPermutation(6),6)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(28),28),new Facette(getColorPermutation(38),38)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(30),30),new Facette(getColorPermutation(46),46)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(27),27),new Facette(getColorPermutation(22),22)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(4),4),new Facette(getColorPermutation(35),35)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(36),36),new Facette(getColorPermutation(43),43)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(44),44),new Facette(getColorPermutation(29),29)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(20),20),new Facette(getColorPermutation(3),3)));
+
+	}
+
+	public void setPermutationTable()
+	{
+		for (Corner captured : capturedCorner)
+		{
+			for (Corner vanilla : vanillaCorner)
+			{
+				if (vanilla.color.contains(captured.color.get(0))&&vanilla.color.contains(captured.color.get(1))&&vanilla.color.contains(captured.color.get(2)))
+				{
+					for (int i=0;i<2;i++)
+					{
+						for (int j=0;j<2;j++)
+						{
+							if (captured.color.get(i) == vanilla.color.get(j))
+							{
+								indexToReach.add(vanilla.permId.get(j));
+								actualIndex.add(captured.permId.get(i));
+							}
+
+						}
+					}
+				}
+
+			}
+		}
+
+		for (Edge captured : capturedEdge)
+		{
+			for (Edge vanilla : vanillaEdge)
+			{
+				if (vanilla.color.contains(captured.color.get(0))&&vanilla.color.contains(captured.color.get(1)))
+				{
+					for (int i=0;i<2;i++)
+					{
+						for (int j=0;j<2;j++)
+						{
+							indexToReach.add(vanilla.permId.get(j));
+							actualIndex.add(captured.permId.get(i));
+						}
+					}
+				}
+			}
+		}
+
+
+		for (int indice=0;indice<indexToReach.size();indice++)
+		{
+			rubiksPermutations[actualIndex.get(indice)] = indexToReach.get(indice);
+
+		}
+
+
+	}
+
+
+
+	public class Facette
+	{
+		int posPerm;
+		Color color;
+		Facette(Color color,int pos)
+		{
+			this.color=color;
+			this.posPerm=pos;
+		}
+	}
+
+	public class Corner
+	{
+		ArrayList<Color> color = new ArrayList<>();
+		ArrayList<Integer> permId = new ArrayList<>();
+		Corner(Facette c1,Facette c2,Facette c3)
+		{
+			this.color.add(c1.color);
+			this.color.add(c2.color);
+			this.color.add(c3.color);
+			this.permId.add(c1.posPerm);
+			this.permId.add(c2.posPerm);
+			this.permId.add(c3.posPerm);
+		}
+	}
+
+	public class Edge
+	{
+		ArrayList<Color> color = new ArrayList<>();
+		ArrayList<Integer> permId = new ArrayList<>();
+		Edge(Facette c1,Facette c2)
+		{
+			this.color.add(c1.color);
+			this.color.add(c2.color);
+			this.permId.add(c2.posPerm);
+			this.permId.add(c2.posPerm);
+		}
+	}
+
+
+
 
 }

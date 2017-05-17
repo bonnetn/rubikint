@@ -18,7 +18,11 @@ import java.util.ArrayList;
 
 /**
  * Created by florian on 05/03/17.
+ *
+ * AFFICHE UNE SCENE QUI PERMET DE GENERER UN RUBIKSCUBE ALEATOIREMENT ET DE LE RESOUDRE
  */
+
+/**----------------------------------------BASIC SETTINGS-----------------------------------------------------------**/
 public class RandomSolverIhm extends JLabel{
 
     ArrayList<Rotation> solution;
@@ -54,12 +58,12 @@ public class RandomSolverIhm extends JLabel{
         retAccueil.setRolloverIcon(i_2);
         retAccueil.setPressedIcon(i_3);
         retAccueil.setBorder(null);
+        /*
         retAccueil.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Bouton retour accueil OK");
-            }
+            public void actionPerformed(ActionEvent e) {}
         });
+        */
         retAccueil.setBounds(100,500,241,55);
 
         Icon i3 = new ImageIcon("img/randomSolver/randomSolver_solve.png");
@@ -69,7 +73,7 @@ public class RandomSolverIhm extends JLabel{
         solve.setRolloverIcon(i3_2);
         solve.setPressedIcon(i3_3);
         solve.setBorder(null);
-        solve.addActionListener(new ActionListener() {
+        solve.addActionListener(new ActionListener() {  //resout le cube et affiche le nombre d'etape
             @Override
             public void actionPerformed(ActionEvent e) {
                 renderer.Solve();
@@ -95,16 +99,12 @@ public class RandomSolverIhm extends JLabel{
         generate.setPressedIcon(i2_3);
         generate.setBorder(null);
         generate.setBounds(50,300,322,59);
-        generate.addActionListener(new ActionListener() {
+        generate.addActionListener(new ActionListener() {  //Melange le cube
             @Override
             public void actionPerformed(ActionEvent e) {renderer.Scramble();}
         });
 
-
-
-        //JLabel rendu3D = new JLabel();
-        //rendu3D.setLayout(null);
-        //rendu3D.setBounds(600,50,600,600);
+        /**-----------------------------------AJOUT DU RENDU 3D-----------------------------------------------------**/
         renderer = new OpenGLRenderer();
         canvas = new GLCanvas();
         canvas.addGLEventListener(renderer);
@@ -128,7 +128,7 @@ public class RandomSolverIhm extends JLabel{
     public JButton getacc(){ return retAccueil;}
     public JButton getNext(){return generate;}
 
-
+/**------------------------------ACTION LISTENER POUR TOURNER AUTOUR DU CUBE DANS LE RENDU--------------------------**/
     final class MyKeyListener extends KeyAdapter
     {
         //OpenGLRenderer renderer = new OpenGLRenderer();

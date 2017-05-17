@@ -14,6 +14,9 @@ import java.util.ArrayList;
 
 /**
  * Created by florian on 07/04/17.
+ *
+ * Cette scène permet de passer par les différentes scène d'InteractivSolver. Elle permet donc de naviguer entre InteractivSolver_capture et InteractiveSolver_solver
+ * Elle permet également de retrouner sur l'Accueil du programme par le bouton retAccueil
  */
 public class InteractivSolver_acc extends JLabel {
 

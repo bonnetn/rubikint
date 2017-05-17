@@ -14,27 +14,25 @@ import static rubikscube.enums.Color.*;
 
 /**
  * Created by florian on 07/04/17.
+ *
+ * Cette scène permet de Capturer les différentes faces du cube par le biais d'une Webcam.
  */
-/* SETLABEL pour afficher quel face est capture et affichage de la
-derniere face capture
 
-methode pour passer des couleurs au permutation.
- */
 
 public class InteractivSolver_capture extends JLabel{
 
 
     int faceCapture = 0;
+    int alreadyCapture=0;
     Color[][][] faceColor = new Color[6][3][3];
     BufferedImage img;
-
     Webcam webcam;
     WebcamPanel panel;
     JButton done = new JButton();
     JButton next = new JButton();
     JButton previous = new JButton();
     JButton shoot = new JButton();
-    JLayeredPane kamera = new JLayeredPane();
+    JLayeredPane kamera = new JLayeredPane(); //pour rajouter les points par dessus la webcam
     JLabel bottomText;
     Color testcolor;
     Placement_Facette placement_facette = new Placement_Facette(java.awt.Color.BLACK);
@@ -43,6 +41,8 @@ public class InteractivSolver_capture extends JLabel{
     int next_x=400;     int next_y=400;
     int previous_x=50; int previous_y=400;
     int shoot_x=100;    int shoot_y=300;
+
+    /**--------------------------------------BASIC SETTINGS---------------------------------------------------------**/
 
     public InteractivSolver_capture(){
         final ImageIcon background = new ImageIcon("img/InteractivSolver/interactiv_solver.png");
@@ -88,13 +88,15 @@ public class InteractivSolver_capture extends JLabel{
         kamera.setVisible(true);
         kamera.setOpaque(false);
 
-
+/**-----------------------------------ACTION LISTENER---------------------------------------------------------------**/
+/*
         done.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Bouton Done OK");
             }
         });
+        */
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -103,7 +105,6 @@ public class InteractivSolver_capture extends JLabel{
                 {
                     faceCapture++;
                 }
-                System.out.println(faceCapture);
 
             }
         });
@@ -116,23 +117,15 @@ public class InteractivSolver_capture extends JLabel{
                     faceCapture--;
 
                 }
-                System.out.println(faceCapture);
             }
         });
         shoot.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Bouton Shoot OK");
+                if (alreadyCapture < 5) { alreadyCapture++;}
                 setFace();
-                for (int i=0;i<3;i++)
-                {
-                    for (int j=0;j<3;j++)
-                    {
-                        System.out.println(faceColor[faceCapture][i][j].getValue());
-                    }
-
-                }
-                drawFacette = new drawFacette();
+                drawFacette = new drawFacette(); //Dessine les différentes face déjà capturé.
                 drawFacette.setBounds(0,580,1280,200);
                 drawFacette.setVisible(true);
                 drawFacette.setOpaque(false);
@@ -140,6 +133,7 @@ public class InteractivSolver_capture extends JLabel{
                 drawFacette.repaint();
             }
         });
+        /**---------------------------------INITIALISATION DE LA WEBCAM---------------------------------------------**/
         webcam = Webcam.getDefault();
         webcam.setViewSize(WebcamResolution.VGA.getSize());
         panel = new WebcamPanel(webcam);
@@ -160,7 +154,7 @@ public class InteractivSolver_capture extends JLabel{
         faceTextWindow();
     }
     public JButton getDone(){return done;}
-
+/**----------------------SET LA MATRICE DE COULEUR D'UNE FACE A PARTIR D'UNE IMAGE-----------------------------------**/
     public void setFace()
     {
         if (faceCapture<6)
@@ -177,7 +171,7 @@ public class InteractivSolver_capture extends JLabel{
 
 
     }
-
+/**-----------LECTURE DES PIXELS SUR UNE ZONE DE 5X5 CENTREE SUR LE POINT AFFICHE PAR DESSUUS L'IMAGE---------------**/
     public float[] readColor(int i,int j, BufferedImage img)
     {
         java.awt.Color PixelColor;
@@ -208,17 +202,17 @@ public class InteractivSolver_capture extends JLabel{
         return HSV;
     }
 
-
+/**-------------------DEFINITION DES SEUILS HSV POUR DETERMINER LA COULEUR D'UNE FACETTE----------------------------**/
     public Color defineColor(float[] rgb)
     {
         float H=rgb[0];
         float S=rgb[1];
         float V=rgb[2];
-        if (H >= 0.9f) //OK
+        if (H >= 0.9f || H < 0.05) //OK
         {
             return RED;
         }
-        if (H < 0.13f)
+        if (H < 0.11f && H>=0.05)
         {
             return ORANGE;
         }
@@ -236,7 +230,7 @@ public class InteractivSolver_capture extends JLabel{
             }
 
         }
-        if (H >= 0.13f && H < 0.30f)
+        if (H >= 0.11f && H < 0.30f)
         {
             return Color.YELLOW;
         }
@@ -244,6 +238,7 @@ public class InteractivSolver_capture extends JLabel{
 
      }
 
+    /**------------------------CLASSE POUR AFFICHER LES POINTS PAR DESSUS L'IMAGE DE LA WEBCAM----------------------**/
     public class Placement_Facette extends JPanel
     {
         java.awt.Color couleur_centrale;
@@ -267,14 +262,14 @@ public class InteractivSolver_capture extends JLabel{
 
         }
     }
-
+/**-----------------------------CLASSE POUR DESSINER LES FACES CAPTURE POUR VERIFIER-------------------------------**/
     public class drawFacette extends JPanel
     {
         int y = 0;
         public drawFacette(){};
         public void paintComponent(Graphics ge)
         {
-            for (int indice=0;indice<=faceCapture;indice++) {
+            for (int indice=0;indice<=alreadyCapture;indice++) {
                 int x = indice*200 + 90;
                 for (int i=0;i<3;i++) {
                     for (int j = 0; j < 3; j++) {
@@ -305,8 +300,8 @@ public class InteractivSolver_capture extends JLabel{
 
         }
     }
-
-    public void setInstruction()
+   /**---------------------------DEFINITION DES INSTRUCTION A LA CAPTURE---------------------------------------------**/
+    public void setInstruction() //Affiche les instruction de capture
     {
         switch (faceCapture)
         {
@@ -325,7 +320,7 @@ public class InteractivSolver_capture extends JLabel{
         }
     }
 
-    public void faceTextWindow()
+    public void faceTextWindow()  //Affiche les lettre correspondant au face capturée
     {
         bottomText = new JLabel();
         JLabel Front = new JLabel("F");

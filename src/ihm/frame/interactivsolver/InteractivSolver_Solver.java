@@ -14,21 +14,17 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import static rubikscube.enums.Rotation.*;
-
 /**
  * Created by florian on 07/04/17.
  */
 public class InteractivSolver_Solver extends JLabel {
 
     ArrayList<Rotation> solution;
-    ArrayList<Rotation> test;
     JLabel afficheEtape;
     OpenGLRenderer renderer;
     private GLCanvas canvas;
     int indice = 0;
     int max;
-    boolean isclockwise;
 
     JButton next = new JButton();
     JButton previous = new JButton();
@@ -42,6 +38,8 @@ public class InteractivSolver_Solver extends JLabel {
     int solveAll_x=50; int solveAll_y=400;
 
     public InteractivSolver_Solver(){
+
+        /** ------------------------------SET INTERFACE GRAPHIQUE (BACKGROUND, BOUTON)----- -------------------------**/
          final ImageIcon background = new ImageIcon("img/InteractivSolver/interactiv_solver.png");
          setIcon(background);
          setLayout(null);
@@ -83,7 +81,7 @@ public class InteractivSolver_Solver extends JLabel {
 
 
 
-
+/** ----------------------------------------ACTION LISTENER DES BOUTONS---------------------------------------------**/
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -132,12 +130,10 @@ public class InteractivSolver_Solver extends JLabel {
         add(returne);
         add(solveAll);
 
+        /**-----------------------------------AJOUT DU RENDU 3D ----------------------------------------------------**/
+
         renderer = new OpenGLRenderer();
         canvas = new GLCanvas();
-        //renderer.Scramble();
-        //renderer.InteractivSolver();
-        //solution = renderer.getSolution();
-        //max = renderer.getSizeSolution();
         setJLabel();
         afficheEtape.setFont(new Font("Tahoma", Font.BOLD,25));
         afficheEtape.setForeground(Color.RED);
@@ -155,6 +151,8 @@ public class InteractivSolver_Solver extends JLabel {
     }
     public JButton getReturne(){return returne;}
 
+
+    /**--------------------------METHODE ANNEXE D AFFICHAGE DE LA SOLUTION ET DE ROTATION DU CUBE--------------------**/
     public void setJLabel(){
         if (indice == max){
             afficheEtape = new JLabel("GG");
@@ -291,6 +289,8 @@ public class InteractivSolver_Solver extends JLabel {
         }
 
     }
+
+    /**-------------------------CLASSE PERMETANT LA ROTATION AUTOUR DU CUBE DANS LE RENDU 3D-------------------------**/
 
     final class MyKeyListener extends KeyAdapter
     {

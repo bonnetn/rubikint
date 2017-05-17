@@ -12,6 +12,8 @@ import rubikscube.RubiksCube;
 
 /**
  * Created by florian on 02/03/17.
+ *
+ * SCENE D'ACCUEIL QUI PERMET LE PASSAGE ENTRE LES AUTRES SCENES, RandomSolverIhm OU LE GESTIONNAIRE DE SCENE InteractivSolver.
  */
 public class Accueil extends JLabel{
 
