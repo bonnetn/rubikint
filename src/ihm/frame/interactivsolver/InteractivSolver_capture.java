@@ -103,6 +103,13 @@ public class InteractivSolver_capture extends JLabel{
                 System.out.println("Bouton Next OK");
                 if (faceCapture <5)
                 {
+                    for (int i=0;i<3;i++)
+                    {
+                        for (int j=0;j<3;j++)
+                        {
+                            System.out.println(faceColor[faceCapture][i][j]);
+                        }
+                    }
                     faceCapture++;
                 }
 
@@ -212,7 +219,7 @@ public class InteractivSolver_capture extends JLabel{
         {
             return RED;
         }
-        if (H < 0.11f && H>=0.05)
+        if (H < 0.13f && H>=0.05)
         {
             return ORANGE;
         }
@@ -230,7 +237,7 @@ public class InteractivSolver_capture extends JLabel{
             }
 
         }
-        if (H >= 0.11f && H < 0.30f)
+        if (H >= 0.13f && H < 0.30f)
         {
             return Color.YELLOW;
         }
@@ -269,7 +276,7 @@ public class InteractivSolver_capture extends JLabel{
         public drawFacette(){};
         public void paintComponent(Graphics ge)
         {
-            for (int indice=0;indice<=alreadyCapture;indice++) {
+            for (int indice=0;indice<=faceCapture;indice++) {
                 int x = indice*200 + 90;
                 for (int i=0;i<3;i++) {
                     for (int j = 0; j < 3; j++) {

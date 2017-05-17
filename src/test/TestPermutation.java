@@ -11,6 +11,7 @@ import javax.swing.*;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 
@@ -18,18 +19,15 @@ import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
  * Created by GRANTE Florian on 14/05/2017.
  */
 public class TestPermutation {
-
-    OpenGLRenderer renderer;
-    private static GLCanvas canvas = new GLCanvas();
-
     public static void main(String[] args) {
         Color[][][] testColor = new Color[6][3][3];
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (j == 2) {
-                    testColor[0][i][j] = Color.GREEN;
-                } else {
+                if (j==2)
+                {
+                    testColor[0][i][j] = Color.BLUE;
+                }else {
                     testColor[0][i][j] = Color.RED;
                 }
 
@@ -37,28 +35,31 @@ public class TestPermutation {
         }
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (j == 2) {
-                    testColor[0][i][j] = Color.RED;
-                } else {
-                    testColor[0][i][j] = Color.BLUE;
+                if (j==2)
+                {
+                    testColor[1][i][j] = Color.ORANGE;
+                }else {
+                    testColor[1][i][j] = Color.BLUE;
                 }
             }
         }
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (j == 2) {
-                    testColor[0][i][j] = Color.BLUE;
-                } else {
-                    testColor[0][i][j] = Color.ORANGE;
+                if (j==2)
+                {
+                    testColor[2][i][j] = Color.GREEN;
+                }else {
+                    testColor[2][i][j] = Color.ORANGE;
                 }
             }
         }
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (j == 2) {
-                    testColor[0][i][j] = Color.ORANGE;
-                } else {
-                    testColor[0][i][j] = Color.GREEN;
+                if (j==2)
+                {
+                    testColor[3][i][j] = Color.RED;
+                }else {
+                    testColor[3][i][j] = Color.GREEN;
                 }
             }
         }
@@ -83,7 +84,9 @@ public class TestPermutation {
         }
         System.out.println("Table de permutation fini");
         System.out.println("Taille de ");
-        System.out.println(rubiksCube.indexToReach.size());
-        System.out.println(rubiksCube.actualIndex.size());
+
+        ArrayList<Color> testColor2 = new ArrayList<>();
+
+
     }
 }

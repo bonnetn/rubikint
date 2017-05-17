@@ -29,8 +29,12 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 	private ArrayList<Corner> vanillaCorner = new ArrayList<>();
 	private ArrayList<Edge>   vanillaEdge = new ArrayList<>();
 	private ArrayList<ArrayList<Integer>>  settingPermutation = new ArrayList<>();
-	public ArrayList<Integer> indexToReach = new ArrayList<>();
-	public ArrayList<Integer> actualIndex = new ArrayList<>();
+
+
+	public ArrayList<Integer> Corner_indexToReach = new ArrayList<>();
+	public ArrayList<Integer> Corner_actualIndex = new ArrayList<>();
+	public ArrayList<Integer> Edge_actualIndex = new ArrayList<>();
+	public ArrayList<Integer> Edge_indexToReach = new ArrayList<>();
 
 
 
@@ -485,7 +489,7 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 		//RB 1 2
 		capturedEdge.add(new Edge(new Facette(color[1][2][1],36),new Facette(color[2][0][1],43)));
 		//BL 2 3
-		capturedEdge.add(new Edge(new Facette(color[2][2][1],44),new Facette(color[3][0][1],29)));
+		capturedEdge.add(new Edge(new Facette(color[2][2][1],44),new Facette(color[3][0][1],19)));
 		//LF 3 0
 		capturedEdge.add(new Edge(new Facette(color[3][2][1],20),new Facette(color[0][0][1],3)));
 
@@ -508,7 +512,7 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 		vanillaEdge.add(new Edge(new Facette(getColorPermutation(27),27),new Facette(getColorPermutation(22),22)));
 		vanillaEdge.add(new Edge(new Facette(getColorPermutation(4),4),new Facette(getColorPermutation(35),35)));
 		vanillaEdge.add(new Edge(new Facette(getColorPermutation(36),36),new Facette(getColorPermutation(43),43)));
-		vanillaEdge.add(new Edge(new Facette(getColorPermutation(44),44),new Facette(getColorPermutation(29),29)));
+		vanillaEdge.add(new Edge(new Facette(getColorPermutation(44),44),new Facette(getColorPermutation(19),19)));
 		vanillaEdge.add(new Edge(new Facette(getColorPermutation(20),20),new Facette(getColorPermutation(3),3)));
 
 	}
@@ -521,14 +525,14 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 			{
 				if (vanilla.color.contains(captured.color.get(0))&&vanilla.color.contains(captured.color.get(1))&&vanilla.color.contains(captured.color.get(2)))
 				{
-					for (int i=0;i<2;i++)
+					for (int i=0;i<3;i++)
 					{
-						for (int j=0;j<2;j++)
+						for (int j=0;j<3;j++)
 						{
 							if (captured.color.get(i) == vanilla.color.get(j))
 							{
-								indexToReach.add(vanilla.permId.get(j));
-								actualIndex.add(captured.permId.get(i));
+								Corner_indexToReach.add(vanilla.permId.get(j));
+								Corner_actualIndex.add(captured.permId.get(i));
 							}
 
 						}
@@ -548,8 +552,13 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 					{
 						for (int j=0;j<2;j++)
 						{
-							indexToReach.add(vanilla.permId.get(j));
-							actualIndex.add(captured.permId.get(i));
+							if(captured.color.get(i)== vanilla.color.get(j))
+							{
+								Edge_indexToReach.add(vanilla.permId.get(j));
+								Edge_actualIndex.add(captured.permId.get(i));
+
+							}
+
 						}
 					}
 				}
@@ -557,10 +566,14 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 		}
 
 
-		for (int indice=0;indice<indexToReach.size();indice++)
+		for (int indice=0;indice<Corner_indexToReach.size();indice++)
 		{
-			rubiksPermutations[actualIndex.get(indice)] = indexToReach.get(indice);
+			rubiksPermutations[Corner_actualIndex.get(indice)] = Corner_indexToReach.get(indice);
 
+		}
+		for (int indice =0; indice<Edge_indexToReach.size();indice++)
+		{
+			rubiksPermutations[Edge_actualIndex.get(indice)] = Edge_indexToReach.get(indice);
 		}
 
 
@@ -602,7 +615,7 @@ public class RubiksCube extends AbstractRubiksCube implements Renderable {
 		{
 			this.color.add(c1.color);
 			this.color.add(c2.color);
-			this.permId.add(c2.posPerm);
+			this.permId.add(c1.posPerm);
 			this.permId.add(c2.posPerm);
 		}
 	}

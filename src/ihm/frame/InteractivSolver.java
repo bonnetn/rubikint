@@ -90,7 +90,6 @@ public class InteractivSolver extends JLabel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 renderer.setRubiksCubecolor(faceColor);
-                System.out.println(renderer.getRubiksPermutation());
                 Accueil.setVisible(false);
                 Capture.setVisible(false);
                 Solver.setVisible(true);
