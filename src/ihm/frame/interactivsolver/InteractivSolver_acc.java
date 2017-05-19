@@ -6,6 +6,7 @@ import rubikscube.enums.Rotation;
 
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class InteractivSolver_acc extends JLabel {
     Boolean isSolved = false;
     JButton capture = new JButton();
     JButton solve = new JButton();
+    JLabel accueilText = new JLabel();
     int indice = 0;
     int max;
 
@@ -86,6 +88,31 @@ public class InteractivSolver_acc extends JLabel {
         add(retAccueil);
         add(capture);
         add(solve);
+
+        accueilText.setText("<html>Bonjour et bienvenue dans notre solveur de Rubik's Cube de Rubik'INT." +
+                "<br>Vous ne savez pas comment le résoudre ou bien,comme notre tutrice,vous êtes en galère pour la dernière face ? (désolé Mme GUERMOUCHE, il me fallait un exemple pour que l'utilisateur se sente moins seul)"+
+                "<br>"+
+                "<br>J'ai une solution très simple, avec ma méthode, je vais vous montrer comment résoudre votre Rubik's Cube en seulement 5 minutes et 2 étapes. (normalement c'est le moment où je demande votre numéro de carte bleue pour vérifier que vous êtes majeur mais on m'a dit que j'avais pas le droit )= )"+
+                "<br>"+
+                "<br>Premièrement, entre dans le menu de capture et suit clairement les instruction pour que le programme puisse comprendre la configuration de ton Rubik's Cube" +
+                "<br>Dans un second temps (et là c'est la dernière étape, il y en a vraiment que deux, je vous ai pas mentis),revient sur l'accueil du solveur (bouton 'done') et entre dans le menu 'solve' le tour est joué"+
+                "<br>Vous n'avez plus qu'a suivre les étapes de résolution"+
+                "<br>"+
+                "<br>"+
+                "<br>Ah oui j'oubliais, j'imagine que vu que vous savez pas résoudre le Rubik's Cube, vous n'êtes pas à l'aise avec sa notation, donc je vous fais une petit tuto / rappel"+
+                "<br>  - Les face centrales sont fixes ! faut bien commentcer par le début."+
+                "<br>  - La face Rouge : Front F ;                      La face Bleue : Right R;"+
+                "<br>  - La face Orange : Back B ;                      La face Verte : Left L;"+
+                "<br>  - La face Blanc : Up U;                          La face Jaune : Down D"+
+                "<br>"+
+                "<br> Il ne me reste plus qu'a dire : GL & HF (Good Luck & Have Fun pour les novices ;) )</html>");
+        accueilText.setFont(new Font("Tahoma",Font.BOLD,18));
+        accueilText.setForeground(java.awt.Color.RED);
+        accueilText.setBounds(400,50,800,600);
+        accueilText.setVisible(true);
+        add(accueilText);
+
+
 
     }
 

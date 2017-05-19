@@ -34,9 +34,9 @@ public class InteractivSolver_capture extends JLabel{
     JButton shoot = new JButton();
     JLayeredPane kamera = new JLayeredPane(); //pour rajouter les points par dessus la webcam
     JLabel bottomText;
-    Color testcolor;
     Placement_Facette placement_facette = new Placement_Facette(java.awt.Color.BLACK);
     drawFacette drawFacette = new drawFacette();
+    JLabel Instruction = new JLabel();
     int done_x=100;     int done_y=500;
     int next_x=400;     int next_y=400;
     int previous_x=50; int previous_y=400;
@@ -88,6 +88,12 @@ public class InteractivSolver_capture extends JLabel{
         kamera.setVisible(true);
         kamera.setOpaque(false);
 
+        Instruction.setText("<html><font color=\"red\"> Placez la face au centre ROUGE à l'image en faisant correspondre au mieux les facettes sur les points noirs. Assurez vous d'avoir la face au centre </font><font color=\"white\">BLANC</font><font color=\"red\"> sur le dessus</font></html");
+        Instruction.setFont(new Font("Tahoma", Font.BOLD,25));
+        Instruction.setBounds(50, 100, 450,200);
+        Instruction.setVisible(true);
+        add(Instruction);
+
 /**-----------------------------------ACTION LISTENER---------------------------------------------------------------**/
 /*
         done.addActionListener(new ActionListener() {
@@ -111,6 +117,7 @@ public class InteractivSolver_capture extends JLabel{
                         }
                     }
                     faceCapture++;
+                    setInstruction();
                 }
 
             }
@@ -122,6 +129,7 @@ public class InteractivSolver_capture extends JLabel{
                 if (faceCapture >0)
                 {
                     faceCapture--;
+                    setInstruction();
 
                 }
             }
@@ -310,21 +318,40 @@ public class InteractivSolver_capture extends JLabel{
    /**---------------------------DEFINITION DES INSTRUCTION A LA CAPTURE---------------------------------------------**/
     public void setInstruction() //Affiche les instruction de capture
     {
+        Instruction.setVisible(false);
         switch (faceCapture)
         {
             case 0:
+                Instruction = new JLabel();
+                Instruction.setText("<html><font color=\"red\"> Placez la face au centre ROUGE à l'image en faisant correspondre au mieux les facettes sur les points noirs. Assurez vous d'avoir la face au centre </font><font color=\"white\">BLANC</font><font color=\"red\"> sur le dessus</font></html");
                 break;
             case 1:
+                Instruction = new JLabel();
+                Instruction.setText("<html><font color=\"red\"> Placez la face au centre </font><font color=\"blue\">BLEU</font><font color=\"red\"> à l'image en faisant correspondre au mieux les facettes sur les points noirs. Assurez vous d'avoir la face au centre </font><font color=\"white\">BLANC</font><font color=\"red\"> sur le dessus</font></html");
                 break;
             case 2:
+                Instruction = new JLabel();
+                Instruction.setText("<html><font color=\"red\"> Placez la face au centre </font><font color=\"orange\">ORANGE</font><font color=\"red\"> à l'image en faisant correspondre au mieux les facettes sur les points noirs. Assurez vous d'avoir la face au centre </font><font color=\"white\">BLANC</font><font color=\"red\"> sur le dessus</font></html");
                 break;
             case 3:
+                Instruction = new JLabel();
+                Instruction.setText("<html><font color=\"red\"> Placez la face au centre </font><font color=\"green\">VERT</font><font color=\"red\"> à l'image en faisant correspondre au mieux les facettes sur les points noirs. Assurez vous d'avoir la face au centre </font><font color=\"white\">BLANC</font><font color=\"red\"> sur le dessus</font></html");
                 break;
             case 4:
+                Instruction = new JLabel();
+                Instruction.setText("<html><font color=\"red\"> Placez la face au centre </font><font color=\"white\">BLANC</font><font color=\"red\"> à l'image en faisant correspondre au mieux les facettes sur les points noirs. Assurez vous d'avoir la face au centre </font><font color=\"orange\">ORANGE</font><font color=\"red\"> sur le dessus</font></html");
                 break;
             case 5:
+                Instruction = new JLabel();
+                Instruction.setText("<html><font color=\"red\"> Placez la face au centre </font><font color=\"yellow\">JAUNE</font><font color=\"red\"> à l'image en faisant correspondre au mieux les facettes sur les points noirs. Assurez vous d'avoir la face au centre </font><font color=\"red\">ROUGE</font><font color=\"red\"> sur le dessus</font></html");
                 break;
         }
+
+        Instruction.setFont(new Font("Tahoma", Font.BOLD,25));
+        //Instruction.setForeground(java.awt.Color.RED);
+        Instruction.setBounds(50, 100, 450,200);
+        Instruction.setVisible(true);
+        add(Instruction);
     }
 
     public void faceTextWindow()  //Affiche les lettre correspondant au face capturée
