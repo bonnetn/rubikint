@@ -9,7 +9,7 @@ Nous avons fait le choix d'afficher un cube en 3D.
 \subsection{Les classes utilisées pour l'IHM}
 L’interface utilisateur à été réalisée à partir de la bibliothèque \textit{swing}. Nous l’avons produite suivant le diagramme UML de classes suivant :
 
- \begin{figure}[h]
+ \begin{figure}[H]
  \begin{center}
        \makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/classes_ihm.png}}
  \end{center}
@@ -25,7 +25,7 @@ Ainsi, on a 3 scènes dans le projet… du moins 3 scènes principales, \textit{
 \subsection{L'accueil}
 Lorsqu’on lance notre programme, nous arrivons sur la scène \textit{Accueil}. Elle est composée, comme on peut le voir sur le diagramme, de 3 boutons :
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Accueil.png}}
 \end{center}
@@ -54,7 +54,7 @@ Lorsqu’on lance notre programme, nous arrivons sur la scène \textit{Accueil}.
 \subsection{La résolution d'un cube généré aléatoirement}
 L'utilisateur vient de cliquer sur \textit{accRandom}, il arrive donc sur la scène \textit{RandomSolverIhm} :
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Random.png}}
 \end{center}
@@ -67,7 +67,7 @@ trois boutons sont alors présentés à l'utilisateur :
 	    ⇒ Ce bouton interagit avec notre renderer, \textit{OpenGLRenderer} et sa méthode \textit{Scramble()}. Cette méthode choisit aléatoirement une rotation un certain nombre de fois et la réalise.
 Un cube unique est en fait créé dans OpenGLRenderer et on agit dessus par des rotations tout comme l'on ferait avec un vrai cube.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Random_generate.png}}
 \end{center}
@@ -77,7 +77,7 @@ Un cube unique est en fait créé dans OpenGLRenderer et on agit dessus par des 
 	\item Bouton solve : cherche la solution du cube qui vient d'être mélangé et le résout.
 	   ⇒  Elle interagit avec la méthode \textit{Solve()} de \textit{OpenGLRenderer}. Cette méthode posait problème quant à l'animation de résolution dans le rendu 3D. Celle-ci s'arrêtait après une rotation. Il a alors
 fallu créer un Thread,  par le biais de la classe \textit{RandomSolverThread} pour effectuer l'animation jusqu'au bout.
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Random_solve.png}}
 \end{center}
@@ -91,7 +91,7 @@ fallu créer un Thread,  par le biais de la classe \textit{RandomSolverThread} p
 \underline{Gestionnaire de scène \textit{InteractivSolver}}
 ⇒ affiche en premier lieu \textit{InteractivSolve\_accr}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/InteractivSolver_acc.png}}
 \end{center}
@@ -107,7 +107,7 @@ fallu créer un Thread,  par le biais de la classe \textit{RandomSolverThread} p
 \subsection{L'interface de capture}
 \underline{InteractivSolver\_capture :}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/InteractivSolver_capture.png}}
 \end{center}
@@ -124,7 +124,7 @@ fallu créer un Thread,  par le biais de la classe \textit{RandomSolverThread} p
 \subsection{L'interface de résolution}
 \underline{InteractivSolver\_solver :}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/InteractivSolver_solver.png}}
 \end{center}
