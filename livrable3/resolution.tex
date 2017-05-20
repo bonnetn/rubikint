@@ -1,7 +1,7 @@
 \chapter{Résoudre un Rubik's cube}
 
 \section{Le besoin}
-Cette partie est le coeur du projet: il s'agit de créer un algorithme étant capable d'à partir d'un Rubik's Cube quelquonque, de trouver la suite des rotations pour le résoudre. Celui-ci doit être le plus rapide possible, tant en terme de temps d'exécution qu'en terme de complexité de la solution trouvée, c'est à dire le nombre de rotations qui seront effectuées pour résoudre le cube.
+Cette partie est le coeur du projet: il s'agit de créer un algorithme étant capable d'à partir d'un Rubik's Cube quelconque, de trouver la suite des rotations pour le résoudre. Celui-ci doit être le plus rapide possible, tant en terme de temps d'exécution qu'en terme de complexité de la solution trouvée, c'est à dire le nombre de rotations qui seront effectuées pour résoudre le cube.
 
 \section{Modéliser un Rubik's Cube}
 
@@ -9,7 +9,7 @@ Dans ce projet, nous nous sommes rendu compte que modéliser un Rubik's Cube ét
 Le modèle qu'on cherchait devait respecter plusieurs critères. 
 \begin{enumerate}
     \item Premièrement nous devions avoir une interface pour récupérer la couleur de chaque facette à tout moment.
-    \item Ensuite il fallait qu'on ait une fonction qui simule une rotation sur une couronne quelquonque.
+    \item Ensuite il fallait qu'on ait une fonction qui simule une rotation sur une couronne quelconque.
     \item Enfin, notre modélisation devait être assez efficace pour permettre une résolution qui ne prenne pas trop de temps.
 \end{enumerate}
 \subsection{Les premières idées naïves}
@@ -81,7 +81,7 @@ On relance successivement la résolution avec de plus en plus de validateurs (et
 Comme décrit précédemment, nous avons implémenté un algorithme permettant de partir d'une configuration du cub et de trouver les mouvements nécessaires pour qu'il passe le validateur.
 
 Pour cela nous avons utilisé un algorithme de parcours en profondeur.
-Nous lui fournissons une liste de Maneuvres (ensemble de rotations) qu'il peut faire, et il essaiera successivement toutes les manoeuvres jusqu'à trouver le bon RubiksCube.
+Nous lui fournissons une liste de Manoeuvres (ensemble de rotations) qu'il peut faire, et il essaiera successivement toutes les manoeuvres jusqu'à trouver le bon RubiksCube.
 Bien entendu, les manoeuvres fournies sont les manipulations décrites par les techniques de résolution.
 
 En faisant cela, nous nous assurons de trouver la solution optimale entre chaque étape.
