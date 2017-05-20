@@ -69,7 +69,7 @@ Un cube unique est en fait crée dans OpenGLRenderer et on agit dessus par des r
 
 \begin{figure}[h]
 \begin{center}
-	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Random\_generate.png}}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Random_generate.png}}
 \end{center}
 	\caption{Interface  \textit{RandomSolverIhm} avec un cube mélangé}
 \end{figure}
@@ -79,7 +79,7 @@ Un cube unique est en fait crée dans OpenGLRenderer et on agit dessus par des r
 fallut créer un Thread,  par le biais de la classe \textit{RandomSolverThread} pour effectuer l'animation jusqu'au bout.
 \begin{figure}[h]
 \begin{center}
-	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Random\_solve.png}}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Random_solve.png}}
 \end{center}
 	\caption{Interface  \textit{RandomSolverIhm} avec un cube mélangé}
 \end{figure}
@@ -93,13 +93,13 @@ fallut créer un Thread,  par le biais de la classe \textit{RandomSolverThread} 
 
 \begin{figure}[h]
 \begin{center}
-	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/InteractivSolver\_acc.png}}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/InteractivSolver_acc.png}}
 \end{center}
 	\caption{ \textit{InteractivSolver\_acc}}
 \end{figure}
 
 \begin{itemize}
-    \item Bouton capture : passe de la sène \texit{InteractivSolver\_acc}l à la scène \textit{InteractivSolver\_capture}
+    \item Bouton capture : passe de la sène \textit{InteractivSolver\_acc}l à la scène \textit{InteractivSolver\_capture}
     \item Bouton solve : passe de la scène \textit{InteractivSolver\_acc} à la scène \textit{InteractivSolver\_solver}
     \item Bouton retAccueil : passe du gestionnaire de scène \textit{InteractivSolver} à la scène \textit{Accueil}
 \end{itemize}
@@ -109,7 +109,7 @@ fallut créer un Thread,  par le biais de la classe \textit{RandomSolverThread} 
 
 \begin{figure}[h]
 \begin{center}
-	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/InteractivSolver\_capture.png}}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/InteractivSolver_capture.png}}
 \end{center}
 	\caption{ \textit{InteractivSolver\_capture}}
 \end{figure}
@@ -126,7 +126,7 @@ fallut créer un Thread,  par le biais de la classe \textit{RandomSolverThread} 
 
 \begin{figure}[h]
 \begin{center}
-	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/InteractivSolver\_solver.png}}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/InteractivSolver_solver.png}}
 \end{center}
 	\caption{ \textit{InteractivSolver\_solver}}
 \end{figure}
@@ -191,13 +191,13 @@ On peut donc dès à présent dessiner notre RubiksCube. C’est pourquoi nous a
 
                     Cube cubeToDraw = listeCube[x][y][z];
                     gl.glTranslatef((x-1f),(y-1f),(z-1f)); // va au centre du petit cube
-                    if (x == 0) gl.glTranslatef(-distanceEntreCube,0f,0f); // decalage si à gauche de origine
-                    if (x == 2) gl.glTranslatef(distanceEntreCube,0f,0f); // decalage si à droite de origine
-                    if (y == 0) gl.glTranslatef(0f,-distanceEntreCube,0f); // decalage si à l'avant de origine
-                    if (y == 2) gl.glTranslatef(0f,distanceEntreCube,0f); // decalage si à l'arrière de origine
-                    if (z == 0) gl.glTranslatef(0f,0f,-distanceEntreCube); // decalage si à gauche de origine
-                    if (z == 2) gl.glTranslatef(0f,0f,distanceEntreCube); // decalage si à gauche de origine
-                    gl.glTranslatef(-0.5f,-0.5f,-0.5f); //passage du centre du cube au coin avant bas gauche là ou demarre dessin de drawCube()
+                    if (x == 0) gl.glTranslatef(-distanceEntreCube,0f,0f); // decalage si a gauche de origine
+                    if (x == 2) gl.glTranslatef(distanceEntreCube,0f,0f); // decalage si a droite de origine
+                    if (y == 0) gl.glTranslatef(0f,-distanceEntreCube,0f); // decalage si a l'avant de origine
+                    if (y == 2) gl.glTranslatef(0f,distanceEntreCube,0f); // decalage si a l'arriere de origine
+                    if (z == 0) gl.glTranslatef(0f,0f,-distanceEntreCube); // decalage si a gauche de origine
+                    if (z == 2) gl.glTranslatef(0f,0f,distanceEntreCube); // decalage si a gauche de origine
+                    gl.glTranslatef(-0.5f,-0.5f,-0.5f); //passage du centre du cube au coin avant bas gauche la ou demarre dessin de drawCube()
 
                     drawCube(gl,cubeToDraw);
                     gl.glPopMatrix();
