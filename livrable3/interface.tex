@@ -29,7 +29,7 @@ Lorsqu’on lance notre programme, nous arrivons sur la scène \textit{Accueil}.
 \begin{center}
 	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Accueil.png}}
 \end{center}
-	\caption{Interface d'Accueil du programme}
+	\caption{Interface d'accueil du programme}
 \end{figure}
 
 \begin{itemize}
@@ -64,8 +64,8 @@ L'utilisateur vient de cliquer sur \textit{accRandom}, il arrive donc sur la sc�
 trois boutons sont alors présentés à l'utilisateur :
 \begin{itemize}
  	\item Bouton generate : genère un RubiksCube aléatoirement 
-	    ⇒ Ce bouton interragit avec notre renderer, \textit{OpenGLRenderer} et sa méthode \textit{Scramble()}. cette méthode choisit aléatoirement une rotation un certain nombre de fois et la réalise.
-Un cube unique est en fait crée dans OpenGLRenderer et on agit dessus par des rotations tout comme l'on ferait avec un vrai cube.
+	    ⇒ Ce bouton interagit avec notre renderer, \textit{OpenGLRenderer} et sa méthode \textit{Scramble()}. Cette méthode choisit aléatoirement une rotation un certain nombre de fois et la réalise.
+Un cube unique est en fait créé dans OpenGLRenderer et on agit dessus par des rotations tout comme l'on ferait avec un vrai cube.
 
 \begin{figure}[h]
 \begin{center}
@@ -75,8 +75,8 @@ Un cube unique est en fait crée dans OpenGLRenderer et on agit dessus par des r
 \end{figure}
 
 	\item Bouton solve : cherche la solution du cube qui vient d'être mélangé et le résout.
-	   ⇒  Elle interragit avec la méthode \textit{Solve()} de \textit{OpenGLRenderer}. Cette méthode posait problème quant à l'animation de résolution dans le rendu 3D. Celle ci s'arrêtait après une rotation. Il a alors
-fallut créer un Thread,  par le biais de la classe \textit{RandomSolverThread} pour effectuer l'animation jusqu'au bout.
+	   ⇒  Elle interagit avec la méthode \textit{Solve()} de \textit{OpenGLRenderer}. Cette méthode posait problème quant à l'animation de résolution dans le rendu 3D. Celle-ci s'arrêtait après une rotation. Il a alors
+fallu créer un Thread,  par le biais de la classe \textit{RandomSolverThread} pour effectuer l'animation jusqu'au bout.
 \begin{figure}[h]
 \begin{center}
 	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Random_solve.png}}
@@ -99,7 +99,7 @@ fallut créer un Thread,  par le biais de la classe \textit{RandomSolverThread} 
 \end{figure}
 
 \begin{itemize}
-    \item Bouton capture : passe de la sène \textit{InteractivSolver\_acc}l à la scène \textit{InteractivSolver\_capture}
+    \item Bouton capture : passe de la scène \textit{InteractivSolver\_acc}l à la scène \textit{InteractivSolver\_capture}
     \item Bouton solve : passe de la scène \textit{InteractivSolver\_acc} à la scène \textit{InteractivSolver\_solver}
     \item Bouton retAccueil : passe du gestionnaire de scène \textit{InteractivSolver} à la scène \textit{Accueil}
 \end{itemize}
@@ -115,10 +115,10 @@ fallut créer un Thread,  par le biais de la classe \textit{RandomSolverThread} 
 \end{figure}
 
 \begin{itemize}
-    \item Bouton Shoot : prend en capture la webcam, analyse les couleurs en certains point et affiche la face ainsi capturé à l’indice correspondant (cf. partie sur image processing pour détail)
+    \item Bouton Shoot : prend en capture la webcam, analyse les couleurs en certains points et affiche la face ainsi capturée à l’indice correspondant (cf. partie sur image processing pour détail)
     \item Bouton previous : passe à la capture de la face précédente
     \item Bouton next : passe à la capture de la face suivante
-    \item Bouton done : la capture est terminé, passe de la scène \textit{InteractivSovler\_capture} à \textit{InteractivSolver\_acc} et enregistre la configuration dans \textit{InteractivSolver} pour l'appliquer au renderer
+    \item Bouton done : la capture est terminée, passe de la scène \textit{InteractivSovler\_capture} à \textit{InteractivSolver\_acc} et enregistre la configuration dans \textit{InteractivSolver} pour l'appliquer au renderer
 \end{itemize}
 
 \subsection{L'interface de résolution}
@@ -132,7 +132,7 @@ fallut créer un Thread,  par le biais de la classe \textit{RandomSolverThread} 
 \end{figure}
 
 \begin{itemize}
-    \item Bouton previous : Revient au mouvement précedent
+    \item Bouton previous : Revient au mouvement précédent
     \item Bouton next : passe au mouvement suivant 
     \item SolveAll : termine la solution seul.
     \item Return : passe de la scène \textit{InteractivSolver\_solver} à \textit{InteractivSolver\_accueil}
@@ -140,7 +140,7 @@ fallut créer un Thread,  par le biais de la classe \textit{RandomSolverThread} 
 
 \section{L'affichage en 3D - OpenGL}
 
-Cette bibliothèque est utilisé comme moteur graphique 3D pour dessiner le cube.
+Cette bibliothèque est utilisée comme moteur graphique 3D pour dessiner le cube.
 
 \subsection{Fonctionnement général d'OpenGL}
 OpenGL fonctionne de la façon suivante :
@@ -253,7 +253,7 @@ Cette ligne est tout à fait supprimable mais elle rend le code plus lisible pou
 
 On rentre alors dans l’une des trois conditions. Pour notre exemple, c’est rotateX = 0
 
-Souvenez vous des glRotate dans drawRubiksCube, on effectuait une rotation d’angle coloneAnglesX[x] pour l’axe X (resp. axe Y, axe Z). Comme l’on veut tourner la face 0 de l’axe X, on va donc incrémenter la valeur de cette angles jusqu’à une valeur limite qu’est 90°.
+Souvenez vous des glRotate dans drawRubiksCube, on effectuait une rotation d’angle coloneAnglesX[x] pour l’axe X (resp. axe Y, axe Z). Comme on veut tourner la face 0 de l’axe X, on va donc incrémenter la valeur de cette angles jusqu’à une valeur limite qu’est 90°.
 
 Ainsi, à une frame f quelconque, la face en question sera tourné d’angle coloneAnglesX[x].
 
@@ -261,7 +261,7 @@ On incrémente alors coloneAnglesX[rotateX =0] de la valeur de rotation Speed.
 
 On vérifie ensuite que l’angle est égale à 90° (Note : on suppose ici que l’angle rotationSpeed est un diviseur de 90).
 
-Si ce n’est pas le cas, on passe à la suite et la valeur sera incrémenté au prochain appel de Display (donc de updateAngles)
+Si ce n’est pas le cas, on passe à la suite et la valeur sera incrémentée au prochain appel de Display (donc de updateAngles)
 
 Supposons maintenant que coloneAnglesX[0] = 90.
 
@@ -276,7 +276,7 @@ Les dernières méthodes sont utile à d’autres classes, notamment dans l’in
 \paragraph{Résumé}
 Je vous propose alors de résumer tout ce que l’on vient de préciser par parcourir une itération de Display()
 \begin{itemize}
-   \item  updatesAngles : On vient d’expliquer sa fonction qu’est de mettre à jours les angles d’une frame à l’autre
+   \item  updatesAngles : On vient d’expliquer sa fonction qui est de mettre à jours les angles d’une frame à l’autre
 
     \item on récupère l’objet GL2 qui constitue notre scène
 
