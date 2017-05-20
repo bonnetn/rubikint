@@ -18,14 +18,20 @@ L’interface utilisateur à été réalisée à partir de la bibliothèque \tex
 
 
 La classe principale, \textit{Fenetre}, va créer la fenêtre de notre programme. Elle contient le main du projet.
-Elle agit ici comme un gestionnaire de scène d’où sa composition en 3 classes.
+Elle agit ici comme un gestionnaire de scène d’où sa composition en 3 classes. On va alors passer d'une scène à l'autre selon le besoin de l'utilisateur.
 
 Ainsi, on a 3 scènes dans le projet… du moins 3 scènes principales, \textit{InteractivSolver} étant lui même un gestionnaire de scènes.
 
 \subsection{L'accueil}
 Lorsqu’on lance notre programme, nous arrivons sur la scène \textit{Accueil}. Elle est composée, comme on peut le voir sur le diagramme, de 3 boutons :
 
-\textbf{//expliciter les boutons et faire des screen shot de l’interface en rendu}
+\begin{figure}[h]
+\begin{center}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Accueil.png}}
+\end{center}
+	\caption{Interface d'Accueil du programme}
+\end{figure}
+
 \begin{itemize}
     \item Bouton accRandom 
     ⇒ passage de la scène \textit{Accueil} à la scène \textit{RandomSolverIhm}
@@ -45,29 +51,89 @@ Lorsqu’on lance notre programme, nous arrivons sur la scène \textit{Accueil}.
 
 \end{itemize}
 
-\subsection{Le gestionnaire de scène}
-\underline{Gestionnaire de scène \textit{InteractivSolver}}
-⇒ affiche en premier lieu \textit{InteractivSolver}
+\subsection{La résolution d'un cube généré aléatoirement}
+L'utilisateur vient de cliquer sur \textit{accRandom}, il arrive donc sur la scène \textit{RandomSolverIhm} :
+
+\begin{figure}[h]
+\begin{center}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Random.png}}
+\end{center}
+	\caption{Interface du solveur de cube généré aléatoirement}
+\end{figure}
+
+trois boutons sont alors présentés à l'utilisateur :
 \begin{itemize}
-    \item Bouton capture : passe de la sène accueil à la scène \textit{InteractivSolver\_capture}
-    \item Bouton solve : passe de la scène accueil à la scène \textit{InteractivSolver\_solver}
-    \item Bouton ret\textit{Accueil} : passe du gestionnaire de scène \textit{InteractivSolver} à la scène \textit{Accueil}
+ 	\item Bouton generate : genère un RubiksCube aléatoirement 
+	    ⇒ Ce bouton interragit avec notre renderer, \textit{OpenGLRenderer} et sa méthode \textit{Scramble()}. cette méthode choisit aléatoirement une rotation un certain nombre de fois et la réalise.
+Un cube unique est en fait crée dans OpenGLRenderer et on agit dessus par des rotations tout comme l'on ferait avec un vrai cube.
+
+\begin{figure}[h]
+\begin{center}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Random\_generate.png}}
+\end{center}
+	\caption{Interface  \textit{RandomSolverIhm} avec un cube mélangé}
+\end{figure}
+
+	\item Bouton solve : cherche la solution du cube qui vient d'être mélangé et le résout.
+	   ⇒  Elle interragit avec la méthode \textit{Solve()} de \textit{OpenGLRenderer}. Cette méthode posait problème quant à l'animation de résolution dans le rendu 3D. Celle ci s'arrêtait après une rotation. Il a alors
+fallut créer un Thread,  par le biais de la classe \textit{RandomSolverThread} pour effectuer l'animation jusqu'au bout.
+\begin{figure}[h]
+\begin{center}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/Random\_solve.png}}
+\end{center}
+	\caption{Interface  \textit{RandomSolverIhm} avec un cube mélangé}
+\end{figure}
+
+	\item Bouton accueil : Fait un retour à l'accueil du programme. Passe donc de la scène \textit{RandomSolverIhm} à la scène \textit{Accueil}.
+\end{itemize}
+
+\subsection{Le gestionnaire de scène \textit{InteractivSolver}}
+\underline{Gestionnaire de scène \textit{InteractivSolver}}
+⇒ affiche en premier lieu \textit{InteractivSolve\_accr}
+
+\begin{figure}[h]
+\begin{center}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/InteractivSolver\_acc.png}}
+\end{center}
+	\caption{ \textit{InteractivSolver\_acc}}
+\end{figure}
+
+\begin{itemize}
+    \item Bouton capture : passe de la sène \texit{InteractivSolver\_acc}l à la scène \textit{InteractivSolver\_capture}
+    \item Bouton solve : passe de la scène \textit{InteractivSolver\_acc} à la scène \textit{InteractivSolver\_solver}
+    \item Bouton retAccueil : passe du gestionnaire de scène \textit{InteractivSolver} à la scène \textit{Accueil}
 \end{itemize}
 
 \subsection{L'interface de capture}
 \underline{InteractivSolver\_capture :}
+
+\begin{figure}[h]
+\begin{center}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/InteractivSolver\_capture.png}}
+\end{center}
+	\caption{ \textit{InteractivSolver\_capture}}
+\end{figure}
+
 \begin{itemize}
-    \item Bouton Shoot : prend en capture la webcam, analyse les couleurs en certains point et affiche la face ainsi capturé à l’indice correspondant (cf partie sur image processing pour détail)
+    \item Bouton Shoot : prend en capture la webcam, analyse les couleurs en certains point et affiche la face ainsi capturé à l’indice correspondant (cf. partie sur image processing pour détail)
     \item Bouton previous : passe à la capture de la face précédente
     \item Bouton next : passe à la capture de la face suivante
-    \item Bouton done : la capture est terminé, passe de la scène \textit{InteractivSovler\_capture} à \textit{InteractivSolver\_acc}
+    \item Bouton done : la capture est terminé, passe de la scène \textit{InteractivSovler\_capture} à \textit{InteractivSolver\_acc} et enregistre la configuration dans \textit{InteractivSolver} pour l'appliquer au renderer
 \end{itemize}
 
 \subsection{L'interface de résolution}
 \underline{InteractivSolver\_solver :}
+
+\begin{figure}[h]
+\begin{center}
+	\makebox[\textwidth]{\includegraphics[width=.8\paperwidth]{diagrammes/InteractivSolver\_solver.png}}
+\end{center}
+	\caption{ \textit{InteractivSolver\_solver}}
+\end{figure}
+
 \begin{itemize}
     \item Bouton previous : Revient au mouvement précedent
-    \item Bouton next : passe au mouvement suivant :
+    \item Bouton next : passe au mouvement suivant 
     \item SolveAll : termine la solution seul.
     \item Return : passe de la scène \textit{InteractivSolver\_solver} à \textit{InteractivSolver\_accueil}
 \end{itemize}
@@ -88,7 +154,8 @@ OpenGL fonctionne de la façon suivante :
 C’est sur cette particularité qu’il va falloir jouer et qui peut s’avérer être complexe dès lors que l’on veut faire des animations. Nous reviendrons en détails sur sa construction à la fin de cette partie.
 
 \item \underline{Dispose}  : Nous n’en avons pas besoin ici mais elle doit être réécrite pour que le rendu fonctionne.
-Reshape : Permet de changer la taille du rendu. Cette méthode a été redéfinie même si finalement nous imposons une taille fixe dans l’interface final.
+
+\item \underline{Reshape} : Permet de changer la taille du rendu. Cette méthode a été redéfinie même si finalement nous imposons une taille fixe dans l’interface final.
 
 \end{itemize}
 
@@ -104,10 +171,40 @@ La méthode \textit{setCube}, bien que fastidieuse, nous permet donc d’avoir u
 \subsection{Dessiner le cube}
 \subsubsection{Affichage du cube}
 On peut donc dès à présent dessiner notre RubiksCube. C’est pourquoi nous avons fait la méthode \textit{drawRubikscube} 
-\textbf{(mettre ici la méthode (40 lignes ~)}
 \begin{lstlisting}[frame=single]  % Start your code-block
 
-System.out.println("test");
+    public void drawRubiksCube(GL2 gl, RubiksCube rubiksCube) // dessine tous les petits cube a partir de la config de RubiksCube
+    {
+        setCube(rubiksCube); // cree les differents cubes en fonction de la config des facettes de rubikscube
+        for (int x =0; x<3 ; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                for (int z = 0; z < 3; z++)
+                {
+                    gl.glPushMatrix();
+                    gl.glTranslatef(0f,0f,0f); // revient au centre pour eviter un decalage
+
+                    gl.glRotatef(coloneAnglesX[x],1f,0f,0f);
+                    gl.glRotatef(ligneAnglesY[y],0f,1f,0f);
+                    gl.glRotatef(profondeurAnglesZ[z],0f,0f,1f);
+
+                    Cube cubeToDraw = listeCube[x][y][z];
+                    gl.glTranslatef((x-1f),(y-1f),(z-1f)); // va au centre du petit cube
+                    if (x == 0) gl.glTranslatef(-distanceEntreCube,0f,0f); // decalage si à gauche de origine
+                    if (x == 2) gl.glTranslatef(distanceEntreCube,0f,0f); // decalage si à droite de origine
+                    if (y == 0) gl.glTranslatef(0f,-distanceEntreCube,0f); // decalage si à l'avant de origine
+                    if (y == 2) gl.glTranslatef(0f,distanceEntreCube,0f); // decalage si à l'arrière de origine
+                    if (z == 0) gl.glTranslatef(0f,0f,-distanceEntreCube); // decalage si à gauche de origine
+                    if (z == 2) gl.glTranslatef(0f,0f,distanceEntreCube); // decalage si à gauche de origine
+                    gl.glTranslatef(-0.5f,-0.5f,-0.5f); //passage du centre du cube au coin avant bas gauche là ou demarre dessin de drawCube()
+
+                    drawCube(gl,cubeToDraw);
+                    gl.glPopMatrix();
+                }
+            }
+        }
+    }
 
 \end{lstlisting}
 
@@ -120,7 +217,7 @@ System.out.println("test");
     \item Les 3 rotate sont là pour l’animation, nous verront cela plus tard
     \item On sélectionne le cube à dessiner à la position [x,y,z]
     \item La succession de if est là pour déplacer nos cubes d’un petit écart pour donner les petites bandes noires entre chaque petit cube
-    \item On dessine le cube par la méthode drawCube dont voici un extrait.
+    \item On dessine le cube par la méthode drawCube.
     \item On PopMatrix pour indiquer que notre dessin est terminé.
 \end{enumerate}
 
@@ -129,9 +226,7 @@ Cette méthode est donc appelée dans \underline{Display}, ce qui signifie qu’
 \subsubsection{Animation du cube}
 Ainsi, pour faire une animation, on doit faire une méthode qui, pour une rotation donnée, sélectionne l’axe de rotation, les cubes à faire tourner et le sens de rotation (trigonométrique ou horaire)
 
-L’objectif est donc, de faire tourner les cubes frame par frame, par incrémentation de l’angle dans drawRubiksCube que l’on vient de voir pour donner une sensation d’animation. C’est ce que réalisait les 3 glRotatef ci-dessus :  \textbf{(remettre le bout de code)}
-
-\textbf{//Dessiner un rubik’s cube avec les 3 axes et coordonnée pour expliquer les trois float[3] dans Rotate sur un exemple.}
+L’objectif est donc, de faire tourner les cubes frame par frame, par incrémentation de l’angle dans drawRubiksCube que l’on vient de voir pour donner une sensation d’animation. C’est ce que réalisait les 3 glRotatef ci-dessus.
 
 \paragraph{Comment cette rotation a été faite ?}
 3 méthodes :
@@ -139,7 +234,8 @@ L’objectif est donc, de faire tourner les cubes frame par frame, par incrémen
     \item isRotating : pour effectuer une seule rotation à la fois. rotateX, rotateY,rotateZ égaux à -1 si on ne tourne pas sur l’axe correspondant.
     \item rotate (int face, Axis axis, boolean clock) :
 face va être un entier qui sera égale à soit 0, soit 2 et nous permettra de sélectionner la face à tourner selon l’axe axis. Ainsi, si l’on veut tourner la première face qui est centrée sur l’axe X dans le sens horaire, on aura rotate(int 0, Axis.X, boolean clock) qui affectera à rotateX la valeur 0 et rotationSpeed,qui est la valeur d’incrémentation de l’angle que l’on effectue à chaque frame, qui est fixe en valeur absolue mais qui est soit positif ou négatif selon le sens de rotation d’où l’opérateur ternaire qui est en fin de méthode.
-    \item Il reste alors la méthode principale, updateAngles qui est, rappelez vous, celle qui était appelé en première dans Display().
+    \item Il reste alors la méthode principale, updateAngles qui est, rappelez vous, celle qui était appelé en première dans Display(). C'est dans cette méthode que l'on va incrémenter les valeurs correspondante dans 
+coloneAnglesX[x], ligneAnglesY[y] et profondeurAnglesZ[z].
 \end{itemize}
 
 \paragraph{Explications}
@@ -147,8 +243,13 @@ Supposons que l’on soit à un instant t quelconque et reprenons notre précéd
 
 updateAngles() est appelée. Comme une seule rotation est faite à la fois, seul une des trois variables parmis rotateX,rotateY et rotateZ est positive ou nulle.
 
-Dans un premier temps, et pour des raisons de clareté, on définit une direction de l’enum Direction par l’opérateur ternaire \textbf{(placer ici le code )}. Cette ligne est tout à fait supprimable mais elle rend le code plus lisible pour la suite.
-\textbf{// 	code OpenGLRenderer ligne 322 à 365}
+Dans un premier temps, et pour des raisons de clareté, on définit une direction de l’enum Direction par l’opérateur ternaire :
+
+\begin{lstlisting}[frame=single]  % Start your code-block
+        Direction direction = (rotationSpeed > 0) ? Direction.CLOCKWISE : Direction.COUNTER_CLOCKWISE;
+\end{lstlisting}
+
+Cette ligne est tout à fait supprimable mais elle rend le code plus lisible pour la suite.
 
 On rentre alors dans l’une des trois conditions. Pour notre exemple, c’est rotateX = 0
 
@@ -168,16 +269,15 @@ On la définit alors = 0 pour réinitialiser la matrice d’angles de rotation.
 
 puis il faut maintenant effectuer la rotation de l’objet RubiksCube pour qu’il n’y ait aucune différence entre la configuration dans le rendu et celle dans RubiksCube.
 
-\textbf{//mettre ici les 4 if}
-
 puis comme la rotation est terminée, on peut remettre rotateX (resp. rotateY, rotateZ)  à la valeur -1.
 
-Les dernières méthodes sont utile à d’autres classes, notamment dans l’interface et seront donc explicité plus tard.
+Les dernières méthodes sont utile à d’autres classes, notamment dans l’interface (cf. la partie sur l'interface)
 
 \paragraph{Résumé}
 Je vous propose alors de résumer tout ce que l’on vient de préciser par parcourir une itération de Display()
-updatesAngles : On vient d’expliquer sa fonction qu’est de mettre à jours les angles d’une frame à l’autre.
 \begin{itemize}
+   \item  updatesAngles : On vient d’expliquer sa fonction qu’est de mettre à jours les angles d’une frame à l’autre
+
     \item on récupère l’objet GL2 qui constitue notre scène
 
     \item glClear : On vide différents buffer pour éviter tout problème de superposition de tracé dans notre rendu final.
