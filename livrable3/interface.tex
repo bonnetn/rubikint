@@ -246,7 +246,9 @@ updateAngles() est appelée. Comme une seule rotation est faite à la fois, seul
 Dans un premier temps, et pour des raisons de clareté, on définit une direction de l’enum Direction par l’opérateur ternaire :
 
 \begin{lstlisting}[frame=single]  % Start your code-block
+
         Direction direction = (rotationSpeed > 0) ? Direction.CLOCKWISE : Direction.COUNTER_CLOCKWISE;
+
 \end{lstlisting}
 
 Cette ligne est tout à fait supprimable mais elle rend le code plus lisible pour la suite.
