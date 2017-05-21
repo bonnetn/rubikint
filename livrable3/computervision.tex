@@ -11,7 +11,7 @@ Cependant, on s'est vite rendu compte que c'était un véritable calvaire d'int�
 environnement de développement en Java. Des solutions existent comme le projet amateur JavaCV (cf . \url{https://github.com/bytedeco/javacv}).
 Encore une fois, même si cela nous permettais d'avoir accès aux méthodes d' \textit{OpenCV}, il devient très délicat d'intégrer notre webcam
 dans notre interface \textit{Swing} selon les versions utilisé d' textit{OpenCV}. Après des recherches laborieuse durant plusieurs semaine 
-sur internet, notre choix s'est porté sur la bibliothèque amateur \texit{webcam-capture} (cf. \url{https://github.com/sarxos/webcam-capture}).
+sur internet, notre choix s'est porté sur la bibliothèque amateur \textit{webcam-capture} (cf. \url{https://github.com/sarxos/webcam-capture}).
 
 Malheureusement, celle bibliothèque ne propose aucune méthode d'analyse d'image, cette dernière est réalisée spécialement pour intégrer une webcam
 sur une interface \textit{Swing} (quel aubaine !). Nous l'aurons donc, vous l'aurez compris, définir une méthode d'analyse de l'image.
@@ -23,9 +23,9 @@ Partons du postulat qu'il est très facile de savoir la couleur d'un pixel sur u
 En effet, il suffit d'appliquer la méthode \textit{getRGB} à une image de type \textit{BufferedImage}.
 Supposons donc qu'il est facile de connaitre la couleur d'un pixel, faut-il encore s'assurer que le pixel en question est celui d'une face de notre Rubik's Cube.
 
-Comme je vous l'ai dit, nous avons décidé de nous affranchir d'\texit{OpenCV}, il est donc impensable pour nous d'utiliser des méthodes de reconnaissance de contour
+Comme je vous l'ai dit, nous avons décidé de nous affranchir d'\textit{OpenCV}, il est donc impensable pour nous d'utiliser des méthodes de reconnaissance de contour
 afin de connaitre la position sur l'image de notre facette. 
-C'est pourquoi nous avons choisi d'imposer la position des facette à l'utilisateur en position, par dessus l'image sur l'interface (cf. l'image InteractivSolver_capture
+C'est pourquoi nous avons choisi d'imposer la position des facette à l'utilisateur en position, par dessus l'image sur l'interface (cf. l'image InteractivSolver\_capture
 dans le chapitre 3), des points indiquant à l'utilisateur de placer les facettes par juxtaposition. De cette façon, qui est certe moins "user-friendly", nous avons simplement 
 à analyser un nombre fixe de pixels. Encore mieux, ce sont toujours les même pixels qui seront analysé.
 
