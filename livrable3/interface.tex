@@ -7,7 +7,8 @@ Nous avons fait le choix d'afficher un cube en 3D.
 
 \section{Interface Homme Machine}
 \subsection{Les classes utilisées pour l'IHM}
-L’interface utilisateur à été réalisée à partir de la bibliothèque \textit{swing}. Nous l’avons produite suivant le diagramme UML de classes suivant :
+L’interface utilisateur à été réalisée à partir de la bibliothèque \textit{swing}. 
+Nous l’avons produite suivant le diagramme UML de classes suivant :
 
  \begin{figure}[H]
  \begin{center}
@@ -17,8 +18,10 @@ L’interface utilisateur à été réalisée à partir de la bibliothèque \tex
  \end{figure}
 
 
-La classe principale, \textit{Fenetre}, va créer la fenêtre de notre programme. Elle contient le main du projet.
-Elle agit ici comme un gestionnaire de scène d’où sa composition en 3 classes. On va alors passer d'une scène à l'autre selon le besoin de l'utilisateur.
+La classe principale, \textit{Fenetre}, va créer la fenêtre de notre programme. 
+Elle contient le main du projet.
+Elle agit ici comme un gestionnaire de scène d’où sa composition en 3 classes. 
+On va alors passer d'une scène à l'autre selon le besoin de l'utilisateur.
 
 Ainsi, on a 3 scènes dans le projet… du moins 3 scènes principales, \textit{InteractivSolver} étant lui même un gestionnaire de scènes.
 
@@ -148,10 +151,10 @@ OpenGL fonctionne de la façon suivante :
 	Quatre méthodes sont alors redéfinies.
 
 \begin{itemize}
-    \item \underline{Init} : comme son nom l’indique, on initialise notre scène avec différentes méthodes de la bibliothèque. On lui applique également un fond noir pour un soucis de visibilité.
+    \item \underline{Init} : comme son nom l’indique, on initialise notre scène avec différentes méthodes de la bibliothèque. On lui applique également un fond noir par soucis de visibilité.
 
-    \item \underline{Display} : C’est la méthode la plus importante d’OpenGL. Il s’agit d’une boucle infinie qui va actualiser notre rendu. Cette méthode définie d’une certaine façon notre “framerate”.
-C’est sur cette particularité qu’il va falloir jouer et qui peut s’avérer être complexe dès lors que l’on veut faire des animations. Nous reviendrons en détails sur sa construction à la fin de cette partie.
+    \item \underline{Display} : C’est la méthode la plus importante d’OpenGL. Il s’agit d’une boucle infinie qui va actualiser notre rendu. Cette méthode définit d’une certaine façon notre “framerate”.
+C’est sur cette particularité qu’il va falloir jouer et qui peut s’avérer être complexe dès lors que l’on veut faire des animations. Nous reviendrons en détail sur sa construction à la fin de cette partie.
 
 \item \underline{Dispose}  : Nous n’en avons pas besoin ici mais elle doit être réécrite pour que le rendu fonctionne.
 
@@ -162,11 +165,14 @@ C’est sur cette particularité qu’il va falloir jouer et qui peut s’avére
 \subsection{Transformer le cube}
 Maintenant que nous avons notre socle de base de notre moteur graphique, il faut dessiner le cube.
 
-La principale difficulté a été de traduire les informations que la classe RubiksCube me fournissait. En effet, lorsque nous instancions un \textit{RubiksCube}, ce dernier possède une table de permutation qui permet la résolution. Le cube est alors défini par facettes (entité qui représente une couleur d’une face du cube). Hors, il était plus simple pour le rendu 3D de dessiner des petits cube (vis à vis de l’animation).
+La principale difficulté a été de traduire les informations que la classe RubiksCube me fournissait.
+En effet, lorsque nous instancions un \textit{RubiksCube}, ce dernier possède une table de permutation qui permet la résolution. 
+Le cube est alors défini par facettes (entité qui représente une couleur d’une face du cube). 
+Hors, il était plus simple pour le rendu 3D de dessiner des petits cubes (vis à vis de l’animation).
 
 On a alors créé la classe \textit{Cube} dont le constructeur prend en argument 6 couleurs de l’enum Color ainsi que 3 entiers correspondant à la position d’un cube avec une norme arbitraire choisie par nos soins.
 
-La méthode \textit{setCube}, bien que fastidieuse, nous permet donc d’avoir une liste des différents cubes que compose le RubiksCube. Comme un cube ne possède qu’au plus 3 faces visibles, nous plaçons les autres faces, interne au RubiksCube, en noir.
+La méthode \textit{setCube}, bien que fastidieuse, nous permet donc d’avoir une liste des différents cubes que composent le RubiksCube. Comme un cube ne possède qu’au plus 3 faces visibles, nous plaçons les autres faces, internes au RubiksCube, en noir.
 
 \subsection{Dessiner le cube}
 \subsubsection{Affichage du cube}
@@ -214,7 +220,7 @@ On peut donc dès à présent dessiner notre RubiksCube. C’est pourquoi nous a
     \item 3 imbrications de boucle for pour parcourir toutes nos coordonnées
     \item PushMatrix pour pouvoir dessiner sur notre scène
     \item Le pointeur revient au centre
-    \item Les 3 rotate sont là pour l’animation, nous verront cela plus tard
+    \item Les 3 rotates sont là pour l’animation, nous verrons cela plus tard
     \item On sélectionne le cube à dessiner à la position [x,y,z]
     \item La succession de if est là pour déplacer nos cubes d’un petit écart pour donner les petites bandes noires entre chaque petit cube
     \item On dessine le cube par la méthode drawCube.
@@ -233,15 +239,15 @@ L’objectif est donc, de faire tourner les cubes frame par frame, par incrémen
 \begin{itemize}
     \item isRotating : pour effectuer une seule rotation à la fois. rotateX, rotateY,rotateZ égaux à -1 si on ne tourne pas sur l’axe correspondant.
     \item rotate (int face, Axis axis, boolean clock) :
-face va être un entier qui sera égale à soit 0, soit 2 et nous permettra de sélectionner la face à tourner selon l’axe axis. Ainsi, si l’on veut tourner la première face qui est centrée sur l’axe X dans le sens horaire, on aura rotate(int 0, Axis.X, boolean clock) qui affectera à rotateX la valeur 0 et rotationSpeed,qui est la valeur d’incrémentation de l’angle que l’on effectue à chaque frame, qui est fixe en valeur absolue mais qui est soit positif ou négatif selon le sens de rotation d’où l’opérateur ternaire qui est en fin de méthode.
-    \item Il reste alors la méthode principale, updateAngles qui est, rappelez vous, celle qui était appelé en première dans Display(). C'est dans cette méthode que l'on va incrémenter les valeurs correspondante dans 
+face va être un entier qui sera égale à soit 0, soit 2 et nous permettra de sélectionner la face à tourner selon l’axe axis. Ainsi, si on veut tourner la première face qui est centrée sur l’axe X dans le sens horaire, on aura rotate(int 0, Axis.X, boolean clock) qui affectera à rotateX la valeur 0 et rotationSpeed, qui est la valeur d’incrémentation de l’angle que l’on effectue à chaque frame, qui est fixe en valeur absolue mais qui est soit positive ou négative selon le sens de rotation; d’où l’opérateur ternaire qui est en fin de méthode.
+    \item Il reste alors la méthode principale, updateAngles qui est, rappelez-vous, celle qui était appelée en première dans Display(). C'est dans cette méthode que l'on va incrémenter les valeurs correspondante dans 
 coloneAnglesX[x], ligneAnglesY[y] et profondeurAnglesZ[z].
 \end{itemize}
 
 \paragraph{Explications}
 Supposons que l’on soit à un instant t quelconque et reprenons notre précédent exemple (rotate(0,Axis.X,true) ).
 
-updateAngles() est appelée. Comme une seule rotation est faite à la fois, seul une des trois variables parmis rotateX,rotateY et rotateZ est positive ou nulle.
+updateAngles() est appelée. Comme une seule rotation est faite à la fois, seule une des trois variables parmis rotateX,rotateY et rotateZ est positive ou nulle.
 
 Dans un premier temps, et pour des raisons de clareté, on définit une direction de l’enum Direction par l’opérateur ternaire :
 
@@ -257,11 +263,11 @@ On rentre alors dans l’une des trois conditions. Pour notre exemple, c’est r
 
 Souvenez vous des glRotate dans drawRubiksCube, on effectuait une rotation d’angle coloneAnglesX[x] pour l’axe X (resp. axe Y, axe Z). Comme on veut tourner la face 0 de l’axe X, on va donc incrémenter la valeur de cette angles jusqu’à une valeur limite qu’est 90°.
 
-Ainsi, à une frame f quelconque, la face en question sera tourné d’angle coloneAnglesX[x].
+Ainsi, à une frame f quelconque, la face en question sera tournée de l'angle coloneAnglesX[x].
 
 On incrémente alors coloneAnglesX[rotateX =0] de la valeur de rotation Speed.
 
-On vérifie ensuite que l’angle est égale à 90° (Note : on suppose ici que l’angle rotationSpeed est un diviseur de 90).
+On vérifie ensuite que l’angle est égal à 90° (Note : on suppose ici que l’angle rotationSpeed est un diviseur de 90).
 
 Si ce n’est pas le cas, on passe à la suite et la valeur sera incrémentée au prochain appel de Display (donc de updateAngles)
 
@@ -269,41 +275,27 @@ Supposons maintenant que coloneAnglesX[0] = 90.
 
 On la définit alors = 0 pour réinitialiser la matrice d’angles de rotation.
 
-puis il faut maintenant effectuer la rotation de l’objet RubiksCube pour qu’il n’y ait aucune différence entre la configuration dans le rendu et celle dans RubiksCube.
+Il faut maintenant effectuer la rotation de l’objet RubiksCube pour qu’il n’y ait aucune différence entre la configuration dans le rendu et celle dans RubiksCube.
 
-puis comme la rotation est terminée, on peut remettre rotateX (resp. rotateY, rotateZ)  à la valeur -1.
+Puis comme la rotation est terminée, on peut remettre rotateX (resp. rotateY, rotateZ)  à la valeur -1.
 
 Les dernières méthodes sont utile à d’autres classes, notamment dans l’interface (cf. la partie sur l'interface)
 
 \paragraph{Résumé}
-Je vous propose alors de résumer tout ce que l’on vient de préciser par parcourir une itération de Display()
+Je vous propose alors de résumer tout ce que l’on vient de préciser en parcourant une itération de Display()
 \begin{itemize}
-   \item  updatesAngles : On vient d’expliquer sa fonction qui est de mettre à jours les angles d’une frame à l’autre
+   \item  updatesAngles : On vient d’expliquer sa fonction qui est de mettre à jour les angles d’une frame à l’autre
 
     \item on récupère l’objet GL2 qui constitue notre scène
 
-    \item glClear : On vide différents buffer pour éviter tout problème de superposition de tracé dans notre rendu final.
+    \item glClear : On vide différents buffers pour éviter tout problème de superposition de tracé dans notre rendu final.
 
     \item glLoadIdentity : réinitialise la matrice que l’on a dessiné à la frame précédente (cf. pushMatrix dans drawRubiksCube)
 
-    \item gluLookAt(0f,0f,12f,0f,0f,0f,0f,1f,0f) : Place le point de vue à la position [0,0,12], regardant vers [0,0,0] selon l’axe [0,1,0] (ici l’axe Y). Les valeurs sont arbitraire et empirique
+    \item gluLookAt(0f,0f,12f,0f,0f,0f,0f,1f,0f) : Place le point de vue à la position [0,0,12], regardant vers [0,0,0] selon l’axe [0,1,0] (ici l’axe Y). Les valeurs sont arbitraires et empiriques
 
-    \item glRotate(alphaX (resp. alphaY,alphaZ)). Permet de tourner l’intégralité de la scène selon les trois axes et permet donc de tourner autour du RubiksCube. Ces rotations sont réalisé par appuie sur les touches fléchées du clavier dans les classes de l’interface contenant un OpenGLRenderer.
+    \item glRotate(alphaX (resp. alphaY,alphaZ)). Permet de tourner l’intégralité de la scène selon les trois axes et permet donc de tourner autour du RubiksCube. Ces rotations sont réalisées par appui sur les touches fléchées du clavier dans les classes de l’interface contenant un OpenGLRenderer.
 
-    \item drawRubiksCube : dessiner le RubiksCube avec les différents paramètre de rotation.
+    \item drawRubiksCube : dessine le RubiksCube avec les différents paramètre de rotation.
 \end{itemize}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
