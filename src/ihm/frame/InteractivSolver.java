@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by florian on 07/04/17.
@@ -67,6 +68,7 @@ public class InteractivSolver extends JLabel {
     Color[][][] faceColor;
 
     Color[][][] testColor = new Color[6][3][3];
+    int[] test = new int[48];
 
 
     public InteractivSolver(){
@@ -90,6 +92,16 @@ public class InteractivSolver extends JLabel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 renderer.setRubiksCubecolor(faceColor);
+                //renderer.Scramble();
+                renderer.InteractivSolver();
+                test = renderer.getRubiksPermutation();
+                for (int i=0; i<48;i++)
+                {
+                    System.out.println(test[i]);
+                }
+                ArrayList<Rotation> solution = renderer.getSolution();
+                Solver.setMax(solution.size());
+                Solver.setSolution(renderer.getSolution());
                 Accueil.setVisible(false);
                 Capture.setVisible(false);
                 Solver.setVisible(true);

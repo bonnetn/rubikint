@@ -191,12 +191,12 @@ public class InteractivSolver_capture extends JLabel{
     {
         java.awt.Color PixelColor;
         int x=0; int y=0; int R=0; int G=0; int B=0;
-        if (j==0) {x = 215;}
-        if (j==1) {x = 315;}
-        if (j==2) {x = 415;}
-        if (i==2) {y = 135;}
-        if (i==1) {y = 235;}
-        if (i==0) {y = 335;}
+        if (j==0) {y=335;}
+        if (j==1) {y=235;}
+        if (j==2) {y=135;}
+        if (i==0) {x=215;}
+        if (i==1) {x=315;}
+        if (i==2) {x=415;}
 
         for (int h=0;h<5;h++)
         {
@@ -308,7 +308,7 @@ public class InteractivSolver_capture extends JLabel{
                                 ge.setColor(java.awt.Color.YELLOW);
                                 break;
                         }
-                        ge.fillRect(x+33*j,y+(2-i)*33,30,30);
+                        ge.fillRect(x+33*i,y+(2-j)*33,30,30);
                     }
                 }
             }

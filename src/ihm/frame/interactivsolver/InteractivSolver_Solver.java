@@ -86,6 +86,7 @@ public class InteractivSolver_Solver extends JLabel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Bouton Next OK");
+                if (indice < solution.size());
                 afficheEtape.setVisible(false);
                 doNextRotation();
                 indice++;
@@ -97,10 +98,12 @@ public class InteractivSolver_Solver extends JLabel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Bouton Previous OK");
-                afficheEtape.setVisible(false);
-                indice--;
-                doPreviousRotation();
-                setJLabel();
+                if( indice >0) {
+                    afficheEtape.setVisible(false);
+                    indice--;
+                    doPreviousRotation();
+                    setJLabel();
+                }
 
             }
         });
@@ -115,7 +118,7 @@ public class InteractivSolver_Solver extends JLabel {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Bouton Solve All OK");
                 int start = indice;
-                for (int i=start;i<max;i++)
+                for (int i=start;i<solution.size();i++)
                 {
                     afficheEtape.setVisible(false);
                     doNextRotation();
@@ -137,7 +140,7 @@ public class InteractivSolver_Solver extends JLabel {
         setJLabel();
         afficheEtape.setFont(new Font("Tahoma", Font.BOLD,25));
         afficheEtape.setForeground(Color.RED);
-        afficheEtape.setBounds(50, 100, 450,200);
+        afficheEtape.setBounds(50, 100, 475,200);
         afficheEtape.setVisible(true);
         add(afficheEtape);
 
@@ -155,51 +158,51 @@ public class InteractivSolver_Solver extends JLabel {
     /**--------------------------METHODE ANNEXE D AFFICHAGE DE LA SOLUTION ET DE ROTATION DU CUBE--------------------**/
     public void setJLabel(){
         if (indice == max){
-            afficheEtape = new JLabel("GG");
+            afficheEtape = new JLabel("GG (Good Game pour les nu...novice)");
         }else{
 
             switch(solution.get(indice)) {
                 case L:
-                    afficheEtape = new JLabel("L");
+                    afficheEtape = new JLabel("Prochain mouvement : L (Left)");
                     break;
                 case B:
-                    afficheEtape = new JLabel("B");
+                    afficheEtape = new JLabel("Prochain mouvement : B (Back)");
                     break;
                 case R:
-                    afficheEtape = new JLabel("R");
+                    afficheEtape = new JLabel("Prochain mouvement : R (Right)");
                     break;
                 case F:
-                    afficheEtape = new JLabel("F");
+                    afficheEtape = new JLabel("Prochain mouvement : F (Front)");
                     break;
                 case U:
-                    afficheEtape = new JLabel("U");
+                    afficheEtape = new JLabel("Prochain mouvement : U (Up)");
                     break;
                 case D:
-                    afficheEtape = new JLabel("D");
+                    afficheEtape = new JLabel("Prochain mouvement : D (Down)");
                     break;
                 case Li:
-                    afficheEtape = new JLabel("L'");
+                    afficheEtape = new JLabel("Prochain mouvement : L' (Left ')");
                     break;
                 case Bi:
-                    afficheEtape = new JLabel("B'");
+                    afficheEtape = new JLabel("Prochain mouvement : B' (Back ')");
                     break;
                 case Ri:
-                    afficheEtape = new JLabel("R'");
+                    afficheEtape = new JLabel("Prochain mouvement : R' (Right ')");
                     break;
                 case Fi:
-                    afficheEtape = new JLabel("F'");
+                    afficheEtape = new JLabel("Prochain mouvement : F' (Front')");
                     break;
                 case Ui:
-                    afficheEtape = new JLabel("U'");
+                    afficheEtape = new JLabel("Prochain mouvement : U' (Up ')");
                     break;
                 case Di:
-                    afficheEtape = new JLabel("D'");
+                    afficheEtape = new JLabel("Prochain mouvement : D' (Down ')");
                     break;
             }
         }
         afficheEtape.setFont(new Font("Tahoma", Font.BOLD,25));
         afficheEtape.setForeground(Color.RED);
-        afficheEtape.setBounds(50, 100, 450,200);
+        afficheEtape.setBounds(50, 100, 475,200);
         afficheEtape.setVisible(true);
         add(afficheEtape);
     }
@@ -347,4 +350,7 @@ public class InteractivSolver_Solver extends JLabel {
     }
 
     public OpenGLRenderer getRenderer(){return renderer;}
+    public ArrayList<Rotation> getSolution(){ return solution;}
+    public void  setSolution(ArrayList<Rotation> sol){ solution = sol;}
+    public void setMax(int i){max = i;}
 }
