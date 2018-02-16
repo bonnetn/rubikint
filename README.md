@@ -12,6 +12,11 @@ It then finds the movements to apply to solve the cube.
 
 Finally it displays in 3D, using OpenGL, steps to solve the cube.
 
+## Screenshots
+
+![Screenshot of the computer vision part](https://github.com/nicolasbonnet1/rubikint/blob/master/img1.png)
+![Screenshot of the resolution](https://github.com/nicolasbonnet1/rubikint/blob/master/img2.png)
+
 
 Projet informatique - Solveur de Rubik's Cube
 =============================================
