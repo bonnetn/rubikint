@@ -1,3 +1,18 @@
+Computer science class project - Rubik's cube solver
+====================================================
+
+## Presentation
+
+The goal of this project was to make a rubik's cube helper. 
+
+You show your current cube configuration to the webcam, the program detects the 
+colors using computer vision library *OpenCV*.
+
+It then finds the movements to apply to solve the cube.
+
+Finally it displays in 3D, using OpenGL, steps to solve the cube.
+
+
 Projet informatique - Solveur de Rubik's Cube
 =============================================
 
